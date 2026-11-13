@@ -1,0 +1,37 @@
+# Unity generated directories
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Bb]uild/
+**/[Bb]uilds/
+**/[Ll]ogs/
+**/[Uu]ser[Ss]ettings/
+**/[Mm]emory[Cc]aptures/
+**/[Rr]ecordings/
+
+# Generated IDE and solution files
+**/.vs/
+**/*.csproj
+**/*.sln
+**/*.slnx
+**/*.suo
+**/*.user
+**/*.userprefs
+
+# Unity and IDE generated cache files
+**/*.pidb
+**/*.booproj
+**/*.svclog
+**/*.pdb
+**/*.mdb
+**/*.opendb
+**/*.VC.db
+**/*.cache
+**/sysinfo.txt
+
+# Operating system files
+**/.DS_Store
+**/Thumbs.db
+
+# Editor settings
+**/.vscode/
