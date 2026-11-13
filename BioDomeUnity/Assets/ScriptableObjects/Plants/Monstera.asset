@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0070d464fceda4b8d7cb49cb137230, type: 3}
+  m_Name: Monstera
+  m_EditorClassIdentifier: Assembly-CSharp::BioDome.Plants.PlantData
+  displayName: Swiss Cheese Plant
+  scientificName: Monstera deliciosa
+  description: A climbing aroid with large, glossy leaves that develop splits and holes as they mature.
+  speciesId: monstera
+  botanicalZone: Tropical foliage
+  matureCanopyWidth: 1.7
+  matureHeight: 1.4
+  seedlingUntil: 0.25
+  juvenileUntil: 0.5
+  establishedUntil: 0.8
+  idealTemperatureCelsius: {x: 18, y: 29}
+  idealHumidity01: {x: 0.5, y: 0.85}
+  idealLight01: {x: 0.25, y: 0.75}
+  temperatureTolerance: 10
+  humidityTolerance: 0.4
+  lightTolerance: 0.5
+  waterCapacityLitres: 5
+  waterUseLitresPerHour: 0.05
+  idealSoilMoisture01: {x: 0.35, y: 0.75}
+  daysToMaturity: 30
+  springGrowthMultiplier: 1.2
+  summerGrowthMultiplier: 1
+  autumnGrowthMultiplier: 0.6
+  winterGrowthMultiplier: 0.2
+  healthRecoveryPerHour: 0.02
+  stressDamagePerHour: 0.05
+  healthyThreshold: 0.7
+  stressedThreshold: 0.35
+  maxScale: 1

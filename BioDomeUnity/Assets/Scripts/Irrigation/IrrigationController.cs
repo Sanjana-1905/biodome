@@ -22,6 +22,8 @@ namespace BioDome.Irrigation
         [Header("Reservoir")]
         [SerializeField, Min(1f)] private float reservoirCapacityLitres = 500f;
         [SerializeField, Min(0f)] private float startingWaterLitres = 500f;
+        [SerializeField, Min(0f), Tooltip("Litres per simulated hour added from a mains supply. 0 = reservoir only (refill by hand).")]
+        private float mainsSupplyLitresPerHour = 0f;
 
         [Header("Delivery")]
         [SerializeField, Min(0f), Tooltip("Total litres the sprinklers deliver per simulated hour.")]
@@ -98,6 +100,8 @@ namespace BioDome.Irrigation
         public void Tick(float deltaHours)
         {
             if (deltaHours <= 0f) return;
+
+            if (mainsSupplyLitresPerHour > 0f) Refill(mainsSupplyLitresPerHour * deltaHours);
 
             bool shouldRun = ShouldRun();
             if (shouldRun != isRunning) SetRunning(shouldRun);

@@ -3,6 +3,7 @@ using BioDome.CameraSystem;
 using BioDome.Environment;
 using BioDome.Irrigation;
 using BioDome.Plants;
+using BioDome.Simulation;
 using BioDome.UI;
 using UnityEngine;
 
@@ -36,12 +37,24 @@ namespace BioDome.Core
         [SerializeField, Min(0.05f), Tooltip("Seconds between UI text refreshes.")]
         private float uiRefreshInterval = 0.2f;
 
+        [Header("Planting Cohort")]
+        [SerializeField, Range(0.05f, 0.3f), Tooltip("Growth every plant starts with, as a fraction of maturity. All plants are introduced together, so all share this value (0.10 to 0.15 is typical).")]
+        private float initialGrowth01 = 0.12f;
+        [SerializeField, Min(1), Tooltip("Growth-stage meshes built per frame. Lower is smoother, higher updates faster.")]
+        private int meshBuildsPerFrame = 1;
+
         private PlantController selectedPlant;
+        private PlantingCohort cohort;
+        private PlantMeshLibrary meshLibrary;
         private float uiTimer;
         private bool environmentReady;
 
         public PlantController SelectedPlant => selectedPlant;
         public bool Paused => paused;
+
+        /// <summary>The shared planting start (initial growth and planting time) used by every plant.</summary>
+        public PlantingCohort Cohort => cohort;
+        public float InitialGrowth01 => initialGrowth01;
 
         private void Awake()
         {
@@ -66,6 +79,8 @@ namespace BioDome.Core
             if (irrigation == null) Debug.LogWarning($"{nameof(GreenhouseManager)}: no irrigation controller assigned; plants will not be watered.", this);
             if (cameraController == null) Debug.LogWarning($"{nameof(GreenhouseManager)}: no camera controller assigned; plant selection is disabled.", this);
             if (uiManager == null) Debug.LogWarning($"{nameof(GreenhouseManager)}: no UI manager assigned; no on-screen information.", this);
+
+            meshLibrary = new PlantMeshLibrary();
         }
 
         private void OnEnable()
@@ -109,6 +124,16 @@ namespace BioDome.Core
         private void Start()
         {
             // Registration happens in Start so every PlantController.Awake has already created its simulation.
+            // One cohort for everyone: same initial growth, same planting time. No plant gets its own random age.
+            float nowHours = environment.Current.DayCount * 24f + environment.Current.TimeOfDayHours;
+            cohort = new PlantingCohort(initialGrowth01, nowHours);
+            for (int i = 0; i < plants.Count; i++)
+            {
+                if (plants[i] == null) continue;
+                plants[i].SetMeshLibrary(meshLibrary);
+                plants[i].Plant(cohort);
+            }
+
             if (irrigation != null)
             {
                 for (int i = 0; i < plants.Count; i++) irrigation.RegisterPlant(plants[i]);
@@ -145,6 +170,8 @@ namespace BioDome.Core
                 if (plant != null) plant.Tick(deltaHours, conditions);
             }
 
+            meshLibrary.Process(meshBuildsPerFrame);
+
             uiTimer += Time.unscaledDeltaTime;
             if (uiTimer >= uiRefreshInterval)
             {
@@ -160,6 +187,17 @@ namespace BioDome.Core
             if (plant == null || plants.Contains(plant)) return;
             plants.Add(plant);
             if (irrigation != null) irrigation.RegisterPlant(plant);
+
+            if (cohort != null) // plants added while running join the same cohort settings
+            {
+                plant.SetMeshLibrary(meshLibrary);
+                plant.Plant(cohort);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (meshLibrary != null) meshLibrary.Dispose();
         }
 
         public void UnregisterPlant(PlantController plant)

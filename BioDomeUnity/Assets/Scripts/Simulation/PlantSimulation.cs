@@ -41,6 +41,9 @@ namespace BioDome.Simulation
 
         public bool IsAlive => State != PlantHealthState.Dead;
 
+        /// <summary>Development stage for the current growth, using the species thresholds.</summary>
+        public PlantGrowthStage Stage => Data.GetStage(Growth01);
+
         public PlantSimulation(PlantData data, float initialGrowth01 = 0f, float initialHealth01 = 1f, float initialWater01 = 0.6f)
         {
             if (data == null) throw new ArgumentNullException(nameof(data));

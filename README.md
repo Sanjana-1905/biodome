@@ -179,3 +179,40 @@ Everything is generated inside Unity by an Editor script; there are no imported 
 
 Generated hierarchy: `BioDome_Generated` > `Structure` (Frame, Plinth, Entrance, Glass), `Interior` (Ground, Pathways, PlantingBeds, PlantingZones),
 `Props` (Irrigation, WaterFeature with Water and FountainSpray, Benches, Stones, Lighting).
+
+## Phase 3: procedural plants (Monstera first)
+
+Plants are generated from C# into a single merged mesh per plant. The Monstera is implemented first and must be
+checked in Unity before the fern, palm and flowering plant are added.
+
+| Script | Responsibility |
+|---|---|
+| `Scripts/Procedural/ProceduralMeshUtility.cs` | Bezier curves, deterministic random helpers, hashing |
+| `Scripts/Procedural/StemMeshGenerator.cs` | Tapered tubes along a path (stems, petioles, trunks) |
+| `Scripts/Procedural/LeafMeshGenerator.cs` | Leaf blade: midrib groove, curvature, thickness, Monstera splits and holes |
+| `Scripts/Plants/PlantGenerator.cs` | Base component: parameters, one mesh, shared materials, tints, collider, rebuild only when needed |
+| `Scripts/Plants/MonsteraGenerator.cs` | Monstera layout: central stem, petioles, golden-angle leaf arrangement, growth |
+| `Editor/PlantAssetFactory.cs` | Leaf vein texture and shared leaf/stem materials |
+| `Editor/PlantPrefabBuilder.cs` | Menu commands: test plant and prefab generation |
+| `Editor/PlantMeshValidator.cs` | Checks mesh, normals, winding, materials, collider and missing references |
+| `Editor/PlantGeneratorEditor.cs` | Inspector buttons: rebuild, randomize seed, validate |
+
+Menu: **BioDome > Plants** (Create Test Monstera, Generate Monstera Prefabs, Validate Selected Plant, Reset Plant Materials To Defaults).
+Prefabs go to `Assets/Prefabs/Plants`, their meshes to `Assets/Art/Models/Plants`.
+
+### Greenhouse population and synchronised growth
+
+* **One cohort.** All plants are introduced together. `GreenhouseManager` creates a `PlantingCohort` (shared planting time and
+  initial growth, default 12%, set in the Inspector) and every `PlantController` starts from it. There are no randomly aged plants.
+  Differences later come only from each plant's own water, temperature, humidity, light and health.
+* **Growth stages.** `PlantData` holds each species' stage thresholds (Seedling, Juvenile, Established, Mature); `PlantController` raises `GrowthStageChanged`.
+* **Mesh-driven growth.** Instead of scaling, plants swap to the growth-stage mesh through `PlantMeshLibrary`, which builds one shared mesh
+  per variant and growth step (a few per frame) and frees meshes nobody uses.
+* **Per-plant state** lives in each plant's `PlantSimulation`; `PlantData` stays a shared, read-only configuration asset.
+* **Population.** Settings asset `Assets/ScriptableObjects/Settings/PlantPopulationSettings.asset` (created on first use):
+  density preset (Low, Medium, High, Custom), density multiplier, spacing override, initial growth, rotation, size variation,
+  position jitter, seed, maximum plant count, edge margin, and species per zone (`zoneRules`, matched by zone-name prefix).
+  Spacing is the species' mature canopy width times the preset factor (Low 1.25, Medium 0.9, High 0.75), staggered inside each soil area.
+* **Run it:** BioDome > Plants > Populate Planting Zones... (open `BioDome_Main` first). It also adds a `Simulation` object
+  (`GreenhouseManager`, `EnvironmentController`, `IrrigationController` with a mains supply) if the scene has none.
+  Re-running replaces the `BioDome_Plants` root, so plants are never duplicated. Only the Monstera exists so far, so every zone uses it.

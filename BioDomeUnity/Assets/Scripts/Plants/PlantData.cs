@@ -15,6 +15,21 @@ namespace BioDome.Plants
         [SerializeField] private string scientificName = "";
         [SerializeField, TextArea(2, 5)] private string description = "";
 
+        [Header("Species")]
+        [SerializeField, Tooltip("Stable identifier, e.g. 'monstera'.")]
+        private string speciesId = "";
+        [SerializeField, Tooltip("Botanical zone this species is planted in, e.g. 'Tropical foliage'.")]
+        private string botanicalZone = "";
+        [SerializeField, Min(0.1f), Tooltip("Expected canopy width in metres at maturity. Used to space plants.")]
+        private float matureCanopyWidth = 1.6f;
+        [SerializeField, Min(0.1f), Tooltip("Expected height in metres at maturity.")]
+        private float matureHeight = 1.4f;
+
+        [Header("Growth stages (growth 0-1)")]
+        [SerializeField, Range(0f, 1f)] private float seedlingUntil = 0.25f;
+        [SerializeField, Range(0f, 1f)] private float juvenileUntil = 0.5f;
+        [SerializeField, Range(0f, 1f)] private float establishedUntil = 0.8f;
+
         [Header("Preferred Conditions (ideal range)")]
         [SerializeField] private Vector2 idealTemperatureCelsius = new Vector2(18f, 28f);
         [SerializeField] private Vector2 idealHumidity01 = new Vector2(0.4f, 0.8f);
@@ -61,6 +76,19 @@ namespace BioDome.Plants
         public string DisplayName => displayName;
         public string ScientificName => scientificName;
         public string Description => description;
+        public string SpeciesId => speciesId;
+        public string BotanicalZone => botanicalZone;
+        public float MatureCanopyWidth => matureCanopyWidth;
+        public float MatureHeight => matureHeight;
+
+        /// <summary>Development stage for a growth value, using this species' thresholds.</summary>
+        public PlantGrowthStage GetStage(float growth01)
+        {
+            if (growth01 < seedlingUntil) return PlantGrowthStage.Seedling;
+            if (growth01 < juvenileUntil) return PlantGrowthStage.Juvenile;
+            if (growth01 < establishedUntil) return PlantGrowthStage.Established;
+            return PlantGrowthStage.Mature;
+        }
 
         public Vector2 IdealTemperatureCelsius => idealTemperatureCelsius;
         public Vector2 IdealHumidity01 => idealHumidity01;
@@ -98,6 +126,11 @@ namespace BioDome.Plants
             idealHumidity01 = ClampRange01(OrderRange(idealHumidity01));
             idealLight01 = ClampRange01(OrderRange(idealLight01));
             idealSoilMoisture01 = ClampRange01(OrderRange(idealSoilMoisture01));
+
+            matureCanopyWidth = Mathf.Max(0.1f, matureCanopyWidth);
+            matureHeight = Mathf.Max(0.1f, matureHeight);
+            juvenileUntil = Mathf.Max(seedlingUntil, juvenileUntil);
+            establishedUntil = Mathf.Max(juvenileUntil, establishedUntil);
 
             temperatureTolerance = Mathf.Max(0.01f, temperatureTolerance);
             humidityTolerance = Mathf.Max(0.01f, humidityTolerance);
