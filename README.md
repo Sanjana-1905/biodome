@@ -155,3 +155,27 @@ Plants will be assembled by appending generator output (stem + leaves + flowers)
 * `.gitignore` excludes `Library/`, `Temp/`, `Logs/`, `UserSettings/`, `Obj/`, builds and generated `*.csproj/*.sln/*.slnx`.
 * `.gitattributes` stores textures, audio and model files with Git LFS.
 * Always commit `.meta` files together with their assets.
+
+## Phase 2: procedural greenhouse
+
+Everything is generated inside Unity by an Editor script; there are no imported models.
+
+* **Build it:** menu **BioDome > Build Greenhouse Scene**. It creates (or updates) `Assets/Scenes/BioDome_Main.unity`.
+  It never touches `SampleScene`. If you have unsaved changes Unity asks to save them first.
+* **Settings:** **BioDome > Select Greenhouse Settings** (asset: `Assets/ScriptableObjects/Settings/GreenhouseSettings.asset`).
+  Change length, width, height, bays, bed layout, props and materials, then build again.
+* **Rebuild safety:** only the `BioDome_Generated` root is replaced. Sun, camera, volume and anything you added at the scene root are kept.
+* **Materials:** default URP materials and procedural textures are created once in `Art/Materials` and `Art/Textures`.
+  Edit them freely; they are reused on rebuild. **BioDome > Reset Greenhouse Materials To Defaults** restores them.
+* **Meshes:** merged into a few assets in `Art/Procedural` (frame, glass, plinth, beds, ...), updated in place on rebuild.
+
+| Script | Responsibility |
+|---|---|
+| `Editor/GreenhouseSceneBuilder.cs` | Menu commands, layout maths, geometry for every part, scene assembly |
+| `Editor/GreenhouseAssetFactory.cs` | Generates textures and URP materials (opaque, transparent, emissive, sky, particles) |
+| `Scripts/Environment/GreenhouseSettings.cs` | ScriptableObject with dimensions, layout, props and material slots |
+| `Scripts/Environment/PlantingZone.cs` | Marker for each soil area where plants will go |
+| `Scripts/Procedural/MeshShapes.cs` | Boxes, beams, tubes, quads, discs, rings and rocks for `MeshData` |
+
+Generated hierarchy: `BioDome_Generated` > `Structure` (Frame, Plinth, Entrance, Glass), `Interior` (Ground, Pathways, PlantingBeds, PlantingZones),
+`Props` (Irrigation, WaterFeature with Water and FountainSpray, Benches, Stones, Lighting).

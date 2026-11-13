@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a5eb911a18f9e4b8ab5466eedea5ee, type: 3}
+  m_Name: GreenhouseSettings
+  m_EditorClassIdentifier: Assembly-CSharp::BioDome.Environment.GreenhouseSettings
+  length: 40
+  width: 25
+  height: 12
+  wallHeight: 7
+  plinthHeight: 0.6
+  bayLength: 4
+  panelWidth: 1.8
+  roofRows: 4
+  braceEveryNBays: 3
+  doorHeight: 3.6
+  pathWidth: 3
+  plazaRadius: 4.2
+  entranceMargin: 5
+  bedRowsPerSide: 2
+  bedsPerRow: 3
+  bedHeight: 0.5
+  bedGap: 1.4
+  aisleWidth: 1.2
+  borderPlanterWidth: 1.2
+  decorativeStones: 36
+  plazaBenches: 4
+  pathBenchPairs: 1
+  lampEveryNFrames: 2
+  addPointLights: 1
+  seed: 4217
+  steel: {fileID: 2100000, guid: 8f5e26780d201da499c2a9ce7c664d4c, type: 2}
+  glass: {fileID: 2100000, guid: 3eddbda339009274db04b27ca6c2534f, type: 2}
+  stone: {fileID: 2100000, guid: 6df6f4c87447fe54d997d1f9480c2bb2, type: 2}
+  timber: {fileID: 2100000, guid: 092026364056c0b458e594c8f659b740, type: 2}
+  soil: {fileID: 2100000, guid: e20f5c27bd9bd584b802de092d9cc906, type: 2}
+  pavers: {fileID: 2100000, guid: 345c7a26bf2c2a143bc57974bb230bb6, type: 2}
+  gravel: {fileID: 2100000, guid: 9cb6b67c946d47c43a06e815956e2bf1, type: 2}
+  ground: {fileID: 2100000, guid: b1d7964e07c57174684502fa4f258c07, type: 2}
+  water: {fileID: 2100000, guid: 67aedf4b17b115b4084f2b9988aea2fd, type: 2}
+  pipe: {fileID: 2100000, guid: dec5784d6c3fd494a81ea2b27531c310, type: 2}
+  lampBulb: {fileID: 2100000, guid: cd65d32060f0eb94ea9a13dac476d503, type: 2}
