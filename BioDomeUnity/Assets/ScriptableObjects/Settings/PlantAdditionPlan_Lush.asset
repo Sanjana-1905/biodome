@@ -1,0 +1,272 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce1b8fa2c2374d1dac56432a64764f7, type: 3}
+  m_Name: PlantAdditionPlan_Lush
+  m_EditorClassIdentifier: Assembly-CSharp::BioDome.Plants.PlantAdditionPlan
+  seed: 33
+  maxTotalAdded: 450
+  additions:
+  - species:
+      label: BirdOfParadise
+      prefab: {fileID: 1699471392080490832, guid: ddededb1c81654899b898dbeda98b200, type: 3}
+      data: {fileID: 11400000, guid: 674c66946289347e2aacd5687e6e2133, type: 2}
+      variantCount: 4
+      baseSeed: 301
+    zoneNames:
+    - Bed_N2_1
+    - Bed_N2_3
+    - Bed_S2_1
+    - Bed_S2_3
+    maxPerZone: 3
+    layer: 0
+    bias: 1
+    clearanceFromExisting: 0.9
+    minSpacingBetweenNew: 1.5
+    radiusScale: 0.7
+    overlapAllowance: 0.4
+    edgeMargin: 0.4
+    sizeVariation: 0.1
+    randomRotation: 1
+  - species:
+      label: Banana
+      prefab: {fileID: 2256568317823968717, guid: 3ef32a9af34a042708f6e190081b0ea1, type: 3}
+      data: {fileID: 11400000, guid: ef75678284373432591f4c5d2665b5fc, type: 2}
+      variantCount: 4
+      baseSeed: 401
+    zoneNames:
+    - Bed_N1_2
+    - Bed_S1_2
+    maxPerZone: 2
+    layer: 0
+    bias: 1
+    clearanceFromExisting: 1.1
+    minSpacingBetweenNew: 2.2
+    radiusScale: 0.6
+    overlapAllowance: 0.35
+    edgeMargin: 0.6
+    sizeVariation: 0.1
+    randomRotation: 1
+  - species:
+      label: ArecaPalm
+      prefab: {fileID: 2731013976758130140, guid: e9d52059acd554af8a387a6642759213, type: 3}
+      data: {fileID: 11400000, guid: 4fc91d5605f564cba9825496eea529bf, type: 2}
+      variantCount: 4
+      baseSeed: 501
+    zoneNames:
+    - Bed_N2_*
+    - Bed_S2_*
+    maxPerZone: 2
+    layer: 0
+    bias: 3
+    clearanceFromExisting: 0.9
+    minSpacingBetweenNew: 2
+    radiusScale: 0.6
+    overlapAllowance: 0.4
+    edgeMargin: 0.5
+    sizeVariation: 0.1
+    randomRotation: 1
+  - species:
+      label: ArecaPalm
+      prefab: {fileID: 2731013976758130140, guid: e9d52059acd554af8a387a6642759213, type: 3}
+      data: {fileID: 11400000, guid: 4fc91d5605f564cba9825496eea529bf, type: 2}
+      variantCount: 4
+      baseSeed: 501
+    zoneNames:
+    - Border_N
+    - Border_S
+    maxPerZone: 5
+    layer: 0
+    bias: 0
+    clearanceFromExisting: 0.65
+    minSpacingBetweenNew: 4
+    radiusScale: 0.5
+    overlapAllowance: 0.45
+    edgeMargin: 0.05
+    sizeVariation: 0.1
+    randomRotation: 1
+  - species:
+      label: Philodendron
+      prefab: {fileID: 608909955124335117, guid: fb2e7302da8ee4c308b8ec8a324798b8, type: 3}
+      data: {fileID: 11400000, guid: b65be45f0c5d44daf97fb7350eac325c, type: 2}
+      variantCount: 4
+      baseSeed: 801
+    zoneNames:
+    - Bed_N1_*
+    - Bed_S1_*
+    - Bed_N2_2
+    - Bed_S2_2
+    maxPerZone: 3
+    layer: 2
+    bias: 0
+    clearanceFromExisting: 0.8
+    minSpacingBetweenNew: 1.6
+    radiusScale: 0.6
+    overlapAllowance: 0.5
+    edgeMargin: 0.4
+    sizeVariation: 0.1
+    randomRotation: 1
+  - species:
+      label: Calathea
+      prefab: {fileID: 6669299409803318342, guid: 98431f3b2f9e84dc3b724d7339b2a2e5, type: 3}
+      data: {fileID: 11400000, guid: adc6c057ef2b54b99b0fbe25252ff66e, type: 2}
+      variantCount: 4
+      baseSeed: 701
+    zoneNames:
+    - Bed_N1_1
+    - Bed_S1_1
+    - Bed_N1_3
+    - Bed_S1_3
+    - Bed_N2_2
+    - Bed_S2_2
+    maxPerZone: 4
+    layer: 2
+    bias: 5
+    clearanceFromExisting: 0.6
+    minSpacingBetweenNew: 0.9
+    radiusScale: 0.5
+    overlapAllowance: 0.5
+    edgeMargin: 0.4
+    sizeVariation: 0.1
+    randomRotation: 1
+  - species:
+      label: Anthurium
+      prefab: {fileID: 3969362072518312158, guid: b9886199512a14335b066d5c360afaed, type: 3}
+      data: {fileID: 11400000, guid: 2897cfea6b561408d91ab22cb69af9d5, type: 2}
+      variantCount: 4
+      baseSeed: 901
+    zoneNames:
+    - Bed_N1_*
+    - Bed_S1_*
+    maxPerZone: 4
+    layer: 3
+    bias: 2
+    clearanceFromExisting: 0.55
+    minSpacingBetweenNew: 0.8
+    radiusScale: 0.6
+    overlapAllowance: 0.5
+    edgeMargin: 0.35
+    sizeVariation: 0.1
+    randomRotation: 1
+  - species:
+      label: Orchid
+      prefab: {fileID: 5487283936678418015, guid: d66ed8ce463f94947a83acd05d6130ac, type: 3}
+      data: {fileID: 11400000, guid: b3f68ef48880e483bb1125a7df54bbf4, type: 2}
+      variantCount: 4
+      baseSeed: 1001
+    zoneNames:
+    - Bed_N*
+    - Bed_S*
+    maxPerZone: 3
+    layer: 3
+    bias: 2
+    clearanceFromExisting: 0.5
+    minSpacingBetweenNew: 0.7
+    radiusScale: 0.5
+    overlapAllowance: 0.5
+    edgeMargin: 0.3
+    sizeVariation: 0.1
+    randomRotation: 1
+  - species:
+      label: BostonFern
+      prefab: {fileID: 2926230885727266258, guid: c5ef6bb51ee2645bda6a05184992e06a, type: 3}
+      data: {fileID: 11400000, guid: deaa43fee505440d3b599b6c3dd85c9a, type: 2}
+      variantCount: 4
+      baseSeed: 601
+    zoneNames:
+    - Bed_N*
+    - Bed_S*
+    maxPerZone: 5
+    layer: 3
+    bias: 4
+    clearanceFromExisting: 0.5
+    minSpacingBetweenNew: 0.6
+    radiusScale: 0.55
+    overlapAllowance: 0.55
+    edgeMargin: 0.25
+    sizeVariation: 0.1
+    randomRotation: 1
+  - species:
+      label: BostonFern
+      prefab: {fileID: 2926230885727266258, guid: c5ef6bb51ee2645bda6a05184992e06a, type: 3}
+      data: {fileID: 11400000, guid: deaa43fee505440d3b599b6c3dd85c9a, type: 2}
+      variantCount: 4
+      baseSeed: 601
+    zoneNames:
+    - Border_N
+    - Border_S
+    maxPerZone: 7
+    layer: 3
+    bias: 0
+    clearanceFromExisting: 0.5
+    minSpacingBetweenNew: 1
+    radiusScale: 0.55
+    overlapAllowance: 0.55
+    edgeMargin: 0.05
+    sizeVariation: 0.1
+    randomRotation: 1
+  - species:
+      label: Moss
+      prefab: {fileID: 7573191643284008612, guid: f8b3c9cc24e1542f08033d85a721cf91, type: 3}
+      data: {fileID: 11400000, guid: 66ef54f0c33ed4c7f893c0c170f54866, type: 2}
+      variantCount: 4
+      baseSeed: 1101
+    zoneNames:
+    - Bed_N*
+    - Bed_S*
+    maxPerZone: 5
+    layer: 4
+    bias: 0
+    clearanceFromExisting: 0.3
+    minSpacingBetweenNew: 0.5
+    radiusScale: 1
+    overlapAllowance: 0.85
+    edgeMargin: 0.3
+    sizeVariation: 0.15
+    randomRotation: 1
+  - species:
+      label: Moss
+      prefab: {fileID: 7573191643284008612, guid: f8b3c9cc24e1542f08033d85a721cf91, type: 3}
+      data: {fileID: 11400000, guid: 66ef54f0c33ed4c7f893c0c170f54866, type: 2}
+      variantCount: 4
+      baseSeed: 1101
+    zoneNames:
+    - Border_N
+    - Border_S
+    maxPerZone: 6
+    layer: 4
+    bias: 0
+    clearanceFromExisting: 0.3
+    minSpacingBetweenNew: 0.7
+    radiusScale: 1
+    overlapAllowance: 0.85
+    edgeMargin: 0.05
+    sizeVariation: 0.15
+    randomRotation: 1
+  - species:
+      label: CreepingGroundCover
+      prefab: {fileID: 1519475689341573244, guid: 5eca354f9f4494e3fb176fbb44ba7c8f, type: 3}
+      data: {fileID: 11400000, guid: 3d63d12f2d71f4b96a35f988b3754e6b, type: 2}
+      variantCount: 4
+      baseSeed: 1201
+    zoneNames:
+    - Bed_N*
+    - Bed_S*
+    maxPerZone: 3
+    layer: 4
+    bias: 4
+    clearanceFromExisting: 0.3
+    minSpacingBetweenNew: 0.6
+    radiusScale: 1
+    overlapAllowance: 0.85
+    edgeMargin: 0.3
+    sizeVariation: 0.15
+    randomRotation: 1

@@ -282,14 +282,14 @@ namespace BioDome.EditorTools
 
         // --- Variants -------------------------------------------------------------
 
-        private static void ApplyVariant(PlantGenerator generator, int index, PlantPopulationSettings s, PlantSpeciesEntry species)
+        internal static void ApplyVariant(PlantGenerator generator, int index, PlantPopulationSettings s, PlantSpeciesEntry species)
         {
             int i = index % LeafCountDelta.Length;
             generator.Vary(species.baseSeed + index * 17, LeafCountDelta[i], HeightFactor[i], WidthFactor[i], s.initialGrowth01, s.meshDetail);
         }
 
         /// <summary>Builds (or refreshes in place) the initial-growth mesh assets for each variant of a species.</summary>
-        private static Mesh[] BuildVariantMeshes(PlantSpeciesEntry species, PlantPopulationSettings s)
+        internal static Mesh[] BuildVariantMeshes(PlantSpeciesEntry species, PlantPopulationSettings s)
         {
             GreenhouseAssetFactory.EnsureFolder(ModelFolder);
             int count = Mathf.Clamp(species.variantCount, 1, 8);
@@ -316,7 +316,7 @@ namespace BioDome.EditorTools
             return meshes;
         }
 
-        private static Mesh LoadOrCreateMeshAsset(string path)
+        internal static Mesh LoadOrCreateMeshAsset(string path)
         {
             string expectedName = System.IO.Path.GetFileNameWithoutExtension(path);
             var mesh = AssetDatabase.LoadAssetAtPath<Mesh>(path);

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce1b8fa2c2374d1dac56432a64764f7, type: 3}
+  m_Name: PlantAdditionPlan
+  m_EditorClassIdentifier: Assembly-CSharp::BioDome.Plants.PlantAdditionPlan
+  seed: 21
+  additions:
+  - species:
+      label: BirdOfParadise
+      prefab: {fileID: 1699471392080490832, guid: ddededb1c81654899b898dbeda98b200, type: 3}
+      data: {fileID: 11400000, guid: 674c66946289347e2aacd5687e6e2133, type: 2}
+      variantCount: 4
+      baseSeed: 301
+    zoneNames:
+    - Bed_N2_1
+    - Bed_N2_3
+    - Bed_S2_1
+    - Bed_S2_3
+    maxPerZone: 3
+    clearanceFromExisting: 0.9
+    minSpacingBetweenNew: 1.5
+    edgeMargin: 0.4
+    sizeVariation: 0.08
+    randomRotation: 1
+  - species:
+      label: Banana
+      prefab: {fileID: 2256568317823968717, guid: 3ef32a9af34a042708f6e190081b0ea1, type: 3}
+      data: {fileID: 11400000, guid: ef75678284373432591f4c5d2665b5fc, type: 2}
+      variantCount: 4
+      baseSeed: 401
+    zoneNames:
+    - Bed_N1_2
+    - Bed_S1_2
+    maxPerZone: 2
+    clearanceFromExisting: 1.1
+    minSpacingBetweenNew: 2.2
+    edgeMargin: 0.6
+    sizeVariation: 0.08
+    randomRotation: 1

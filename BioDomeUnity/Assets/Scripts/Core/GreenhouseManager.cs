@@ -164,8 +164,40 @@ namespace BioDome.Core
 
         private void Update()
         {
+            // meshLibrary (like the cohort and every PlantSimulation) is runtime-only state created in Awake/Start. Unity does
+            // not serialise it, so if scripts are recompiled while Play Mode is running, the component keeps updating but this
+            // state is gone. It cannot be rebuilt without silently resetting every plant, so stop with a clear message.
+            if (meshLibrary == null)
+            {
+                Debug.LogError($"{nameof(GreenhouseManager)} lost its runtime state, most likely because scripts were recompiled while Play Mode was running. " +
+                               "The simulation has been stopped. Exit Play Mode and press Play again. " +
+                               "To avoid this, set Unity > Settings > General > Script Changes While Playing to 'Recompile After Finished Playing'.", this);
+                enabled = false;
+                return;
+            }
+
             float deltaHours = paused ? 0f : Time.deltaTime * simulatedHoursPerSecond;
 
+            Step(deltaHours);
+
+            meshLibrary.Process(meshBuildsPerFrame);
+
+            uiTimer += Time.unscaledDeltaTime;
+            if (uiTimer >= uiRefreshInterval)
+            {
+                uiTimer = 0f;
+                RefreshUi();
+            }
+        }
+
+        /// <summary>
+        /// Advances the whole simulation by <paramref name="deltaHours"/> simulated hours: environment first, then irrigation, then every plant.
+        /// This is exactly what <c>Update</c> does each frame (it passes the frame's share of simulated time); it is a separate method so the
+        /// simulation can be stepped with a chosen time step, which the numeric regression tests rely on. It touches no frame time, no UI and
+        /// no mesh building, and needs only the serialized environment, irrigation and plant references.
+        /// </summary>
+        public void Step(float deltaHours)
+        {
             // Fixed order: environment first, then everything that reacts to it.
             environment.Advance(deltaHours);
             EnvironmentConditions conditions = environment.Current;
@@ -176,15 +208,6 @@ namespace BioDome.Core
             {
                 PlantController plant = plants[i];
                 if (plant != null) plant.Tick(deltaHours, conditions);
-            }
-
-            meshLibrary.Process(meshBuildsPerFrame);
-
-            uiTimer += Time.unscaledDeltaTime;
-            if (uiTimer >= uiRefreshInterval)
-            {
-                uiTimer = 0f;
-                RefreshUi();
             }
         }
 

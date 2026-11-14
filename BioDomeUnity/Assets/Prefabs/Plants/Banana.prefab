@@ -1,0 +1,212 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2256568317823968717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7009870672470323740}
+  - component: {fileID: 165206198405595552}
+  - component: {fileID: 2576243952120392463}
+  - component: {fileID: 4723400918248183820}
+  m_Layer: 0
+  m_Name: Banana
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7009870672470323740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256568317823968717}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 35791626662690800}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &165206198405595552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256568317823968717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4575452c3cc8549d581544487d25fe07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BioDome.Plants.BananaGenerator
+  height: 2.8
+  width: 2.6
+  leafCount: 10
+  leafLength: 1.45
+  leafWidth: 0.7
+  leafColor: {r: 0.3, g: 0.52, b: 0.13, a: 1}
+  colorVariation: 0.6
+  growth: 0.12
+  seed: 401
+  detail: 2
+  leafMaterial: {fileID: 2100000, guid: 799e3e7c98443d0498fc48f387529cee, type: 2}
+  leafVariantMaterials: []
+  stemMaterial: {fileID: 2100000, guid: 395aa753d4828994889d818691eba5f8, type: 2}
+  accentMaterial: {fileID: 2100000, guid: e946328b56b1e4c7ca5d0c9dae2f5dd9, type: 2}
+  accent2Material: {fileID: 0}
+  fitCollider: 1
+  meshFilter: {fileID: 1858944326581084892}
+  meshRenderer: {fileID: 7697686978576341264}
+  builtMesh: {fileID: 4300000, guid: 53fe39b68e76d492a8243b8dbb85160d, type: 2}
+  builtHash: -122040264
+  stemBaseRadius: 0.085
+  leafArch: 1.9
+  stemLean: 0.3
+  tearing: 0.7
+  flowerBud: 1
+--- !u!65 &2576243952120392463
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256568317823968717}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5691136, y: 0.5969454, z: 0.8650516}
+  m_Center: {x: 0.028959945, y: 0.29831403, z: 0.15268052}
+--- !u!114 &4723400918248183820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256568317823968717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277b4da0f063b5b468b908226d7f43ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BioDome.Plants.PlantController
+  data: {fileID: 11400000, guid: ef75678284373432591f4c5d2665b5fc, type: 2}
+  initialGrowth01: 0.1
+  initialWater01: 0.6
+  meshDrivenGrowth: 1
+  visualRoot: {fileID: 0}
+  tintRenderers: []
+  minScaleFraction: 0.1
+  scaleSmoothing: 4
+  healthyTint: {r: 1, g: 1, b: 1, a: 1}
+  stressedTint: {r: 0.85, g: 0.8, b: 0.4, a: 1}
+  criticalTint: {r: 0.65, g: 0.4, b: 0.2, a: 1}
+  deadTint: {r: 0.3, g: 0.25, b: 0.2, a: 1}
+--- !u!1 &2398230198084801693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 35791626662690800}
+  - component: {fileID: 1858944326581084892}
+  - component: {fileID: 7697686978576341264}
+  m_Layer: 0
+  m_Name: Mesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &35791626662690800
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398230198084801693}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7009870672470323740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1858944326581084892
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398230198084801693}
+  m_Mesh: {fileID: 4300000, guid: 53fe39b68e76d492a8243b8dbb85160d, type: 2}
+--- !u!23 &7697686978576341264
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398230198084801693}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 799e3e7c98443d0498fc48f387529cee, type: 2}
+  - {fileID: 2100000, guid: 799e3e7c98443d0498fc48f387529cee, type: 2}
+  - {fileID: 2100000, guid: 799e3e7c98443d0498fc48f387529cee, type: 2}
+  - {fileID: 2100000, guid: 395aa753d4828994889d818691eba5f8, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}

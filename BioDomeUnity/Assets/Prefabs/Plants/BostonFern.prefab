@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1285934699534985318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8050195131201186786}
+  - component: {fileID: 4190614870012322750}
+  - component: {fileID: 5968566241284880028}
+  m_Layer: 0
+  m_Name: Mesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8050195131201186786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285934699534985318}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5160427382281747368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4190614870012322750
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285934699534985318}
+  m_Mesh: {fileID: 4300000, guid: c71c56b1b82124f01af24c0854e66298, type: 2}
+--- !u!23 &5968566241284880028
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285934699534985318}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 4a923fda925224b9cb1935b87d2066a3, type: 2}
+  - {fileID: 2100000, guid: 4a923fda925224b9cb1935b87d2066a3, type: 2}
+  - {fileID: 2100000, guid: 4a923fda925224b9cb1935b87d2066a3, type: 2}
+  - {fileID: 2100000, guid: 395aa753d4828994889d818691eba5f8, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2926230885727266258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5160427382281747368}
+  - component: {fileID: 4194308624730488217}
+  - component: {fileID: 7851523807693149696}
+  - component: {fileID: 6692134056530379840}
+  m_Layer: 0
+  m_Name: BostonFern
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5160427382281747368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926230885727266258}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8050195131201186786}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4194308624730488217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926230885727266258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b819fa7ade5a141a8ac185b786bb1bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BioDome.Plants.BostonFernGenerator
+  height: 0.6
+  width: 0.95
+  leafCount: 22
+  leafLength: 0.56
+  leafWidth: 0.11
+  leafColor: {r: 0.3, g: 0.58, b: 0.18, a: 1}
+  colorVariation: 0.55
+  growth: 0.12
+  seed: 601
+  detail: 2
+  leafMaterial: {fileID: 2100000, guid: 4a923fda925224b9cb1935b87d2066a3, type: 2}
+  leafVariantMaterials: []
+  stemMaterial: {fileID: 2100000, guid: 395aa753d4828994889d818691eba5f8, type: 2}
+  accentMaterial: {fileID: 0}
+  accent2Material: {fileID: 0}
+  fitCollider: 1
+  meshFilter: {fileID: 4190614870012322750}
+  meshRenderer: {fileID: 5968566241284880028}
+  builtMesh: {fileID: 4300000, guid: c71c56b1b82124f01af24c0854e66298, type: 2}
+  builtHash: -535955986
+  leafletPairs: 17
+  leafletWidth: 0.036
+  archAmount: 1
+--- !u!65 &7851523807693149696
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926230885727266258}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3002417, y: 0.17242815, z: 0.34956408}
+  m_Center: {x: -0.02136606, y: 0.08482253, z: -0.03820657}
+--- !u!114 &6692134056530379840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926230885727266258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277b4da0f063b5b468b908226d7f43ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BioDome.Plants.PlantController
+  data: {fileID: 11400000, guid: deaa43fee505440d3b599b6c3dd85c9a, type: 2}
+  initialGrowth01: 0.1
+  initialWater01: 0.6
+  meshDrivenGrowth: 1
+  visualRoot: {fileID: 0}
+  tintRenderers: []
+  minScaleFraction: 0.1
+  scaleSmoothing: 4
+  healthyTint: {r: 1, g: 1, b: 1, a: 1}
+  stressedTint: {r: 0.85, g: 0.8, b: 0.4, a: 1}
+  criticalTint: {r: 0.65, g: 0.4, b: 0.2, a: 1}
+  deadTint: {r: 0.3, g: 0.25, b: 0.2, a: 1}

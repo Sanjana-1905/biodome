@@ -9,6 +9,8 @@ namespace BioDome.Plants
         public const int LeafVariantCount = 3;
         public const int StemSubmesh = 3;
         public const int AccentSubmesh = 4;
+        /// <summary>Second flower colour (for example a spadix or a lip). Species that do not use it never create this submesh.</summary>
+        public const int Accent2Submesh = 5;
 
         public MeshData Data;
         public System.Random Rng;
@@ -75,6 +77,8 @@ namespace BioDome.Plants
         protected Material[] leafVariantMaterials = new Material[0];
         [SerializeField] protected Material stemMaterial;
         [SerializeField] protected Material accentMaterial;
+        [SerializeField, Tooltip("Optional second accent material (submesh 5), e.g. a spadix or an orchid lip. Falls back to the accent material.")]
+        protected Material accent2Material;
 
         [Header("Collider")]
         [SerializeField] protected bool fitCollider = true;
@@ -149,6 +153,16 @@ namespace BioDome.Plants
             if (accent != null) accentMaterial = accent;
         }
 
+        /// <summary>Sets the flower materials (submeshes 4 and 5). Null leaves the current value unchanged.</summary>
+        public void SetAccentMaterials(Material accent, Material accent2)
+        {
+            if (accent != null) accentMaterial = accent;
+            if (accent2 != null) accent2Material = accent2;
+        }
+
+        public bool HasAccentMaterial => accentMaterial != null;
+        public bool HasAccent2Material => accent2Material != null;
+
         public void Configure(float newHeight, float newWidth, int newLeafCount, float newLeafLength, float newLeafWidth,
             float newGrowth, int newSeed)
         {
@@ -157,6 +171,13 @@ namespace BioDome.Plants
             leafCount = Mathf.Clamp(newLeafCount, 2, 40);
             leafLength = Mathf.Max(0.02f, newLeafLength);
             leafWidth = Mathf.Max(0.02f, newLeafWidth);
+            growth = Mathf.Clamp01(newGrowth);
+            seed = newSeed;
+        }
+
+        /// <summary>Sets only the growth and seed (used when creating species prefabs from the generator's own defaults).</summary>
+        public void SetGrowthAndSeed(float newGrowth, int newSeed)
+        {
             growth = Mathf.Clamp01(newGrowth);
             seed = newSeed;
         }
@@ -397,19 +418,31 @@ namespace BioDome.Plants
             if (meshRenderer == null) meshRenderer = go.AddComponent<MeshRenderer>();
         }
 
+        /// <summary>The material this plant uses for a submesh (leaf variants, stem, flowers). Same rule the live mesh uses.</summary>
+        public Material MaterialForSubmesh(int i)
+        {
+            if (i == PlantBuildContext.StemSubmesh) return stemMaterial;
+            if (i == PlantBuildContext.AccentSubmesh) return accentMaterial != null ? accentMaterial : leafMaterial;
+            if (i == PlantBuildContext.Accent2Submesh) return accent2Material != null ? accent2Material : (accentMaterial != null ? accentMaterial : leafMaterial);
+            if (i < PlantBuildContext.LeafVariantCount && leafVariantMaterials != null && i < leafVariantMaterials.Length && leafVariantMaterials[i] != null)
+                return leafVariantMaterials[i];
+            return leafMaterial;
+        }
+
+        /// <summary>The colour tint a leaf-variant submesh (0 to 2) gets. Returns false for submeshes that are not tinted.</summary>
+        public bool TryGetLeafTint(int submesh, out Color tint)
+        {
+            tint = Color.white;
+            if (submesh < 0 || submesh >= PlantBuildContext.LeafVariantCount) return false;
+            tint = leafColor * Color.Lerp(Color.white, VariantMultipliers[submesh], colorVariation) * healthTint;
+            tint.a = 1f;
+            return true;
+        }
+
         private void ApplyMaterials(int submeshCount)
         {
             var materials = new Material[Mathf.Max(1, submeshCount)];
-            for (int i = 0; i < materials.Length; i++)
-            {
-                Material m;
-                if (i == PlantBuildContext.StemSubmesh) m = stemMaterial;
-                else if (i == PlantBuildContext.AccentSubmesh) m = accentMaterial != null ? accentMaterial : leafMaterial;
-                else if (i < PlantBuildContext.LeafVariantCount && leafVariantMaterials != null && i < leafVariantMaterials.Length && leafVariantMaterials[i] != null)
-                    m = leafVariantMaterials[i];
-                else m = leafMaterial;
-                materials[i] = m;
-            }
+            for (int i = 0; i < materials.Length; i++) materials[i] = MaterialForSubmesh(i);
             meshRenderer.sharedMaterials = materials;
         }
 
