@@ -157,11 +157,17 @@ namespace BioDome.Irrigation
                 return;
             }
 
-            // Share the budget among living plants that are not already full.
+            // Equal split among living plants that are not already full, scaled by each plant's water-share weight.
+            // The default weight 1 gives exactly budget / thirstyCount per plant, as before; a lower weight gives that plant
+            // proportionally less without taking anything from, or giving anything to, the other plants. (If the weights sum to more
+            // than the plant count, shares are scaled down so the budget is never exceeded.)
             int thirsty = 0;
+            float totalWeight = 0f;
             for (int i = 0; i < plants.Count; i++)
             {
-                if (IsThirsty(plants[i])) thirsty++;
+                if (!IsThirsty(plants[i])) continue;
+                thirsty++;
+                totalWeight += plants[i].WaterShareWeight;
             }
             if (thirsty == 0)
             {
@@ -169,11 +175,12 @@ namespace BioDome.Irrigation
                 return;
             }
 
+            float scale = totalWeight > thirsty ? thirsty / totalWeight : 1f;
             float share = budget / thirsty;
             float used = 0f;
             for (int i = 0; i < plants.Count; i++)
             {
-                if (IsThirsty(plants[i])) used += plants[i].ReceiveWater(share);
+                if (IsThirsty(plants[i])) used += plants[i].ReceiveWater(share * plants[i].WaterShareWeight * scale);
             }
 
             waterLitres = Mathf.Max(0f, waterLitres - used);
@@ -182,7 +189,7 @@ namespace BioDome.Irrigation
 
         private static bool IsThirsty(PlantController plant)
         {
-            return plant != null && plant.IsInitialized && plant.Simulation.IsAlive && plant.Simulation.Water01 < 1f;
+            return plant != null && plant.IsInitialized && plant.Simulation.IsAlive && plant.Simulation.Water01 < 1f && plant.WaterShareWeight > 0f;
         }
 
         private void SetRunning(bool running)

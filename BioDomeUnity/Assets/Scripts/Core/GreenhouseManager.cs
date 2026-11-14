@@ -20,6 +20,8 @@ namespace BioDome.Core
         [Header("Systems (environment is required, the rest are optional)")]
         [SerializeField] private EnvironmentController environment;
         [SerializeField] private IrrigationController irrigation;
+        [SerializeField, Tooltip("Extra irrigation controllers (experiment pods) ticked after the main one. Leave empty for none.")]
+        private List<IrrigationController> extraIrrigations = new List<IrrigationController>();
         [SerializeField] private CameraController cameraController;
         [SerializeField] private UIManager uiManager;
 
@@ -144,7 +146,11 @@ namespace BioDome.Core
 
             if (irrigation != null)
             {
-                for (int i = 0; i < plants.Count; i++) irrigation.RegisterPlant(plants[i]);
+                for (int i = 0; i < plants.Count; i++)
+                {
+                    if (plants[i] != null && plants[i].UsesOwnIrrigation) continue; // experiment pods have their own irrigation
+                    irrigation.RegisterPlant(plants[i]);
+                }
             }
 
             if (uiManager != null)
@@ -203,11 +209,20 @@ namespace BioDome.Core
             EnvironmentConditions conditions = environment.Current;
 
             if (irrigation != null) irrigation.Tick(deltaHours);
+            for (int i = 0; i < extraIrrigations.Count; i++)
+            {
+                if (extraIrrigations[i] != null) extraIrrigations[i].Tick(deltaHours);
+            }
 
             for (int i = 0; i < plants.Count; i++)
             {
                 PlantController plant = plants[i];
-                if (plant != null) plant.Tick(deltaHours, conditions);
+                if (plant == null) continue;
+
+                // Plants with a zone profile (experimental pods) see their zone's climate; every other plant sees the greenhouse climate untouched.
+                ZoneProfile zone = plant.ZoneProfile;
+                if (zone != null) plant.Tick(deltaHours, zone.Apply(conditions));
+                else plant.Tick(deltaHours, conditions);
             }
         }
 
@@ -217,7 +232,7 @@ namespace BioDome.Core
         {
             if (plant == null || plants.Contains(plant)) return;
             plants.Add(plant);
-            if (irrigation != null) irrigation.RegisterPlant(plant);
+            if (irrigation != null && !plant.UsesOwnIrrigation) irrigation.RegisterPlant(plant);
 
             if (cohort != null) // plants added while running join the same cohort settings
             {

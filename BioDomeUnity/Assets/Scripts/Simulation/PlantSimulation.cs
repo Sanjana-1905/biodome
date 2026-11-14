@@ -39,6 +39,12 @@ namespace BioDome.Simulation
         public float LightStress01 { get; private set; }
         public float WaterStress01 { get; private set; }
 
+        /// <summary>
+        /// Fraction of delivered water the soil takes up (1 = all, the default and the normal greenhouse behaviour).
+        /// Experimental water-stress zones lower it; nothing else changes.
+        /// </summary>
+        public float WaterIntakeFactor { get; set; } = 1f;
+
         public bool IsAlive => State != PlantHealthState.Dead;
 
         /// <summary>Development stage for the current growth, using the species thresholds.</summary>
@@ -74,6 +80,7 @@ namespace BioDome.Simulation
         public float AddWater(float litres)
         {
             if (litres <= 0f || !IsAlive) return 0f;
+            if (WaterIntakeFactor != 1f) litres *= Mathf.Clamp01(WaterIntakeFactor);
 
             float capacity = Data.WaterCapacityLitres;
             float currentLitres = Water01 * capacity;

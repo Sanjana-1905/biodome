@@ -1,5 +1,6 @@
 using System;
 using BioDome.Core;
+using BioDome.Environment;
 using BioDome.Simulation;
 using UnityEngine;
 
@@ -19,8 +20,20 @@ namespace BioDome.Plants
         [SerializeField] private PlantData data;
         [SerializeField, Range(0f, 1f)] private float initialGrowth01 = 0.1f;
         [SerializeField, Range(0f, 1f)] private float initialWater01 = 0.6f;
+        [SerializeField, Range(-1f, 1f), Tooltip("Growth this plant starts with. -1 (the default) = use the shared planting cohort's start, as every original plant does. " +
+            "A value from 0 to 1 starts this plant at that growth instead (mature landscaping, pre-grown experiment plants).")]
+        private float startGrowth01 = -1f;
         [SerializeField, Tooltip("When a PlantGenerator is present, growth is shown by swapping to the matching growth-stage mesh instead of scaling the plant.")]
         private bool meshDrivenGrowth = true;
+
+        [Header("Zone (optional)")]
+        [SerializeField, Tooltip("Climate adjustment for this plant's zone. Leave empty for normal greenhouse conditions (all display plants).")]
+        private ZoneProfile zoneProfile;
+
+        [SerializeField, Min(0f), Tooltip("Fraction of an equal irrigation share this plant receives. 1 = normal (default). Lower = gets less, without affecting other plants.")]
+        private float waterShareWeight = 1f;
+        [SerializeField, Tooltip("True when this plant is watered by its own irrigation controller instead of the greenhouse's main one (experiment pods).")]
+        private bool usesOwnIrrigation;
 
         [Header("Presentation")]
         [SerializeField, Tooltip("Transform scaled according to growth. Defaults to this transform.")]
@@ -52,8 +65,25 @@ namespace BioDome.Plants
         public event Action<PlantController, PlantGrowthStage> GrowthStageChanged;
 
         public PlantData Data => data;
+
+        /// <summary>The zone climate adjustment, or null when the plant lives in the normal greenhouse climate.</summary>
+        public ZoneProfile ZoneProfile => zoneProfile;
+
+        /// <summary>Relative share of irrigation water (default 1).</summary>
+        public float WaterShareWeight => waterShareWeight;
+
+        /// <summary>True when an experiment pod's own irrigation controller waters this plant, so the main one must not.</summary>
+        public bool UsesOwnIrrigation => usesOwnIrrigation;
+
+        public void SetWaterShareWeight(float weight) => waterShareWeight = Mathf.Max(0f, weight);
+
+        /// <summary>Shared experiment start state, or null for ordinary plants.</summary>
+        public ExperimentStartState ExperimentStart { get; private set; }
         public PlantSimulation Simulation => simulation;
         public bool IsInitialized => simulation != null;
+
+        /// <summary>Growth this plant starts with, or a negative value when it uses the shared cohort start.</summary>
+        public float StartGrowth01 => startGrowth01;
         private bool UsesMeshGrowth => meshDrivenGrowth && generator != null;
 
         private void Awake()
@@ -95,7 +125,11 @@ namespace BioDome.Plants
             if (visualRoot == null) visualRoot = transform;
             if (propertyBlock == null) propertyBlock = new MaterialPropertyBlock();
 
-            simulation = new PlantSimulation(data, initialGrowth01, 1f, initialWater01);
+            ExperimentStartState experiment = ExperimentStart;
+            simulation = experiment != null
+                ? new PlantSimulation(data, experiment.Growth01, experiment.Health01, experiment.Water01)
+                : new PlantSimulation(data, startGrowth01 >= 0f ? startGrowth01 : initialGrowth01, 1f, initialWater01);
+            simulation.WaterIntakeFactor = zoneProfile != null ? zoneProfile.WaterIntakeFactor : 1f;
             lastPublishedState = simulation.State;
 
             lastStage = simulation.Stage;
@@ -116,8 +150,23 @@ namespace BioDome.Plants
         public void Plant(PlantingCohort cohort)
         {
             if (cohort == null || data == null) return;
+            if (ExperimentStart != null) { Initialize(data); return; } // experimental plants keep their shared experiment start
             initialGrowth01 = cohort.InitialGrowth01;
             Initialize(data);
+        }
+
+        /// <summary>
+        /// Makes this an experimental plant: it uses <paramref name="start"/> (shared by every experimental plant) as its initial state
+        /// and lives in the climate described by <paramref name="profile"/>. Resets the simulation.
+        /// </summary>
+        public void ConfigureExperiment(ExperimentStartState start, ZoneProfile profile)
+        {
+            if (start == null || start.Data == null) return;
+            ExperimentStart = start;
+            zoneProfile = profile;
+            waterShareWeight = profile != null ? profile.WaterShareWeight : 1f;
+            usesOwnIrrigation = true;
+            Initialize(start.Data);
         }
 
         /// <summary>Provides the shared growth-stage mesh library (created by the GreenhouseManager).</summary>
