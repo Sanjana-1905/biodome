@@ -87,7 +87,11 @@ namespace BioDome.Core
         {
             if (!environmentReady && environment == null) return;
 
-            if (cameraController != null) cameraController.PlantPicked += SelectPlant;
+            if (cameraController != null)
+            {
+                cameraController.PlantPicked += SelectPlant;
+                cameraController.EmptySpaceClicked += ClearSelection;
+            }
 
             if (uiManager != null)
             {
@@ -97,7 +101,7 @@ namespace BioDome.Core
                 uiManager.SimulationSpeedRequested += OnSimulationSpeedRequested;
                 uiManager.SeasonRequested += OnSeasonRequested;
                 uiManager.PausedRequested += OnPausedRequested;
-                uiManager.AutoIrrigationRequested += OnAutoIrrigationRequested;
+                uiManager.IrrigationModeRequested += OnIrrigationModeRequested;
                 uiManager.RefillRequested += OnRefillRequested;
                 uiManager.ResetViewRequested += OnResetViewRequested;
             }
@@ -105,7 +109,11 @@ namespace BioDome.Core
 
         private void OnDisable()
         {
-            if (cameraController != null) cameraController.PlantPicked -= SelectPlant;
+            if (cameraController != null)
+            {
+                cameraController.PlantPicked -= SelectPlant;
+                cameraController.EmptySpaceClicked -= ClearSelection;
+            }
 
             if (uiManager != null)
             {
@@ -115,7 +123,7 @@ namespace BioDome.Core
                 uiManager.SimulationSpeedRequested -= OnSimulationSpeedRequested;
                 uiManager.SeasonRequested -= OnSeasonRequested;
                 uiManager.PausedRequested -= OnPausedRequested;
-                uiManager.AutoIrrigationRequested -= OnAutoIrrigationRequested;
+                uiManager.IrrigationModeRequested -= OnIrrigationModeRequested;
                 uiManager.RefillRequested -= OnRefillRequested;
                 uiManager.ResetViewRequested -= OnResetViewRequested;
             }
@@ -148,7 +156,7 @@ namespace BioDome.Core
                     simulatedHoursPerSecond,
                     environment.CurrentSeason,
                     paused,
-                    irrigation != null && irrigation.CurrentMode == IrrigationController.Mode.Auto);
+                    irrigation != null ? irrigation.CurrentMode : IrrigationController.Mode.Off);
             }
 
             RefreshUi();
@@ -231,7 +239,7 @@ namespace BioDome.Core
         private void OnSimulationSpeedRequested(float value) => simulatedHoursPerSecond = Mathf.Max(0f, value);
         private void OnSeasonRequested(Season season) => environment.SetSeason(season);
         private void OnPausedRequested(bool value) => paused = value;
-        private void OnAutoIrrigationRequested(bool enabled) { if (irrigation != null) irrigation.SetAutoEnabled(enabled); }
+        private void OnIrrigationModeRequested(IrrigationController.Mode mode) { if (irrigation != null) irrigation.SetMode(mode); }
         private void OnRefillRequested() { if (irrigation != null) irrigation.RefillFull(); }
 
         private void OnResetViewRequested()

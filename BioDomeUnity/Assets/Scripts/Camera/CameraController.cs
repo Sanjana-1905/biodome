@@ -10,6 +10,7 @@ namespace BioDome.CameraSystem
     /// Orbit / pan / zoom camera for inspecting the greenhouse, plus click-picking of plants.
     /// Uses the new Input System directly (the project has the legacy Input Manager disabled).
     ///   Right mouse drag = orbit, Middle mouse drag = pan, Scroll = zoom, Left click = pick a plant.
+    ///   Trackpad: Option + left-drag = orbit, Shift + left-drag = pan, two-finger scroll = zoom.
     /// Attach to the camera object. It only raises <see cref="PlantPicked"/>; what happens next
     /// is decided by the GreenhouseManager.
     /// </summary>
@@ -60,8 +61,18 @@ namespace BioDome.CameraSystem
         private bool pressStartedOverUi;
         private Vector2 leftPressPosition;
 
+        private enum LeftDragMode { None, Orbit, Pan }
+        private LeftDragMode leftDragMode;
+        private bool leftPressHadModifier;
+
         /// <summary>Raised when the user left-clicks a plant.</summary>
         public event Action<PlantController> PlantPicked;
+
+        /// <summary>
+        /// Raised when the user left-clicks (without dragging, and not on UI) and no plant is under the cursor.
+        /// That includes clicking other scenery. Used to deselect the current plant.
+        /// </summary>
+        public event Action EmptySpaceClicked;
 
         private void Awake()
         {
@@ -143,15 +154,24 @@ namespace BioDome.CameraSystem
                 pressStartedOverUi = IsPointerOverUi();
             }
 
+            // Trackpad-friendly alternative to right/middle drag. The mode is decided once, when the left button
+            // goes down, so releasing or pressing a modifier mid-drag cannot switch modes.
+            if (mouse.leftButton.wasPressedThisFrame)
+            {
+                leftDragMode = pressStartedOverUi ? LeftDragMode.None : ModifierDragMode();
+                leftPressHadModifier = leftDragMode != LeftDragMode.None;
+            }
+            if (!mouse.leftButton.isPressed) leftDragMode = LeftDragMode.None;
+
             Vector2 delta = mouse.delta.ReadValue();
 
-            if (mouse.rightButton.isPressed && !pressStartedOverUi)
+            if ((mouse.rightButton.isPressed && !pressStartedOverUi) || leftDragMode == LeftDragMode.Orbit)
             {
                 targetYaw += delta.x * orbitSpeed;
                 targetPitch = Mathf.Clamp(targetPitch - delta.y * orbitSpeed, minPitch, maxPitch);
             }
 
-            if (mouse.middleButton.isPressed && !pressStartedOverUi)
+            if ((mouse.middleButton.isPressed && !pressStartedOverUi) || leftDragMode == LeftDragMode.Pan)
             {
                 followTarget = null; // manual pan cancels following
                 float scale = panSpeed * targetDistance;
@@ -176,17 +196,32 @@ namespace BioDome.CameraSystem
                 leftPressPosition = mouse.position.ReadValue();
             }
 
-            if (!mouse.leftButton.wasReleasedThisFrame || pressStartedOverUi) return;
+            // A modifier + left press (Option/Shift) is a camera drag, never a click on a plant or empty space.
+            if (!mouse.leftButton.wasReleasedThisFrame || pressStartedOverUi || leftPressHadModifier) return;
 
             Vector2 releasePosition = mouse.position.ReadValue();
             if ((releasePosition - leftPressPosition).sqrMagnitude > clickMovementTolerance * clickMovementTolerance) return;
+            if (IsPointerOverUi()) return; // released over a UI element: not a world click
 
+            PlantController plant = null;
             Ray ray = targetCamera.ScreenPointToRay(releasePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, maxPickDistance, pickMask, QueryTriggerInteraction.Ignore))
             {
-                PlantController plant = hit.collider.GetComponentInParent<PlantController>();
-                if (plant != null) PlantPicked?.Invoke(plant);
+                plant = hit.collider.GetComponentInParent<PlantController>();
             }
+
+            if (plant != null) PlantPicked?.Invoke(plant);
+            else EmptySpaceClicked?.Invoke();
+        }
+
+        /// <summary>Option (Alt) held = orbit, Shift held = pan. Option wins if both are down. No keyboard = none.</summary>
+        private static LeftDragMode ModifierDragMode()
+        {
+            Keyboard keyboard = Keyboard.current;
+            if (keyboard == null) return LeftDragMode.None;
+            if (keyboard.altKey.isPressed) return LeftDragMode.Orbit;
+            if (keyboard.shiftKey.isPressed) return LeftDragMode.Pan;
+            return LeftDragMode.None;
         }
 
         private static bool IsPointerOverUi()
