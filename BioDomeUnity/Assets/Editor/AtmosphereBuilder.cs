@@ -41,14 +41,11 @@ namespace BioDome.EditorTools
             }
             RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
             RenderSettings.ambientSkyColor = new Color(0.66f, 0.78f, 0.82f);
-            RenderSettings.ambientEquatorColor = new Color(0.52f, 0.60f, 0.45f);
-            RenderSettings.ambientGroundColor = new Color(0.30f, 0.34f, 0.22f);
+            RenderSettings.ambientEquatorColor = new Color(0.58f, 0.66f, 0.50f);
+            RenderSettings.ambientGroundColor = new Color(0.40f, 0.42f, 0.31f);
             RenderSettings.ambientIntensity = 1.15f;
-            RenderSettings.fog = true;
-            RenderSettings.fogMode = FogMode.Exponential;
-            RenderSettings.fogDensity = 0.0035f;
-            RenderSettings.fogColor = new Color(0.80f, 0.86f, 0.76f); // warm green haze
-            log.AppendLine("  sun warm (1.0, 0.92, 0.78), peak intensity 1.6, trilight ambient, soft green haze, start time 10:00");
+            RenderSettings.fog = false; // clear air: global fog made the conservatory look murky
+            log.AppendLine("  sun warm (1.0, 0.92, 0.78), peak intensity 1.6, trilight ambient, fog OFF, start time 10:00");
 
             // --- Post-processing profile (own copy) --------------------------------------
             VolumeProfile profile = AssetDatabase.LoadAssetAtPath<VolumeProfile>(ProfilePath);
@@ -88,11 +85,12 @@ namespace BioDome.EditorTools
                 new Vector3(-9f, 0.45f, 6.5f), new Vector3(-9f, 0.45f, -6.5f), new Vector3(2f, 0.45f, 6.5f), new Vector3(2f, 0.45f, -6.5f),
                 new Vector3(26f, 0.45f, 6.6f), new Vector3(26f, 0.45f, -6.6f), new Vector3(40f, 0.45f, 4.5f), new Vector3(40f, 0.45f, -4.5f),
             };
-            for (int i = 0; i < banks.Length; i++)
+            // Ground mist banks are no longer created (they read as haze); only the small fountain spray remains.
+            for (int i = 0; i < 0 /* banks disabled */; i++)
                 MistSystem(root.transform, "MistBank_" + (i + 1), banks[i], mist, new Vector3(9f, 0.5f, 4f), 0.9f, 20f, 3.2f, 5.0f, 0.09f);
             // Fountain haze.
             MistSystem(root.transform, "FountainMist", new Vector3(ConservatoryExpansion.PlazaX, 0.55f, 0f), mist, new Vector3(2.6f, 0.2f, 2.6f), 2.5f, 5f, 0.9f, 1.6f, 0.10f);
-            log.AppendLine($"  mist: {banks.Length} soft banks + fountain haze (about {banks.Length * 18 + 12} particles in total)");
+            log.AppendLine("  mist: fountain spray only (ground mist banks removed)");
             return log.ToString();
         }
 

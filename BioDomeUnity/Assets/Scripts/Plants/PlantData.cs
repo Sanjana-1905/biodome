@@ -29,6 +29,8 @@ namespace BioDome.Plants
         [SerializeField, Range(0f, 1f)] private float seedlingUntil = 0.25f;
         [SerializeField, Range(0f, 1f)] private float juvenileUntil = 0.5f;
         [SerializeField, Range(0f, 1f)] private float establishedUntil = 0.8f;
+        [SerializeField, Range(0f, 1f), Tooltip("Growth at which the plant counts as fully developed (the fifth stage, after Mature).")]
+        private float matureUntil = 0.95f;
 
         [Header("Preferred Conditions (ideal range)")]
         [SerializeField] private Vector2 idealTemperatureCelsius = new Vector2(18f, 28f);
@@ -87,7 +89,8 @@ namespace BioDome.Plants
             if (growth01 < seedlingUntil) return PlantGrowthStage.Seedling;
             if (growth01 < juvenileUntil) return PlantGrowthStage.Juvenile;
             if (growth01 < establishedUntil) return PlantGrowthStage.Established;
-            return PlantGrowthStage.Mature;
+            if (growth01 < matureUntil) return PlantGrowthStage.Mature;
+            return PlantGrowthStage.FullyDeveloped;
         }
 
         public Vector2 IdealTemperatureCelsius => idealTemperatureCelsius;
@@ -131,6 +134,7 @@ namespace BioDome.Plants
             matureHeight = Mathf.Max(0.1f, matureHeight);
             juvenileUntil = Mathf.Max(seedlingUntil, juvenileUntil);
             establishedUntil = Mathf.Max(juvenileUntil, establishedUntil);
+            matureUntil = Mathf.Max(establishedUntil, matureUntil);
 
             temperatureTolerance = Mathf.Max(0.01f, temperatureTolerance);
             humidityTolerance = Mathf.Max(0.01f, humidityTolerance);

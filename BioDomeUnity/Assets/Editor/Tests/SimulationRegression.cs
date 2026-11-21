@@ -31,6 +31,15 @@ namespace BioDome.EditorTools.Tests
     {
         public const string GoldenPath = "Assets/Tests/Golden/simulation_golden.json";
 
+        /// <summary>The scientific growth model's own baseline (version 1). The original baseline above is never touched by it.</summary>
+        public const string ScientificGoldenPath = "Assets/Tests/Golden/simulation_golden_scientific_v1.json";
+
+        /// <summary>
+        /// Growth model used while computing values. Original (default) reproduces the original golden baseline exactly;
+        /// Scientific is used for the versioned scientific baseline. PlantSimulation.ActiveModel is restored afterwards.
+        /// </summary>
+        public static PlantSimulation.GrowthModel ModelUnderTest = PlantSimulation.GrowthModel.Original;
+
         /// <summary>
         /// true (default): the irrigation scenarios advance the simulation through the real GreenhouseManager.Step.
         /// false ("replica"): they use a hand-written copy of the manager's tick order. Both must reproduce the same golden values.
@@ -62,6 +71,18 @@ namespace BioDome.EditorTools.Tests
             EditorUtility.DisplayDialog("Simulation regression", outcome.Passed ? "PASSED\n\n" + outcome.Text : "FAILED\n\n" + outcome.Text, "OK");
         }
 
+        [MenuItem("BioDome/Tests/Run Scientific Growth Regression (v1)")]
+        public static void RunScientificFromMenu()
+        {
+            ModelUnderTest = PlantSimulation.GrowthModel.Scientific;
+            try
+            {
+                Outcome outcome = Compare(ScientificGoldenPath);
+                Debug.Log("BioDome scientific regression: " + outcome.Text);
+            }
+            finally { ModelUnderTest = PlantSimulation.GrowthModel.Original; }
+        }
+
         [MenuItem("BioDome/Tests/Capture Simulation Golden Values")]
         public static void CaptureFromMenu()
         {
@@ -80,6 +101,9 @@ namespace BioDome.EditorTools.Tests
             {
                 string mode = Arg("-goldenMode") ?? "compare";
                 string file = Arg("-goldenFile") ?? GoldenPath;
+                string modelArg = Arg("-growthModel") ?? (file == GoldenPath ? "original" : "scientific");
+                ModelUnderTest = modelArg == "scientific" ? PlantSimulation.GrowthModel.Scientific : PlantSimulation.GrowthModel.Original;
+                Debug.Log("REGRESSION growth model: " + ModelUnderTest);
                 UseManagerStep = (Arg("-goldenDriver") ?? "manager") != "replica";
                 Debug.Log("REGRESSION driver: " + (UseManagerStep ? "GreenhouseManager.Step (real code)" : "replica of the manager's tick order"));
                 if (mode == "capture")
@@ -168,6 +192,14 @@ namespace BioDome.EditorTools.Tests
         private static string F(float value) => value.ToString("R", CultureInfo.InvariantCulture);
 
         public static List<KeyValuePair<string, string>> Compute()
+        {
+            PlantSimulation.GrowthModel previous = PlantSimulation.ActiveModel;
+            PlantSimulation.ActiveModel = ModelUnderTest;
+            try { return ComputeCore(); }
+            finally { PlantSimulation.ActiveModel = previous; }
+        }
+
+        private static List<KeyValuePair<string, string>> ComputeCore()
         {
             var values = new List<KeyValuePair<string, string>>();
             void Put(string key, float value) => values.Add(new KeyValuePair<string, string>(key, F(value)));

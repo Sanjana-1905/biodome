@@ -172,7 +172,7 @@ namespace BioDome.UI
             {
                 builder.Clear();
                 builder.Append("Status: <b>").Append(StateColorTag(sim.State)).Append(sim.State).Append("</color></b>\n");
-                builder.Append("Growth stage: <b>").Append(sim.Stage).Append("</b>\n");
+                builder.Append("Growth stage: <b>").Append(sim.Stage.DisplayName()).Append("</b>\n");
                 builder.Append("Health: ").Append(Percent(sim.Health01)).Append('\n');
                 builder.Append("Growth: ").Append(Percent(sim.Growth01)).Append('\n');
                 builder.Append("Soil moisture: ").Append(Percent(sim.Water01)).Append('\n');

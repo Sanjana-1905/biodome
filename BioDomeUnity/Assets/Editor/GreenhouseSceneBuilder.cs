@@ -927,10 +927,7 @@ namespace BioDome.EditorTools
             RenderSettings.ambientMode = AmbientMode.Skybox;
             RenderSettings.ambientIntensity = 1f;
             RenderSettings.defaultReflectionMode = DefaultReflectionMode.Skybox;
-            RenderSettings.fog = true;
-            RenderSettings.fogMode = FogMode.Exponential;
-            RenderSettings.fogDensity = 0.002f;
-            RenderSettings.fogColor = new Color(0.72f, 0.78f, 0.82f);
+            RenderSettings.fog = false; // no global fog
             DynamicGI.UpdateEnvironment();
 
             // Post-processing volume, borrowing the template's profile (read only).

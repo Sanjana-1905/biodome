@@ -13,7 +13,7 @@ namespace BioDome.Diagnostics
     /// Read-only on-screen diagnostics for the BioDome simulation (Game view).
     /// It only READS from the existing systems (EnvironmentController, IrrigationController,
     /// GreenhouseManager and each PlantController's PlantSimulation). It owns no simulation state,
-    /// changes nothing, and has no controls that modify the simulation. Press F1 to hide or show it.
+    /// changes nothing, and has no controls that modify the simulation. Hidden by default; press F3 (or `, or F1) to show or hide it.
     ///
     /// It creates itself automatically when Play Mode starts (a temporary, never-saved GameObject),
     /// so the scene does not need to be edited. It is compiled only in the Editor and development builds.
@@ -33,7 +33,7 @@ namespace BioDome.Diagnostics
         private string text = "Starting...";
         private float textTimer;
         private float rescanTimer = PlantRescanSeconds; // scan on first frame
-        private bool visible = true;
+        private bool visible; // hidden by default so it never covers the control panel
 
         // Measured simulation speed (read from the clock itself; the manager's field is private).
         private double lastSimHours = double.NaN;
@@ -60,7 +60,7 @@ namespace BioDome.Diagnostics
         private void Update()
         {
             Keyboard keyboard = Keyboard.current;
-            if (keyboard != null && keyboard.f1Key.wasPressedThisFrame) visible = !visible;
+            if (keyboard != null && (keyboard.f1Key.wasPressedThisFrame || keyboard.f3Key.wasPressedThisFrame || keyboard.backquoteKey.wasPressedThisFrame)) visible = !visible;
 
             rescanTimer += Time.unscaledDeltaTime;
             if (rescanTimer >= PlantRescanSeconds)
@@ -91,7 +91,7 @@ namespace BioDome.Diagnostics
         {
             StringBuilder b = builder;
             b.Clear();
-            b.Append("<b>BIODOME DEBUG (read-only)</b>   <color=#9aa>[F1 hide]</color>\n");
+            b.Append("<b>BIODOME DEBUG (read-only)</b>   <color=#9aa>[F3 hide]</color>\n");
 
             if (environment == null)
             {
@@ -156,7 +156,7 @@ namespace BioDome.Diagnostics
         {
             int total = 0, alive = 0;
             int[] states = new int[4];
-            int[] stages = new int[4];
+            int[] stages = new int[5];
             float moistMin = 1f, moistMax = 0f, moistSum = 0f;
             float healthMin = 1f, healthMax = 0f, healthSum = 0f;
             float growthMin = 1f, growthMax = 0f, growthSum = 0f;
@@ -192,8 +192,8 @@ namespace BioDome.Diagnostics
                 .Append("<color=#fd4>Stressed ").Append(states[(int)PlantHealthState.Stressed]).Append("</color>  ")
                 .Append("<color=#f93>Critical ").Append(states[(int)PlantHealthState.Critical]).Append("</color>  ")
                 .Append("<color=#f55>Dead ").Append(states[(int)PlantHealthState.Dead]).Append("</color>\n");
-            b.Append("Stages: Seedling ").Append(stages[0]).Append("  Juvenile ").Append(stages[1])
-                .Append("  Established ").Append(stages[2]).Append("  Mature ").Append(stages[3]).Append('\n');
+            b.Append("Stages: Seedling ").Append(stages[0]).Append("  Early ").Append(stages[1])
+                .Append("  Developing ").Append(stages[2]).Append("  Mature ").Append(stages[3]).Append("  Full ").Append(stages[4]).Append('\n');
 
             AppendRange(b, "Soil moisture", moistMin, moistSum / total, moistMax);
             AppendRange(b, "Health", healthMin, healthSum / total, healthMax);
@@ -228,7 +228,7 @@ namespace BioDome.Diagnostics
 
             b.Append("Health: <b>").Append((s.Health01 * 100f).ToString("0.0")).Append(" %</b>  ")
                 .Append(StateColor(s.State)).Append(s.State).Append("</color>\n");
-            b.Append("Growth: <b>").Append((s.Growth01 * 100f).ToString("0.0")).Append(" %</b>  ").Append(s.Stage).Append('\n');
+            b.Append("Growth: <b>").Append((s.Growth01 * 100f).ToString("0.0")).Append(" %</b>  ").Append(s.Stage.DisplayName()).Append('\n');
             b.Append("Soil moisture: <b>").Append((s.Water01 * 100f).ToString("0.0")).Append(" %</b>\n");
             b.Append("Stress: <b>").Append((s.Stress01 * 100f).ToString("0")).Append(" %</b>  (temp ")
                 .Append((s.TemperatureStress01 * 100f).ToString("0")).Append(", humidity ")

@@ -145,7 +145,7 @@ namespace BioDome.EditorTools
             {
                 if (t.text != null && t.text.Contains("Orbit") && t.text.Contains("Pan") && t.text.Contains("Zoom"))
                 {
-                    t.text = "Drag: Pan    Right-drag / Option+drag: Orbit    Scroll: Zoom    WASD (Shift = fast), Q E: Move    Double-click floor: Fly there    R: Reset";
+                    t.text = "Drag / Middle-drag: Pan    Right-drag: Orbit    Scroll: Zoom    WASD: Move (Shift = fast)    Q E: Rotate    Space / C: Up / Down    Double-click floor: Fly there    R: Reset";
                     t.enableAutoSizing = true;
                     t.fontSizeMin = 10f;
                     t.fontSizeMax = t.fontSize;

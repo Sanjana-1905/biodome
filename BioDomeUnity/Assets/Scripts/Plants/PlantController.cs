@@ -214,6 +214,12 @@ namespace BioDome.Plants
             }
         }
 
+        /// <summary>Requests (and, if already built, shows) the mesh for the current growth. Used once at start so plants never appear at a wrong size.</summary>
+        public void SyncVisualNow()
+        {
+            if (simulation != null) UpdateVisualGrowth();
+        }
+
         /// <summary>Advance the simulation. Called by the GreenhouseManager once per frame.</summary>
         public void Tick(float deltaHours, in EnvironmentConditions environment)
         {

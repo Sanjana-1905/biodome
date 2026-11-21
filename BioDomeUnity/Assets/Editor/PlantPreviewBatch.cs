@@ -11,7 +11,7 @@ namespace BioDome.EditorTools
     /// Command-line screenshot tool, used to check plant geometry without opening the Editor window:
     /// Unity -batchmode -projectPath P -executeMethod BioDome.EditorTools.PlantPreviewBatch.Run
     ///       -previewOut DIR [-previewSpecies A,B] [-previewVariant N] [-previewDetail N]
-    /// Writes one contact sheet per species (12%, 25%, 50%, 75%, 100%) and logs triangle counts. Changes no asset or scene.
+    /// Writes one contact sheet per species (12%, 25%, 50%, 75%, 100%, or the growths given by -previewStages) and logs triangle counts. Changes no asset or scene.
     /// </summary>
     public static class PlantPreviewBatch
     {
@@ -41,6 +41,9 @@ namespace BioDome.EditorTools
                     if (only != null && !only.Contains(prefab.name)) continue;
 
                     float[] stages = PlantPreviewWindow.Stages;
+                    string stagesArg = Arg("-previewStages"); // e.g. 0.10,0.25,0.50,0.75,0.95,1.00
+                    if (!string.IsNullOrEmpty(stagesArg))
+                        stages = Array.ConvertAll(stagesArg.Split(','), t => float.Parse(t, System.Globalization.CultureInfo.InvariantCulture));
                     var sheet = new Texture2D(CellWidth * stages.Length, CellHeight, TextureFormat.RGBA32, false);
                     var line = new System.Text.StringBuilder($"PREVIEW {prefab.name} variant {variant} detail {detail}:");
 

@@ -1,5 +1,6 @@
 using System;
 using BioDome.Plants;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -11,7 +12,8 @@ namespace BioDome.CameraSystem
     /// Uses the new Input System directly (the project has the legacy Input Manager disabled). Works in the Game view.
     ///   Mouse:    right drag = orbit, middle drag = pan, scroll = zoom, left click = pick a plant, double-click the ground = fly there.
     ///   Trackpad: Option + left drag = orbit, Shift + left drag = pan, two-finger scroll = zoom.
-    ///   Keyboard: W A S D = pan (Shift = faster), Q / E = rotate, R = reset to the overview.
+    ///   Keyboard: W A S D = pan (Shift = faster), Space / C = up / down, Q / E = rotate, R = reset to the overview.
+    ///             Keys are ignored while a text field has focus. Camera time is unscaled, so it still works when the simulation is paused.
     /// The pivot is kept inside a bounding box (the target can never be lost), the camera never goes below the ground, and at close range it is
     /// pushed in front of solid props (fountain, benches, rocks) instead of passing through them. It only raises <see cref="PlantPicked"/>;
     /// what happens next is decided by the GreenhouseManager.
@@ -145,7 +147,8 @@ namespace BioDome.CameraSystem
             if (followTarget != null) targetPivot = followTarget.position;
             targetPivot = ClampPivot(targetPivot);
 
-            float t = 1f - Mathf.Exp(-smoothing * Time.deltaTime);
+            float dt = Mathf.Min(Time.unscaledDeltaTime, 0.1f); // unscaled: works when paused; capped: a hitch never causes a jump
+            float t = 1f - Mathf.Exp(-smoothing * dt);
             pivot = Vector3.Lerp(pivot, targetPivot, t);
             yaw = Mathf.LerpAngle(yaw, targetYaw, t);
             pitch = Mathf.Lerp(pitch, targetPitch, t);
@@ -156,7 +159,7 @@ namespace BioDome.CameraSystem
 
             // Push the camera in front of solid props at close range (smoothly, so it never pops).
             float allowed = distance <= collisionMaxDistance ? ClearDistance(pivot, backward, distance) : distance;
-            float k = allowed < collisionDistance ? 1f : 1f - Mathf.Exp(-3f * Time.deltaTime);
+            float k = allowed < collisionDistance ? 1f : 1f - Mathf.Exp(-3f * dt);
             collisionDistance = float.IsPositiveInfinity(collisionDistance) || collisionDistance > 1e6f ? allowed : Mathf.Lerp(collisionDistance, allowed, k);
             float used = Mathf.Min(distance, collisionDistance);
 
@@ -242,7 +245,7 @@ namespace BioDome.CameraSystem
             }
             if (!mouse.leftButton.isPressed) leftDragMode = LeftDragMode.None;
 
-            Vector2 delta = mouse.delta.ReadValue();
+            Vector2 delta = Vector2.ClampMagnitude(mouse.delta.ReadValue(), 150f); // ignore cursor-warp / focus-regain spikes
 
             // A plain left-button drag pans (like a map). It only starts after the pointer has moved past the click tolerance,
             // so a normal click still picks a plant, and it never starts over UI.
@@ -274,8 +277,9 @@ namespace BioDome.CameraSystem
             float scroll = mouse.scroll.ReadValue().y;
             if (Mathf.Abs(scroll) > 0.01f && !IsPointerOverUi())
             {
-                // Windows reports +-120 per notch; normalise to roughly +-1.
-                float notches = scroll / 120f;
+                // Windows reports +-120 per notch, trackpads and some drivers report small values; normalise to notches.
+                float notches = Mathf.Abs(scroll) >= 20f ? scroll / 120f : Mathf.Sign(scroll) * Mathf.Min(Mathf.Abs(scroll), 1f);
+                notches = Mathf.Clamp(notches, -3f, 3f);
                 targetDistance = Mathf.Clamp(targetDistance * (1f - notches * zoomSpeed), minDistance, maxDistance);
             }
         }
@@ -283,7 +287,10 @@ namespace BioDome.CameraSystem
         private void HandleKeyboard()
         {
             Keyboard keyboard = Keyboard.current;
-            if (keyboard == null) return;
+            if (keyboard == null || IsTextInputFocused()) return;
+            if (keyboard.ctrlKey.isPressed || keyboard.leftCommandKey.isPressed || keyboard.rightCommandKey.isPressed) return; // editor / OS shortcuts
+
+            float dt = Mathf.Min(Time.unscaledDeltaTime, 0.1f);
 
             if (keyboard.rKey.wasPressedThisFrame) ResetView();
 
@@ -294,12 +301,20 @@ namespace BioDome.CameraSystem
                 followTarget = null;
                 float speed = Mathf.Max(keyMinSpeed, keyPanSpeed * targetDistance) * (keyboard.shiftKey.isPressed ? 3f : 1f);
                 Quaternion heading = Quaternion.Euler(0f, targetYaw, 0f);
-                targetPivot += heading * new Vector3(x, 0f, z).normalized * (speed * Time.deltaTime);
+                targetPivot += heading * new Vector3(x, 0f, z).normalized * (speed * dt);
+                targetPivot = ClampPivot(targetPivot);
+            }
+
+            float lift = (keyboard.spaceKey.isPressed ? 1f : 0f) - (keyboard.cKey.isPressed ? 1f : 0f);
+            if (lift != 0f)
+            {
+                followTarget = null;
+                targetPivot.y += lift * Mathf.Max(2f, 0.25f * targetDistance) * (keyboard.shiftKey.isPressed ? 3f : 1f) * dt;
                 targetPivot = ClampPivot(targetPivot);
             }
 
             float turn = (keyboard.eKey.isPressed ? 1f : 0f) - (keyboard.qKey.isPressed ? 1f : 0f);
-            if (turn != 0f) targetYaw += turn * keyRotateSpeed * Time.deltaTime;
+            if (turn != 0f) targetYaw += turn * keyRotateSpeed * dt;
         }
 
         private void HandlePicking(Mouse mouse)
@@ -399,6 +414,14 @@ namespace BioDome.CameraSystem
             if (keyboard.altKey.isPressed) return LeftDragMode.Orbit;
             if (keyboard.shiftKey.isPressed) return LeftDragMode.Pan;
             return LeftDragMode.None;
+        }
+
+        private static bool IsTextInputFocused()
+        {
+            EventSystem es = EventSystem.current;
+            if (es == null || es.currentSelectedGameObject == null) return false;
+            GameObject g = es.currentSelectedGameObject;
+            return g.GetComponent<TMP_InputField>() != null || g.GetComponent<UnityEngine.UI.InputField>() != null;
         }
 
         private static bool IsPointerOverUi()

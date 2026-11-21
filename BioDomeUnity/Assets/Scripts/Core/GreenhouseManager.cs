@@ -45,6 +45,10 @@ namespace BioDome.Core
         [SerializeField, Min(1), Tooltip("Growth-stage meshes built per frame. Lower is smoother, higher updates faster.")]
         private int meshBuildsPerFrame = 1;
 
+        [SerializeField, Tooltip("Show the Pause / 1x / 2x / 5x / 10x speed buttons.")]
+        private bool showSpeedBar = true;
+
+        private float normalHoursPerSecond;
         private PlantController selectedPlant;
         private PlantingCohort cohort;
         private PlantMeshLibrary meshLibrary;
@@ -83,6 +87,8 @@ namespace BioDome.Core
             if (uiManager == null) Debug.LogWarning($"{nameof(GreenhouseManager)}: no UI manager assigned; no on-screen information.", this);
 
             meshLibrary = new PlantMeshLibrary();
+            normalHoursPerSecond = Mathf.Max(0.0001f, simulatedHoursPerSecond);
+            if (showSpeedBar) BioDome.UI.SimulationSpeedBar.Create(this);
         }
 
         private void OnEnable()
@@ -144,6 +150,8 @@ namespace BioDome.Core
                 plants[i].Plant(cohort);
             }
 
+            PrimeVisuals();
+
             if (irrigation != null)
             {
                 for (int i = 0; i < plants.Count; i++)
@@ -168,6 +176,38 @@ namespace BioDome.Core
             RefreshUi();
         }
 
+        /// <summary>
+        /// Builds the growth meshes every plant needs for its starting growth before the first frame, so plants appear at their true size
+        /// instead of showing a stale mesh and visibly "growing" into place over the first seconds.
+        /// </summary>
+        private void PrimeVisuals()
+        {
+            var timer = System.Diagnostics.Stopwatch.StartNew();
+            for (int i = 0; i < plants.Count; i++) if (plants[i] != null) plants[i].SyncVisualNow(); // request
+            int built = meshLibrary.Process(int.MaxValue);                                         // build all
+            for (int i = 0; i < plants.Count; i++) if (plants[i] != null) plants[i].SyncVisualNow(); // show
+            Debug.Log($"{nameof(GreenhouseManager)}: primed {built} growth meshes for {plants.Count} plants in {timer.ElapsedMilliseconds} ms.");
+        }
+
+        // --- Simulation speed ------------------------------------------------------
+
+        /// <summary>Simulated hours per real second at "1x" (the pace set in the Inspector: 0.4 = one simulated day per real minute).</summary>
+        public float NormalHoursPerSecond => normalHoursPerSecond;
+
+        /// <summary>Current speed in simulated hours per real second.</summary>
+        public float SimulatedHoursPerSecond => simulatedHoursPerSecond;
+
+        /// <summary>Sets the speed as a multiple of the normal pace (1, 2, 5, 10...). Affects environment, irrigation and plants equally.</summary>
+        public void SetSpeedMultiplier(float multiplier)
+        {
+            simulatedHoursPerSecond = Mathf.Max(0f, multiplier) * normalHoursPerSecond;
+        }
+
+        public void SetPaused(bool value) => paused = value;
+
+        private const float MaxStepHours = 0.25f;
+        private const int MaxStepsPerFrame = 16;
+
         private void Update()
         {
             // meshLibrary (like the cohort and every PlantSimulation) is runtime-only state created in Awake/Start. Unity does
@@ -184,7 +224,11 @@ namespace BioDome.Core
 
             float deltaHours = paused ? 0f : Time.deltaTime * simulatedHoursPerSecond;
 
-            Step(deltaHours);
+            // Large frames (high simulation speed or a slow frame) are split into small, equal sub-steps so growth, water and stress
+            // give the same result at any frame rate or speed. Normal speeds still use exactly one step per frame.
+            int steps = Mathf.Clamp(Mathf.CeilToInt(deltaHours / MaxStepHours), 1, MaxStepsPerFrame);
+            float stepHours = deltaHours / steps;
+            for (int i = 0; i < steps; i++) Step(stepHours);
 
             meshLibrary.Process(meshBuildsPerFrame);
 

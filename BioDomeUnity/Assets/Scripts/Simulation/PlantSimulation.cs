@@ -13,6 +13,15 @@ namespace BioDome.Simulation
     /// </summary>
     public sealed class PlantSimulation
     {
+        /// <summary>Which growth response is used. Original = the first model (averaged stress), kept so the original golden baseline stays reproducible.</summary>
+        public enum GrowthModel { Original = 0, Scientific = 1 }
+
+        /// <summary>Growth model used by every plant. Scientific (the default) is the species-tolerance model; tests switch it to Original to re-run the original baseline.</summary>
+        public static GrowthModel ActiveModel = GrowthModel.Scientific;
+
+        /// <summary>Time constant (simulated hours) over which a plant acclimates to light, so the day/night cycle is averaged (roughly a daily light integral).</summary>
+        public const float LightAcclimationHours = 24f;
+
         private const float WaterStressWeight = 2f; // water counts double in the overall stress average
         private const float WaterDrainTemperatureReference = 22f;
 
@@ -45,6 +54,17 @@ namespace BioDome.Simulation
         /// </summary>
         public float WaterIntakeFactor { get; set; } = 1f;
 
+        /// <summary>
+        /// Environmental growth factor from the most recent tick, 0 (growth stopped) to 1 (all conditions ideal). Scientific model only.
+        /// Product over temperature, humidity, light and soil moisture of (1 - stress^2), where each stress is the distance beyond the species'
+        /// ideal range divided by its configured tolerance.
+        /// </summary>
+        public float GrowthFactor01 { get; private set; } = 1f;
+
+        /// <summary>Light the plant has acclimated to (running average of <see cref="EnvironmentConditions.Light01"/>), used by the Scientific growth model.</summary>
+        public float AcclimatedLight01 { get; private set; }
+        private bool lightInitialised;
+
         public bool IsAlive => State != PlantHealthState.Dead;
 
         /// <summary>Development stage for the current growth, using the species thresholds.</summary>
@@ -71,6 +91,7 @@ namespace BioDome.Simulation
             ConsumeWater(deltaHours, environment);
             EvaluateStress(environment);
             UpdateHealth(deltaHours);
+            if (ActiveModel == GrowthModel.Scientific) UpdateAcclimatedLight(deltaHours, environment);
             UpdateGrowth(deltaHours, environment.Season);
 
             State = EvaluateState(Health01);
@@ -137,12 +158,36 @@ namespace BioDome.Simulation
             Health01 = Mathf.Clamp01(Health01 + perHour * deltaHours);
         }
 
+        private float AcclimatedLightStress01;
+
+        /// <summary>Growth response of one factor: 1 inside the ideal range, falling smoothly to 0 at the species' tolerance limit.</summary>
+        private static float Response(float stress01) => 1f - stress01 * stress01;
+
+        private void UpdateAcclimatedLight(float deltaHours, in EnvironmentConditions env)
+        {
+            if (!lightInitialised) { AcclimatedLight01 = 0.5f * (Data.IdealLight01.x + Data.IdealLight01.y); lightInitialised = true; }
+            // Exponential average: independent of step size.
+            AcclimatedLight01 += (env.Light01 - AcclimatedLight01) * (1f - Mathf.Exp(-deltaHours / LightAcclimationHours));
+            AcclimatedLightStress01 = RangeStress(AcclimatedLight01, Data.IdealLight01, Data.LightTolerance);
+        }
+
         private void UpdateGrowth(float deltaHours, Season season)
         {
             if (Growth01 >= 1f) return;
 
             float baseRatePerHour = 1f / (Data.DaysToMaturity * 24f);
-            float rate = baseRatePerHour * Data.GetGrowthMultiplier(season) * (1f - Stress01) * Health01;
+            float rate;
+            if (ActiveModel == GrowthModel.Original)
+            {
+                rate = baseRatePerHour * Data.GetGrowthMultiplier(season) * (1f - Stress01) * Health01;
+            }
+            else
+            {
+                // Each limiting factor can stop growth on its own at its configured tolerance, and factors multiply (independent limitations compound).
+                float factor = Response(TemperatureStress01) * Response(HumidityStress01) * Response(AcclimatedLightStress01) * Response(WaterStress01);
+                GrowthFactor01 = factor;
+                rate = baseRatePerHour * Data.GetGrowthMultiplier(season) * factor * Health01;
+            }
             Growth01 = Mathf.Clamp01(Growth01 + rate * deltaHours);
         }
 
