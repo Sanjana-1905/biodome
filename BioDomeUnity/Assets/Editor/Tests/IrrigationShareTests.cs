@@ -56,7 +56,7 @@ namespace BioDome.EditorTools.Tests
                 float reservoirBefore = main.WaterLitres;
                 for (int i = 0; i < 200; i++) pod.Tick(0.1f); // very dry pod plant triggers only the pod's sprinklers
                 check(main.WaterLitres == reservoirBefore && display.Simulation.Water01 == 0.6f, "Pod irrigation does not touch the main reservoir or display plants", "");
-                check(podPlant.UsesOwnIrrigation && podPlant.WaterShareWeight == 0.25f && pod.WaterLitres < 500f, "Pod plant is watered by the pod controller with weight 0.25", "");
+                check(podPlant.UsesOwnIrrigation && podPlant.WaterShareWeight == ZoneProfilePresets.WaterShare && pod.WaterLitres < 500f, "Pod plant is watered by the pod controller with the water-stress weight", "");
             }
             finally { foreach (UnityEngine.Object o in owners) if (o != null) UnityEngine.Object.DestroyImmediate(o); }
         }

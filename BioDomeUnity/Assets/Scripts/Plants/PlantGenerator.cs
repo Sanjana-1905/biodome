@@ -16,6 +16,8 @@ namespace BioDome.Plants
         public System.Random Rng;
         /// <summary>Growth 0 to 1, already quantised so tiny changes do not regenerate the mesh.</summary>
         public float Growth;
+        /// <summary>Flowering 0 to 1, quantised to four levels. 1 (the default) = the full, original flowering.</summary>
+        public float Bloom = 1f;
         public float Height;
         public float Width;
         public int LeafCount;
@@ -52,6 +54,15 @@ namespace BioDome.Plants
         {
             return Mathf.Clamp(step, 0, GrowthSteps) / (float)GrowthSteps;
         }
+
+        /// <summary>Flower levels: 0 = none, 3 = full bloom (the original meshes).</summary>
+        public const int BloomLevels = 3;
+
+        /// <summary>One number identifying a shared mesh: growth step plus bloom level (growth steps are below 32).</summary>
+        public static int MeshCode(int growthStep, int bloomLevel) => growthStep + 32 * Mathf.Clamp(bloomLevel, 0, BloomLevels);
+        public static int StepOfCode(int code) => code & 31;
+        public static int BloomLevelOfCode(int code) => code >> 5;
+        public static int BloomLevelOf(float bloom01) => Mathf.Clamp(Mathf.RoundToInt(bloom01 * BloomLevels), 0, BloomLevels);
 
         [Header("Size")]
         [SerializeField, Min(0.1f)] protected float height = 1.2f;
@@ -92,6 +103,13 @@ namespace BioDome.Plants
         // Not serialised on purpose: a duplicated object or a reloaded domain never owns the mesh, so it builds its own.
         private Mesh ownedMesh;
         private Color healthTint = Color.white;
+        private float leafDecline;   // 0 = healthy foliage, 0.5 = yellowed, 1 = brown and dry
+        private float stemDecay;     // 0 = living stems, 1 = dead woody stems (only reached when the whole plant is dead)
+
+        // Natural deterioration colours: they replace the species colour by blending (multiplying a dark green by brown would give black).
+        private static readonly Color DryYellow = new Color(0.66f, 0.58f, 0.24f);
+        private static readonly Color DryBrown = new Color(0.44f, 0.31f, 0.16f);
+        private static readonly Color DeadWood = new Color(0.34f, 0.25f, 0.16f);
 
         private static readonly Color[] VariantMultipliers =
         {
@@ -249,12 +267,13 @@ namespace BioDome.Plants
         /// Builds this plant's geometry at <paramref name="growth01"/> into <paramref name="target"/> without touching
         /// this object's own mesh or renderer. Used to create meshes that many plants share.
         /// </summary>
-        public void BuildMeshInto(Mesh target, float growth01)
+        public void BuildMeshInto(Mesh target, float growth01, float bloom01 = 1f)
         {
             if (target == null) throw new System.ArgumentNullException(nameof(target));
 
             float quantised = GrowthOfStep(StepOf(growth01));
             PlantBuildContext context = NewContext(quantised);
+            context.Bloom = BloomLevelOf(bloom01) / (float)BloomLevels;
             Build(context);
             context.Data.ApplyTo(target);
             target.name = $"{GetType().Name}_{seed}_g{StepOf(growth01)}";
@@ -288,6 +307,41 @@ namespace BioDome.Plants
         {
             healthTint = tint;
             ApplyAppearance();
+        }
+
+        /// <summary>
+        /// Shows the plant's condition. <paramref name="foliageDecline01"/>: 0 healthy, 0.5 yellowed, 1 brown/dry leaves (some leaf variants decline earlier,
+        /// so a damaged plant has a mix). <paramref name="stemDecay01"/>: 0 living green stems, 1 dead woody stems and faded flowers.
+        /// <paramref name="dull"/> multiplies the result (used for a slight dulling while wilting). All zero/white = the normal species look.
+        /// </summary>
+        public void SetCondition(float foliageDecline01, float stemDecay01, Color dull)
+        {
+            leafDecline = Mathf.Clamp01(foliageDecline01);
+            stemDecay = Mathf.Clamp01(stemDecay01);
+            healthTint = dull;
+            ApplyAppearance();
+        }
+
+        private Color LeafColor(int variant)
+        {
+            Color c = leafColor * Color.Lerp(Color.white, VariantMultipliers[variant], colorVariation);
+            if (leafDecline > 0f)
+            {
+                float d = Mathf.Clamp01(leafDecline * (1f + 0.3f * variant)); // variant 2 declines first, variant 0 last
+                c = Color.Lerp(c, DryYellow, Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(d * 2f)));
+                c = Color.Lerp(c, DryBrown, Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(d * 2f - 1f)));
+            }
+            c *= healthTint;
+            c.a = 1f;
+            return c;
+        }
+
+        private static Color MaterialColor(Material m)
+        {
+            if (m == null) return Color.white;
+            if (m.HasProperty(BaseColorId)) return m.GetColor(BaseColorId);
+            if (m.HasProperty(ColorId)) return m.GetColor(ColorId);
+            return Color.white;
         }
 
         /// <summary>Rebuilds the mesh if parameters changed (or when forced). Optionally writes into an existing mesh asset.</summary>
@@ -434,8 +488,7 @@ namespace BioDome.Plants
         {
             tint = Color.white;
             if (submesh < 0 || submesh >= PlantBuildContext.LeafVariantCount) return false;
-            tint = leafColor * Color.Lerp(Color.white, VariantMultipliers[submesh], colorVariation) * healthTint;
-            tint.a = 1f;
+            tint = LeafColor(submesh);
             return true;
         }
 
@@ -456,11 +509,26 @@ namespace BioDome.Plants
             if (block == null) block = new MaterialPropertyBlock();
             for (int i = 0; i < PlantBuildContext.LeafVariantCount && i < materialCount; i++)
             {
-                Color tint = leafColor * Color.Lerp(Color.white, VariantMultipliers[i], colorVariation) * healthTint;
-                tint.a = 1f;
+                Color tint = LeafColor(i);
                 block.Clear();
                 block.SetColor(BaseColorId, tint);
                 block.SetColor(ColorId, tint);
+                meshRenderer.SetPropertyBlock(block, i);
+            }
+
+            // Stems and flowers keep their material colours unless the plant is dying/dead; then they fade to dry woody brown.
+            for (int i = PlantBuildContext.LeafVariantCount; i < materialCount; i++)
+            {
+                block.Clear();
+                if (stemDecay > 0f)
+                {
+                    Color baseColor = MaterialColor(MaterialForSubmesh(i));
+                    Color target = i == PlantBuildContext.StemSubmesh ? DeadWood : DryBrown;
+                    Color c = Color.Lerp(baseColor, target, Mathf.SmoothStep(0f, 1f, stemDecay));
+                    c.a = baseColor.a;
+                    block.SetColor(BaseColorId, c);
+                    block.SetColor(ColorId, c);
+                }
                 meshRenderer.SetPropertyBlock(block, i);
             }
         }

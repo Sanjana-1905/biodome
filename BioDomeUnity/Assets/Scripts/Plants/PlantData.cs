@@ -69,6 +69,18 @@ namespace BioDome.Plants
         [SerializeField, Range(0f, 1f), Tooltip("Health at or above this value (but below Healthy) counts as Stressed. Below it is Critical.")]
         private float stressedThreshold = 0.35f;
 
+        [Header("Flowering")]
+        [SerializeField, Tooltip("True for species that naturally flower (Anthurium, Orchid, Bird of Paradise). Others never bloom.")]
+        private bool canFlower;
+        [SerializeField, Range(0f, 1f), Tooltip("Growth at which the plant is mature enough to flower.")]
+        private float floweringMinGrowth = 0.6f;
+
+        [Header("Wilting (visual response to water stress)")]
+        [SerializeField, Range(0f, 0.5f), Tooltip("How much the plant slumps (loses height) when fully wilted. Soft large leaves sag more than thick ones.")]
+        private float wiltSag = 0.25f;
+        [SerializeField, Range(0f, 0.2f), Tooltip("How much the canopy spreads sideways as it droops when fully wilted.")]
+        private float wiltSpread = 0.06f;
+
         [Header("Visuals")]
         [SerializeField, Tooltip("Plant size multiplier applied to the visual root at full growth.")]
         private float maxScale = 1f;
@@ -110,6 +122,10 @@ namespace BioDome.Plants
         public float HealthyThreshold => healthyThreshold;
         public float StressedThreshold => stressedThreshold;
         public float MaxScale => maxScale;
+        public bool CanFlower => canFlower;
+        public float FloweringMinGrowth => floweringMinGrowth;
+        public float WiltSag => wiltSag;
+        public float WiltSpread => wiltSpread;
 
         public float GetGrowthMultiplier(Season season)
         {

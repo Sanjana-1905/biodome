@@ -126,7 +126,7 @@ namespace BioDome.Plants
             }
 
             // Crest flowers on tall stalks, only on a mature plant.
-            int stalks = Mathf.RoundToInt(flowerStalks * Mathf.Clamp01((g - 0.62f) / 0.3f));
+            int stalks = Mathf.RoundToInt(flowerStalks * Mathf.Clamp01((g - 0.62f) / 0.3f) * c.Bloom);
             for (int s = 0; s < stalks; s++)
             {
                 float stalkAngle = fanAngle + (s - (stalks - 1) * 0.5f) * 0.9f + ProceduralMeshUtility.Signed(rng, 0.3f);

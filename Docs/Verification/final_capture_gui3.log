@@ -1,0 +1,711 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 13988)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 34568)
+VBCSCompiler prewarm took 168.39 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.9f1 (8c45277fb9c5) revision 9192743'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Prathiksha" at "2026-11-21T17:50:03.3255509Z"
+OS: 'Windows 11  (10.0.26200) CoreSingleLanguage' Language: 'en' Physical Memory: 16124 MB
+BatchMode: 0, IsHumanControllingUs: 1, StartBugReporterOnCrash: 1, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-21T17:50:03Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 15540, path: "C:/Program Files/WindowsApps/UnityTechnologies.UnityHub_4.0.1.65535_x64__2vrhnee42bhxm/app/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              80beb561771c42ac95bdb64c52026028
+  Correlation Id:          8919f9717d2ce0e47bf7b83951ac55ec
+  External correlation Id: 1349017931605834888
+  Machine Id:              MEcjgPeRBP0pBppVr4C8eIFeANI=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Prathiksha" (connect: 0.00s, validation: 0.00s, handshake: 0.25s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Prathiksha-notifications" at "2026-11-21T17:50:03.5836925Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 13470001436012-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.28s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Unity.exe
+-projectPath
+C:\Projects\biodome\BioDomeUnity
+-executeMethod
+BioDome.EditorTools.Tests.PlayModeGameViewCapture.Run
+-shotOut
+C:\Projects\biodome\Docs\Screenshots\FinalCheck
+-logFile
+C:\Projects\biodome\Docs\Verification\final_capture_gui3.log
+Successfully changed project path to: C:\Projects\biodome\BioDomeUnity
+C:/Projects/biodome/BioDomeUnity
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [36220]  Target information:
+
+Player connection [36220]  * "[IP] 172.26.48.1 [Port] 55504 [Flags] 2 [Guid] 3136034820 [EditorId] 3136034820 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-35EENP2A) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [36220]  * "[IP] 192.168.1.106 [Port] 55504 [Flags] 2 [Guid] 3136034820 [EditorId] 3136034820 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-35EENP2A) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [36220] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [36220] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-12148" after 0.9 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = C:/Projects/biodome/BioDomeUnityUnity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.9f1 (8c45277fb9c5)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Projects/biodome/BioDomeUnity/Assets
+[D3D12 Device Filter] Vendor Name: Intel
+[D3D12 Device Filter] Device Name: Intel(R) Iris(R) Xe Graphics
+[D3D12 Device Filter] Driver Version: 32.0.101.7082
+[D3D12 Device Filter] Feature Level: 12.1
+[D3D12 Device Filter] Graphics Memory: 8062 MB
+[D3D12 Device Filter] Processor Count: 16
+[D3D12 Device Filter] Device Type: Integrated
+[D3D12 Device Filter] D3D12 API denied by user filter: {"Vendor": "Intel", "Device Type:": Integrated}
+GfxDevice: creating device client; kGfxThreadingModeThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Iris(R) Xe Graphics (ID=0xa7a0)
+    Vendor:   Intel
+    VRAM:     8062 MB
+    Driver:   32.0.101.7082
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56148
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.010147 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  2.730 seconds
+Domain Reload Profiling: 4901ms
+	BeginReloadAssembly (470ms)
+		CreateAndSetChildDomain (15ms)
+	RebuildCommonClasses (15ms)
+	RebuildNativeTypeToScriptingClass (64ms)
+	initialDomainReloadingComplete (259ms)
+	LoadAllAssembliesAndSetupDomain (1360ms)
+		LoadAssemblies (445ms)
+		TypeCache.Refresh (905ms)
+			TypeCache.ScanAssembly (851ms)
+		AnalyzeDomain (2ms)
+	FinalizeReload (2733ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (5ms)
+			InitializePlatformSupportModulesInManaged (13ms)
+			BeforeProcessingInitializeOnLoad (441ms)
+			ProcessInitializeOnLoadAttributes (426ms)
+			ProcessInitializeOnLoadMethodAttributes (977ms)
+			EditorAssembliesLoaded (4ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 61 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.collab-proxy@2.14.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.collab-proxy@ac5a9def1e96)
+    com.unity.ide.rider@3.1.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ide.rider@570989d4a882)
+    com.unity.ide.visualstudio@2.0.28 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ide.visualstudio@b5edea5f33f4)
+    com.unity.inputsystem@1.20.1 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.probuilder@6.1.4 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.probuilder@7ffe746297d0)
+    com.unity.settings-manager@2.1.1 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.settings-manager@0b8638c5ce86)
+    com.unity.splines@2.9.2 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.splines@c3dd4719f1ee)
+    com.unity.searcher@4.9.5 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+  Built-in packages:
+    com.unity.cinemachine@6.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.cinemachine@39083c3c55f9)
+    com.unity.render-pipelines.universal@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.render-pipelines.universal@2a6014b851d8)
+    com.unity.ugui@2.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ugui@ff4f88904a57)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tetgen@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.timelinefoundation@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.render-pipelines.core@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.render-pipelines.core@77e675a23c5f)
+    com.unity.shadergraph@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.shadergraph@807b608040c3)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.test-framework@1.8.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.test-framework@01a8b42f9cf6)
+    com.unity.graph-authoring@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.burst@2.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.collections@c70d71c1212e)
+    com.unity.ext.nunit@2.1.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.mathematics@1.4.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.mathematics@8306a64d0cd6)
+    com.unity.test-framework.performance@6.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.test-framework.performance@816c370aad5b)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.47 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Projects/biodome/BioDomeUnity
+ExitCode: 0 Duration: 4s316ms
+[744/955    3s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra build success (4.01 seconds), 1 items updated, 955 evaluated
+AssetDatabase: script compilation time: 7.295020s
+Total cache size 85008928
+Begin MonoManager ReloadAssembly
+Total cache size after purge 85008928, took 00:00:00.4729117
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 4.84 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-BioDomeUnity
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  3.785 seconds
+Domain Reload Profiling: 7420ms
+	BeginReloadAssembly (815ms)
+		DisableScriptedObjects (92ms)
+		CreateAndSetChildDomain (143ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (67ms)
+	initialDomainReloadingComplete (250ms)
+	LoadAllAssembliesAndSetupDomain (2463ms)
+		LoadAssemblies (1278ms)
+		TypeCache.Refresh (532ms)
+			TypeCache.ScanAssembly (489ms)
+		AnalyzeDomain (320ms)
+			BuildScriptInfoCaches (296ms)
+			ResolveRequiredComponents (18ms)
+	FinalizeReload (3787ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (6ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (391ms)
+			ProcessInitializeOnLoadAttributes (1111ms)
+			ProcessInitializeOnLoadMethodAttributes (759ms)
+			AfterProcessingInitializeOnLoad (24ms)
+			EditorAssembliesLoaded (5ms)
+		AwakeInstancesAfterBackupRestoration (95ms)
+Starting new worker id: 0 with log in C:/Projects/biodome/BioDomeUnity/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=b28d319a4b374ed46a26b4b88f7bd40a): Total: 17.634 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=5569 ms
+		Asset DB Callback time: managed=151 ms, native=481 ms
+		Scripting: domain reloads=1, domain reload time=3870 ms, compile time=7302 ms, other=258 ms
+		Project Asset Count: scripts=1268, non-scripts=2962
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 486.895ms
+	ApplyChangesToAssetFolders: 2.402ms
+	Scan: 480.870ms
+	Collect global state as custom dependencies: 69.230ms
+	CategorizeScriptCompilationAssets: 99.275ms
+	ProcessAssetsWithTransientArtifactChanges: 212.049ms
+	CategorizeAssets: 187.844ms
+	CompileScripts: 7302.258ms
+	ImportOutOfDateAssets: 3968.275ms (3809.240ms without children)
+		ReloadNativeAssets: 0.108ms
+		UnloadImportedAssets: 6.586ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.631ms
+		ImportSchedulerStart: 150.696ms
+	PostProcessAllAssets: 151.326ms
+		MonoPostProcessAllAssets: 151.184ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 63.435ms
+			SyncVS.PostprocessSyncProject 29.278ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 7.314ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 5.582ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 2.952ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 2.614ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 1.700ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 1.115ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.740ms
+			CinemachineSettings.OnPostprocessAllAssets 0.666ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.642ms
+			DomainReloadProcessor.OnPostprocessAllAssets 0.613ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.526ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.423ms
+	UnloadStreamsBegin: 5.285ms
+	PersistCurrentRevisions: 0.426ms
+	GenerateScriptTypeHashes: 5.370ms
+	GenerateScriptTypeSerializationHashes: 9.516ms
+	Untracked: 4648.361ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.14 seconds
+Scanning for USB devices : 4.070ms
+Initializing Unity extensions:
+Unloading 78 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/BioDome_Working.unity'
+	Deserialize:            748.702 ms
+	Integration:            1664.359 ms
+	Integration of assets:  7.078 ms
+	Thread Wait Time:       3.493 ms
+	Total Operation Time:   2423.632 ms
+Unloading 5551 unused Assets / (11.1 MB). Loaded Objects now: 22862.
+Memory consumption went from 461.9 MB to 450.8 MB.
+Total: 40.764500 ms (FindLiveObjects: 3.788300 ms CreateObjectMapping: 1.487500 ms MarkObjects: 27.525400 ms  DeleteObjects: 6.907800 ms)
+
+[LAYOUT] About to load UserSettings\Layouts\default-6000.dwlt, keepMainWindow=False
+[LAYOUT] About to save layout C:\Projects\biodome\BioDomeUnity\UserSettings\Layouts\default-6000.dwlt
+[LAYOUT] About to save layout C:/Users/Prathiksha/AppData/Roaming/Unity/Editor-5.x/Preferences\Layouts\current\default-6000.dwlt
+[MODES] ModeService[default].InitializeCurrentMode
+[MODES] ModeService[default].RaiseModeChanged(default, default)
+Opening scene 'Assets/Scenes/BioDome_Working.unity'
+Unloading 228 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/BioDome_Working.unity'
+	Deserialize:            594.713 ms
+	Integration:            574.227 ms
+	Integration of assets:  0.305 ms
+	Thread Wait Time:       0.114 ms
+	Total Operation Time:   1169.360 ms
+Unloading 12 unused Assets / (24.5 KB). Loaded Objects now: 23108.
+Memory consumption went from 0.53 GB to 0.53 GB.
+Total: 40.976700 ms (FindLiveObjects: 3.964100 ms CreateObjectMapping: 0.650500 ms MarkObjects: 34.995700 ms  DeleteObjects: 0.168600 ms)
+
+<RI> Initializing input.
+Using Windows.Gaming.Input
+[Project] Loading completed in 37.684 seconds
+	Project init time: 				28.061 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		0.954 seconds
+		Asset Database init time: 		1.597 seconds
+		Global illumination init time: 	0.007 seconds
+		Assemblies load time: 			5.058 seconds
+		Unity extensions init time: 	0.053 seconds
+		Asset Database refresh time: 	17.634 seconds
+	Scene opening time: 			8.744 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1795283440808,"processId":12148,"projectLoad":37.6840057,"projectInit":28.0608499,"templateInit":0.0,"packageManagerInit":0.9537683,"assetDatabaseInit":1.5965576,"globalIlluminationInit":0.0070022,"assembliesLoad":5.0581635,"unityExtensionsInit":0.0527176,"assetDatabaseRefresh":17.6341362,"sceneOpening":8.7442816}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1795283440808,"processId":12148,"editorVersion":"6000.6.9f1 (8c45277fb9c5)","branch":"6000.6/staging","buildType":"Release","platform":"Windows"}
+Worker ready: AssetImportWorkerHW0 0
+Entering Playmode with Reload Domain disabled.
+If you experience any issues, please disable "Enter Play Mode Options" in Editor Settings
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            268.828 ms
+	Integration:            1055.077 ms
+	Integration of assets:  0.501 ms
+	Thread Wait Time:       -0.430 ms
+	Total Operation Time:   1323.976 ms
+GreenhouseManager: primed 39 growth meshes for 1118 plants in 412 ms.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Core.GreenhouseManager:PrimeVisuals () (at Assets/Scripts/Core/GreenhouseManager.cs:189)
+BioDome.Core.GreenhouseManager:Start () (at Assets/Scripts/Core/GreenhouseManager.cs:153)
+
+(Filename: Assets/Scripts/Core/GreenhouseManager.cs Line: 189)
+
+ExperimentGarden: All 30 experimental plants started from an equivalent state.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object,UnityEngine.Object)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+BioDome.Experiment.ExperimentGarden:CheckEquivalentStart () (at Assets/Scripts/Experiment/ExperimentGarden.cs:151)
+BioDome.Experiment.ExperimentGarden:Start () (at Assets/Scripts/Experiment/ExperimentGarden.cs:121)
+
+(Filename: Assets/Scripts/Experiment/ExperimentGarden.cs Line: 151)
+
+Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.UniversalCameraData) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1138)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameraStack (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera,bool) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1349)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameras (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:657)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:599)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.DockArea:DrawView (UnityEngine.Rect)
+UnityEditor.DockArea:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs line 1138]
+
+Created GICache directory at C:/Users/Prathiksha/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.040s, timestamps: [45.751 - 45.791]
+[Licensing::Client] Successfully resolved entitlement details
+Start Indexing on Editor startup
+[Indexing] Starting Initial Indexing for Assets
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully updated the access token
+[Licensing::Module] Successfully updated access token: "6PbJmtQk"... (expires: 2026-11-21T18:03:44Z)
+UPID Received 'e48b37bf-3109-4cb3-8c35-1873056a53af'.
+[Licensing::Client] Successfully resolved entitlement details
+Asset Pipeline Refresh (id=679375780c1c51545962e3ddcdae7e0c): Total: 0.236 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+TrimDiskCacheJob: Current cache size 0mb
+Asset Pipeline Refresh (id=8e009b203d50ff5428f37cb167a32c5f): Total: 0.030 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            326.090 ms
+	Integration:            629.930 ms
+	Integration of assets:  0.481 ms
+	Thread Wait Time:       -0.472 ms
+	Total Operation Time:   956.030 ms
+Unloading 81 unused Assets / (17.0 MB). Loaded Objects now: 23993.
+Memory consumption went from 0.66 GB to 0.65 GB.
+Total: 82.526100 ms (FindLiveObjects: 4.568100 ms CreateObjectMapping: 0.883100 ms MarkObjects: 66.871500 ms  DeleteObjects: 9.109200 ms)
+
+[Licensing::Client] Successfully resolved entitlement details
+Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.UniversalCameraData) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1138)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameraStack (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera,bool) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1349)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameras (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:657)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:599)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.DockArea:DrawView (UnityEngine.Rect)
+UnityEditor.DockArea:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs line 1138]
+
+Opening scene 'Assets/Scenes/BioDome_Working.unity'
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/BioDome_Working.unity'
+	Deserialize:            394.303 ms
+	Integration:            423.386 ms
+	Integration of assets:  0.145 ms
+	Thread Wait Time:       -0.058 ms
+	Total Operation Time:   817.776 ms
+Unloading 17 unused Assets / (425.6 KB). Loaded Objects now: 24063.
+Memory consumption went from 0.65 GB to 0.65 GB.
+Total: 63.779800 ms (FindLiveObjects: 4.267300 ms CreateObjectMapping: 0.881300 ms MarkObjects: 56.919300 ms  DeleteObjects: 0.602800 ms)
+
+Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.UniversalCameraData) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1138)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameraStack (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera,bool) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1349)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameras (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:657)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:599)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.DockArea:DrawView (UnityEngine.Rect)
+UnityEditor.DockArea:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs line 1138]
+
+Entering Playmode with Reload Domain disabled.
+If you experience any issues, please disable "Enter Play Mode Options" in Editor Settings
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            311.372 ms
+	Integration:            675.403 ms
+	Integration of assets:  0.529 ms
+	Thread Wait Time:       -0.485 ms
+	Total Operation Time:   986.820 ms
+GreenhouseManager: primed 39 growth meshes for 1118 plants in 277 ms.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Core.GreenhouseManager:PrimeVisuals () (at Assets/Scripts/Core/GreenhouseManager.cs:189)
+BioDome.Core.GreenhouseManager:Start () (at Assets/Scripts/Core/GreenhouseManager.cs:153)
+
+(Filename: Assets/Scripts/Core/GreenhouseManager.cs Line: 189)
+
+ExperimentGarden: All 30 experimental plants started from an equivalent state.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object,UnityEngine.Object)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+BioDome.Experiment.ExperimentGarden:CheckEquivalentStart () (at Assets/Scripts/Experiment/ExperimentGarden.cs:151)
+BioDome.Experiment.ExperimentGarden:Start () (at Assets/Scripts/Experiment/ExperimentGarden.cs:121)
+
+(Filename: Assets/Scripts/Experiment/ExperimentGarden.cs Line: 151)
+
+Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.UniversalCameraData) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1138)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameraStack (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera,bool) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1349)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameras (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:657)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:599)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.DockArea:DrawView (UnityEngine.Rect)
+UnityEditor.DockArea:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs line 1138]
+
+Unloading 16 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            235.923 ms
+	Integration:            561.055 ms
+	Integration of assets:  0.581 ms
+	Thread Wait Time:       -0.536 ms
+	Total Operation Time:   797.022 ms
+Unloading 16 unused Assets / (114.8 KB). Loaded Objects now: 23946.
+Memory consumption went from 0.64 GB to 0.64 GB.
+Total: 72.785100 ms (FindLiveObjects: 3.268500 ms CreateObjectMapping: 0.787500 ms MarkObjects: 67.091600 ms  DeleteObjects: 0.493700 ms)
+
+[Licensing::Client] Successfully resolved entitlement details
+Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.UniversalCameraData) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1138)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameraStack (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera,bool) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1349)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameras (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:657)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:599)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.DockArea:DrawView (UnityEngine.Rect)
+UnityEditor.DockArea:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs line 1138]
+
+Entering Playmode with Reload Domain disabled.
+If you experience any issues, please disable "Enter Play Mode Options" in Editor Settings
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            217.919 ms
+	Integration:            808.732 ms
+	Integration of assets:  0.425 ms
+	Thread Wait Time:       -0.372 ms
+	Total Operation Time:   1026.704 ms
+GreenhouseManager: primed 39 growth meshes for 1118 plants in 306 ms.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Core.GreenhouseManager:PrimeVisuals () (at Assets/Scripts/Core/GreenhouseManager.cs:189)
+BioDome.Core.GreenhouseManager:Start () (at Assets/Scripts/Core/GreenhouseManager.cs:153)
+
+(Filename: Assets/Scripts/Core/GreenhouseManager.cs Line: 189)
+
+ExperimentGarden: All 30 experimental plants started from an equivalent state.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object,UnityEngine.Object)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+BioDome.Experiment.ExperimentGarden:CheckEquivalentStart () (at Assets/Scripts/Experiment/ExperimentGarden.cs:151)
+BioDome.Experiment.ExperimentGarden:Start () (at Assets/Scripts/Experiment/ExperimentGarden.cs:121)
+
+(Filename: Assets/Scripts/Experiment/ExperimentGarden.cs Line: 151)
+
+Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.UniversalCameraData) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1138)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameraStack (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera,bool) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1349)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameras (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:657)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:599)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs line 1138]
+

@@ -18,4 +18,4 @@ MonoBehaviour:
   humidityOffset: 0
   lightMultiplier: 1
   waterIntakeFactor: 1
-  waterShareWeight: 0.25
+  waterShareWeight: 0.4

@@ -87,7 +87,7 @@ namespace BioDome.Environment
         public const float HeatOffsetCelsius = 10f;
         public const float LowHumidityOffset = -0.30f;
         public const float LowLightMultiplier = 0.40f;
-        public const float WaterShare = 0.25f;
+        public const float WaterShare = 0.4f; // measured over 30 days: 0.25 killed every plant, 0.5 produced no visible stress
 
         public static string NameOf(ExperimentalCondition condition)
         {

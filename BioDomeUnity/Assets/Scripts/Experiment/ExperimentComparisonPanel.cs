@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BioDome.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,12 +21,14 @@ namespace BioDome.Experiment
         private static readonly Color SubText = new Color(0.72f, 0.80f, 0.74f, 1f);
 
         private sealed class Cell { public Image fill; public TMP_Text value; }
-        private sealed class Row { public ExperimentPod pod; public TMP_Text name; public Cell[] cells = new Cell[4]; }
+        private sealed class Row { public ExperimentPod pod; public TMP_Text name; public Cell[] cells = new Cell[4]; public TMP_Text delta; public TMP_Text[] sources = new TMP_Text[4]; }
 
         private readonly List<Row> rows = new List<Row>();
         private GameObject body;
         private TMP_Text statusText;
+        private TMP_Text clockText;
         private float timer;
+        private ExperimentPod control;
 
         private static readonly string[] Headings = { "Growth", "Health", "Moisture", "Stress" };
         private static readonly Color[] BarColors =
@@ -33,14 +36,33 @@ namespace BioDome.Experiment
             new Color(0.45f, 0.82f, 0.45f), new Color(0.35f, 0.78f, 0.75f), new Color(0.40f, 0.62f, 0.95f), new Color(0.95f, 0.50f, 0.35f)
         };
 
+        private GameObject canvasRoot;
+
+        /// <summary>Shows or hides the whole panel (Pod Lab hides it while open, since both use the right-hand column).</summary>
+        public void SetVisible(bool visible) => externallyHidden = !visible;
+
+        private bool externallyHidden;
+        private GreenhouseManager manager;
+
+        // The right-hand column shows one panel at a time: Pod Lab, else the plant inspector (top-right), else this panel.
+        private void UpdateVisibility()
+        {
+            if (canvasRoot == null) return;
+            bool show = !externallyHidden && (manager == null || manager.SelectedPlant == null);
+            if (canvasRoot.activeSelf != show) canvasRoot.SetActive(show);
+        }
+
         private void Start()
         {
             if (garden == null) { enabled = false; return; }
+            manager = FindAnyObjectByType<GreenhouseManager>();
+            control = garden.Pods[garden.ControlIndex];
             Build();
         }
 
         private void Update()
         {
+            UpdateVisibility();
             timer += Time.unscaledDeltaTime;
             if (timer < refreshInterval) return;
             timer = 0f;
@@ -54,9 +76,33 @@ namespace BioDome.Experiment
                 ExperimentPod.Metrics m = row.pod.Measure();
                 row.name.text = m.Alive < m.Total ? $"{row.pod.DisplayName}  <size=70%>{m.Alive}/{m.Total}</size>" : row.pod.DisplayName;
                 Set(row.cells[0], m.Growth); Set(row.cells[1], m.Health); Set(row.cells[2], m.Moisture); Set(row.cells[3], m.Stress);
+                row.sources[0].text = Pct(m.TemperatureStress); row.sources[1].text = Pct(m.HumidityStress);
+                row.sources[2].text = Pct(m.LightStress); row.sources[3].text = Pct(m.WaterStress);
+                if (row.pod == control) row.delta.text = "<color=#9fb3a6>control</color>";
+                else
+                {
+                    ExperimentPod.Metrics c = control.Measure();
+                    row.delta.text = $"{Signed(m.Growth - c.Growth)} / {Signed(m.Health - c.Health)}";
+                }
+            }
+            if (clockText != null)
+            {
+                float t = garden.CurrentTimeOfDay;
+                EnvironmentConditions g = garden.GreenhouseNow;
+                clockText.text = $"Day {garden.CurrentDay}  {Mathf.FloorToInt(t):00}:{Mathf.FloorToInt((t % 1f) * 60f):00}  ·  {g.Season}  ·  greenhouse {g.TemperatureCelsius:0.0}°C";
             }
             if (statusText != null && garden.StartChecked)
                 statusText.text = garden.StartsEquivalent ? "All groups started from an equivalent state" : "Warning: groups did not start equivalent";
+        }
+
+        private static string Pct(float v) => Mathf.RoundToInt(Mathf.Clamp01(v) * 100f) + "%";
+
+        // Difference from the control group in percentage points; green = better than control for growth/health.
+        private static string Signed(float diff)
+        {
+            int pp = Mathf.RoundToInt(diff * 100f);
+            string color = pp > 0 ? "#7fd67f" : pp < 0 ? "#f08a6a" : "#9fb3a6";
+            return $"<color={color}>{(pp > 0 ? "+" : "")}{pp}</color>";
         }
 
         private static void Set(Cell c, float value01)
@@ -73,6 +119,7 @@ namespace BioDome.Experiment
         {
             var canvasObject = new GameObject("ExperimentCanvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.transform.SetParent(transform, false);
+            canvasRoot = canvasObject;
             var canvas = canvasObject.GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = 5;
@@ -81,12 +128,13 @@ namespace BioDome.Experiment
             scaler.referenceResolution = new Vector2(1280f, 720f);
             scaler.matchWidthOrHeight = 0.5f;
 
-            const float width = 372f, headerH = 26f, rowH = 24f, pad = 8f;
-            float bodyH = pad + 18f + garden.Pods.Count * rowH + 20f + pad;
+            const float width = 430f, headerH = 26f, rowH = 24f, pad = 8f;
+            int n = garden.Pods.Count;
+            float bodyH = pad + 20f + 18f + n * rowH + 22f + 34f + n * rowH + 22f + pad;
 
             RectTransform panel = NewRect("Panel", canvasObject.transform, PanelColor);
             panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(1f, 0f);
-            panel.anchoredPosition = new Vector2(-10f, 46f);
+            panel.anchoredPosition = new Vector2(-10f, 100f); // above the view-shortcut bar
             panel.sizeDelta = new Vector2(width, headerH + bodyH);
 
             // Header with collapse button.
@@ -114,13 +162,18 @@ namespace BioDome.Experiment
             bodyRect.offsetMin = Vector2.zero; bodyRect.offsetMax = new Vector2(0f, -headerH);
             body = bodyRect.gameObject;
 
-            float nameW = 112f, cellW = (width - nameW - pad * 2f) / 4f;
+            float nameW = 112f, deltaW = 62f, cellW = (width - nameW - deltaW - pad * 2f) / 4f;
             float y = -pad;
+
+            clockText = NewText("Clock", bodyRect, "", 11.5f, TextColor, TextAlignmentOptions.MidlineLeft, FontStyles.Bold, new Vector2(pad, y), new Vector2(width - pad * 2f, 20f), true);
+            y -= 20f;
 
             // Column headings.
             for (int c = 0; c < 4; c++)
                 NewText("H" + c, bodyRect, Headings[c], 11f, SubText, TextAlignmentOptions.Midline, FontStyles.Normal,
                     new Vector2(pad + nameW + c * cellW, y), new Vector2(cellW, 18f), true);
+            NewText("HDelta", bodyRect, "vs control", 10f, SubText, TextAlignmentOptions.Midline, FontStyles.Normal,
+                new Vector2(pad + nameW + 4f * cellW, y), new Vector2(deltaW, 18f), true);
             y -= 18f;
 
             foreach (ExperimentPod pod in garden.Pods)
@@ -140,7 +193,25 @@ namespace BioDome.Experiment
                     TMP_Text value = NewText("Value", back, "0%", 10f, TextColor, TextAlignmentOptions.Center, FontStyles.Normal, Vector2.zero, Vector2.zero);
                     row.cells[c] = new Cell { fill = fill.GetComponent<Image>(), value = value };
                 }
+                row.delta = NewText("Delta", bodyRect, "", 11f, TextColor, TextAlignmentOptions.Midline, FontStyles.Normal,
+                    new Vector2(pad + nameW + 4f * cellW, y), new Vector2(deltaW, rowH), true);
                 rows.Add(row);
+                y -= rowH;
+            }
+            NewText("SourcesTitle", bodyRect, "Stress sources (average per group, % of maximum)", 10.5f, SubText, TextAlignmentOptions.MidlineLeft, FontStyles.Italic,
+                new Vector2(pad, y - 2f), new Vector2(width - pad * 2f, 18f), true);
+            string[] srcHeadings = { "Temp", "Humidity", "Light", "Water" };
+            for (int c = 0; c < 4; c++)
+                NewText("SH" + c, bodyRect, srcHeadings[c], 10f, SubText, TextAlignmentOptions.Midline, FontStyles.Normal,
+                    new Vector2(pad + nameW + c * cellW, y - 18f), new Vector2(cellW, 16f), true);
+            y -= 36f;
+            foreach (Row row in rows)
+            {
+                NewText("SName", bodyRect, row.pod.DisplayName, 11f, TextColor, TextAlignmentOptions.MidlineLeft, FontStyles.Normal,
+                    new Vector2(pad + 9f, y), new Vector2(nameW - 9f, rowH), true);
+                for (int c = 0; c < 4; c++)
+                    row.sources[c] = NewText("S" + c, bodyRect, "0%", 11f, TextColor, TextAlignmentOptions.Midline, FontStyles.Normal,
+                        new Vector2(pad + nameW + c * cellW, y), new Vector2(cellW, rowH), true);
                 y -= rowH;
             }
 
@@ -174,7 +245,7 @@ namespace BioDome.Experiment
             go.transform.SetParent(parent, false);
             var tmp = go.GetComponent<TextMeshProUGUI>();
             tmp.text = text; tmp.fontSize = size; tmp.color = color; tmp.alignment = alignment; tmp.fontStyle = style;
-            tmp.raycastTarget = false; tmp.textWrappingMode = TextWrappingModes.NoWrap; tmp.overflowMode = TextOverflowModes.Overflow;
+            tmp.raycastTarget = false; tmp.richText = true; tmp.textWrappingMode = TextWrappingModes.NoWrap; tmp.overflowMode = TextOverflowModes.Overflow;
             var rt = (RectTransform)go.transform;
             if (topLeft) SetTopLeft(rt, position, sizeOrInset);
             else

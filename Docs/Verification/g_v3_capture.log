@@ -1,0 +1,450 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 7400)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 16480)
+VBCSCompiler prewarm took 142.37 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.9f1 (8c45277fb9c5) revision 9192743'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Prathiksha" at "2026-11-21T11:20:01.5040204Z"
+OS: 'Windows 11  (10.0.26200) CoreSingleLanguage' Language: 'en' Physical Memory: 16124 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-21T11:20:01Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 15540, path: "C:/Program Files/WindowsApps/UnityTechnologies.UnityHub_4.0.1.65535_x64__2vrhnee42bhxm/app/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              be206c4806e4426a86b2bc6d6c36db30
+  Correlation Id:          8919f9717d2ce0e47bf7b83951ac55ec
+  External correlation Id: 7583334969115625942
+  Machine Id:              MEcjgPeRBP0pBppVr4C8eIFeANI=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Prathiksha" (connect: 0.00s, validation: 0.01s, handshake: 0.32s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Prathiksha-notifications" at "2026-11-21T11:20:01.826516Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 13470001436012-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.34s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Unity.exe
+-batchmode
+-nographics
+-projectPath
+C:\Projects\biodome\BioDomeUnity
+-executeMethod
+BioDome.EditorTools.Tests.SimulationRegression.RunBatch
+-logFile
+C:\Projects\biodome\Docs\Verification\g_v3_capture.log
+-goldenMode
+capture
+-goldenFile
+Assets/Tests/Golden/simulation_golden_scientific_v3.json
+Successfully changed project path to: C:\Projects\biodome\BioDomeUnity
+C:/Projects/biodome/BioDomeUnity
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [1364]  Target information:
+
+Player connection [1364]  * "[IP] 172.26.48.1 [Port] 55504 [Flags] 2 [Guid] 3686355318 [EditorId] 3686355318 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-35EENP2A) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [1364]  * "[IP] 192.168.1.106 [Port] 55504 [Flags] 2 [Guid] 3686355318 [EditorId] 3686355318 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-35EENP2A) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [1364] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [1364] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-26352" after 0.7 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = C:/Projects/biodome/BioDomeUnityUnity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.9f1 (8c45277fb9c5)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Projects/biodome/BioDomeUnity/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56352
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.006223 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  2.284 seconds
+Domain Reload Profiling: 3904ms
+	BeginReloadAssembly (400ms)
+		CreateAndSetChildDomain (27ms)
+	RebuildCommonClasses (14ms)
+	RebuildNativeTypeToScriptingClass (48ms)
+	initialDomainReloadingComplete (190ms)
+	LoadAllAssembliesAndSetupDomain (966ms)
+		LoadAssemblies (359ms)
+		TypeCache.Refresh (642ms)
+			TypeCache.ScanAssembly (604ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (2287ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (4ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			BeforeProcessingInitializeOnLoad (314ms)
+			ProcessInitializeOnLoadAttributes (480ms)
+			ProcessInitializeOnLoadMethodAttributes (797ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 61 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.collab-proxy@2.14.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.collab-proxy@ac5a9def1e96)
+    com.unity.ide.rider@3.1.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ide.rider@570989d4a882)
+    com.unity.ide.visualstudio@2.0.28 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ide.visualstudio@b5edea5f33f4)
+    com.unity.inputsystem@1.20.1 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.probuilder@6.1.4 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.probuilder@7ffe746297d0)
+    com.unity.settings-manager@2.1.1 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.settings-manager@0b8638c5ce86)
+    com.unity.splines@2.9.2 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.splines@c3dd4719f1ee)
+    com.unity.searcher@4.9.5 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+  Built-in packages:
+    com.unity.cinemachine@6.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.cinemachine@39083c3c55f9)
+    com.unity.render-pipelines.universal@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.render-pipelines.universal@2a6014b851d8)
+    com.unity.ugui@2.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ugui@ff4f88904a57)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tetgen@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.timelinefoundation@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.render-pipelines.core@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.render-pipelines.core@77e675a23c5f)
+    com.unity.shadergraph@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.shadergraph@807b608040c3)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.test-framework@1.8.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.test-framework@01a8b42f9cf6)
+    com.unity.graph-authoring@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.burst@2.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.collections@c70d71c1212e)
+    com.unity.ext.nunit@2.1.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.mathematics@1.4.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.mathematics@8306a64d0cd6)
+    com.unity.test-framework.performance@6.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.test-framework.performance@816c370aad5b)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.07 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Projects/biodome/BioDomeUnity
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 1s263ms
+[744/955    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra build success (1.14 seconds), 1 items updated, 955 evaluated
+AssetDatabase: script compilation time: 2.627175s
+Total cache size 85008928
+Total cache size after purge 85008928, took 00:00:00.2971464
+Begin MonoManager ReloadAssembly
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 3.65 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-BioDomeUnity
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  3.053 seconds
+Domain Reload Profiling: 5877ms
+	BeginReloadAssembly (689ms)
+		DisableScriptedObjects (73ms)
+		CreateAndSetChildDomain (130ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (44ms)
+	initialDomainReloadingComplete (175ms)
+	LoadAllAssembliesAndSetupDomain (1888ms)
+		LoadAssemblies (1030ms)
+		TypeCache.Refresh (427ms)
+			TypeCache.ScanAssembly (395ms)
+		AnalyzeDomain (216ms)
+			BuildScriptInfoCaches (201ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (3056ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (4ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			BeforeProcessingInitializeOnLoad (308ms)
+			ProcessInitializeOnLoadAttributes (876ms)
+			ProcessInitializeOnLoadMethodAttributes (688ms)
+			AfterProcessingInitializeOnLoad (25ms)
+			EditorAssembliesLoaded (5ms)
+		AwakeInstancesAfterBackupRestoration (78ms)
+Starting new worker id: 0 with log in C:/Projects/biodome/BioDomeUnity/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=fa835c60380f52f4d9faa1aea21699d7): Total: 10.320 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=4335 ms
+		Asset DB Callback time: managed=121 ms, native=75 ms
+		Scripting: domain reloads=1, domain reload time=2981 ms, compile time=2637 ms, other=168 ms
+		Project Asset Count: scripts=1267, non-scripts=2959
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokeCustomDependenciesCallbacks: 0.060ms
+	InvokePackagesCallback: 81.207ms
+	ApplyChangesToAssetFolders: 1.912ms
+	Scan: 286.046ms
+	Collect global state as custom dependencies: 59.061ms
+	CategorizeScriptCompilationAssets: 81.517ms
+	ProcessAssetsWithTransientArtifactChanges: 161.109ms
+	CategorizeAssets: 175.978ms
+	CompileScripts: 2637.461ms
+	ImportOutOfDateAssets: 3185.990ms (3073.890ms without children)
+		ReloadNativeAssets: 0.096ms
+		UnloadImportedAssets: 5.250ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.742ms
+		ImportSchedulerStart: 105.000ms
+	PostProcessAllAssets: 121.387ms
+		MonoPostProcessAllAssets: 121.200ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 43.173ms
+			SyncVS.PostprocessSyncProject 31.707ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 4.649ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 4.473ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 2.286ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 2.032ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 1.571ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.774ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.757ms
+			CinemachineSettings.OnPostprocessAllAssets 0.657ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.537ms
+			DomainReloadProcessor.OnPostprocessAllAssets 0.534ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.424ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.415ms
+	UnloadStreamsBegin: 3.839ms
+	PersistCurrentRevisions: 0.518ms
+	GenerateScriptTypeHashes: 5.955ms
+	GenerateScriptTypeSerializationHashes: 10.683ms
+	Untracked: 3510.125ms
+
+Application.AssetDatabase Initial Refresh End
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Scanning for USB devices : 3.710ms
+Initializing Unity extensions:
+Unloading 69 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 5534 unused Assets / (5.7 MB). Loaded Objects now: 6504.
+Memory consumption went from 368.9 MB to 363.2 MB.
+Total: 25.173000 ms (FindLiveObjects: 1.161600 ms CreateObjectMapping: 0.578500 ms MarkObjects: 16.732700 ms  DeleteObjects: 5.902400 ms)
+
+REGRESSION growth model: Scientific, health model: SevereSustained
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.EditorTools.Tests.SimulationRegression:RunBatch () (at Assets/Editor/Tests/SimulationRegression.cs:117)
+
+(Filename: Assets/Editor/Tests/SimulationRegression.cs Line: 117)
+
+REGRESSION driver: GreenhouseManager.Step (real code)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.EditorTools.Tests.SimulationRegression:RunBatch () (at Assets/Editor/Tests/SimulationRegression.cs:119)
+
+(Filename: Assets/Editor/Tests/SimulationRegression.cs Line: 119)
+
+Importing 'GUID: 38769fece64368841886eaab510f68c7 - Path: Assets/Tests/Golden/simulation_golden_scientific_v3.json' with importer (TextScriptImporter)
+Imported 'GUID: 38769fece64368841886eaab510f68c7' -> (Import Result ID: 'b89ba5568818ca18d197f60d364678ff') in 0.050 seconds [static dependencies only]. Details - ImportResultOutputID=ae077327bf741242f5e27d7161c9224d DependenciesID=e50fa696122933acff9b5897873f7077 StaticDependenciesID=be5ae89b70bcd7ca63701ecc69c40efe 
+Refreshing native plugins compatible for Editor in 3.34 ms, found 3 plugins.
+
+Asset Pipeline Refresh (id=59a81891d9411674aab6ace1542c60dc): Total: 0.645 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=1 (actual=1, local cache=0, cache server=0)
+		Asset DB Process Time: managed=7 ms, native=304 ms
+		Asset DB Callback time: managed=321 ms, native=11 ms
+		Scripting: domain reloads=0, domain reload time=0 ms, compile time=0 ms, other=0 ms
+		Project Asset Count: scripts=1267, non-scripts=2960
+		Asset File Changes: new=1, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	ApplyChangesToAssetFolders: 0.443ms
+	Scan: 77.252ms
+	Collect global state as custom dependencies: 1.992ms
+	OnSourceAssetsModified: 1.909ms
+	ProcessAssetsWithTransientArtifactChanges: 0.140ms
+	CategorizeAssets: 128.712ms
+	ImportOutOfDateAssets: 57.447ms (0.607ms without children)
+		ImportManagerImport: 54.454ms (3.569ms without children)
+			UpdateCategorizedAssets: 0.061ms
+		ReloadNativeAssets: 0.119ms
+		UnloadImportedAssets: 0.347ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.096ms
+		ImportSchedulerStart: 0.802ms
+	PostProcessAllAssets: 323.071ms
+		XRBuildSystem.XRAssetImported 5.792ms
+		VersionControlSettings.HiddenFilePostprocess 0.102ms
+		MonoPostProcessAllAssets: 315.859ms
+			AssetPostprocessor.OnPostprocessAllAssets 204.259ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 58.494ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 18.803ms
+			AssetChangedListener.OnPostprocessAllAssets 5.028ms
+			SyncVS.PostprocessSyncProject 3.845ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 3.421ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 3.336ms
+			MaterialPostprocessor.OnPostprocessAllAssets 2.131ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 1.561ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 1.419ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 1.387ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 1.113ms
+			UVCSAssetPostprocessor.OnPostprocessAllAssets 0.962ms
+			PostProcessor.OnPostprocessAllAssets 0.832ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.769ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.678ms
+			AssetEvents.OnPostprocessAllAssets 0.664ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.510ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.444ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.441ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.439ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.387ms
+			AssetReloadNotifier.OnPostprocessAllAssets 0.365ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.333ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.217ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.053ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.052ms
+	PostAssetChangesProfiler: 8.078ms
+	GatherAllCurrentPrimaryImportResultRevisions: 0.469ms
+	UnloadStreamsBegin: 0.486ms
+	PersistCurrentRevisions: 0.515ms
+	Untracked: 25.735ms
+
+REGRESSION captured 11360 values to Assets/Tests/Golden/simulation_golden_scientific_v3.json
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.EditorTools.Tests.SimulationRegression:RunBatch () (at Assets/Editor/Tests/SimulationRegression.cs:123)
+
+(Filename: Assets/Editor/Tests/SimulationRegression.cs Line: 123)
+
+MonoPathRemapper: Attempts to remap: 9029; Successful remaps: 2
+Serialized file version minimum: 23, current 23
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-Prathiksha-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-Prathiksha channel disconnected successfully.
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+VBCSCompilerPreWarmer: requested VBCSCompiler shutdown
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1795260025900,"processId":26352,"allocatedMemory":15498662,"memoryLabels":[{"Default":207784},{"Permanent":15516},{"NewDelete":70111},{"Thread":4198064},{"Manager":34301},{"VertexData":8},{"Geometry":824},{"Texture":24},{"Shader":848900},{"Material":132},{"GfxDevice":55968},{"Animation":952},{"Audio":1272},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":16704},{"Input":42840},{"JobScheduler":264},{"TextLib":336},{"Mono":48},{"MonoCode":64},{"ScriptingNativeRuntime":1292664},{"BaseObject":48784},{"Resource":1444},{"Renderer":2504},{"Transform":4781},{"File":4424},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":450244},{"StaticString":3808},{"Utility":2674806},{"Curl":2579},{"PoolAlloc":2264},{"AI":80},{"TypeTree":17165},{"ScriptManager":12688},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":7296},{"WebRequest":8843},{"VR":49650},{"SceneManager":608},{"Video":64},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":768},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14536},{"Identifiers":7152},{"EntityIdStore":33088},{"Gui":128},{"EditorUtility":115294},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4785560},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40441},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":270},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3626},{"Windowing":456},{"Licensing":12906},{"AssetReference":32},{"IPCStream":32}]}

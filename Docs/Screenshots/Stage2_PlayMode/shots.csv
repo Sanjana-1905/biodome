@@ -1,0 +1,14 @@
+shot,real_s,sim_hours,species,growth,health,wilt,bloom,water,condition
+01_healthy_monstera,1.0,10.3,monstera,1.000,1.000,0.000,0.000,0.597,Healthy
+02_healthy_banana,2.6,11.9,banana,1.000,1.000,0.000,0.000,0.608,Healthy
+03_healthy_calathea,3.0,13.6,calathea,1.000,1.000,0.000,0.000,0.557,Healthy
+04_flowering_anthurium,3.3,14.8,anthurium,1.000,1.000,0.000,1.000,0.530,Healthy
+05_flowering_orchid,3.6,15.9,orchid,1.000,1.000,0.036,1.000,0.511,Healthy
+06_flowering_bird_of_paradise,3.8,17.0,bird_of_paradise,1.000,1.000,0.000,1.000,0.539,Healthy
+07_seedling_monstera_start,4.2,18.4,monstera,0.134,1.000,0.000,0.000,0.509,Healthy
+08_wilted_monstera,4.5,19.7,monstera,1.000,0.954,0.782,0.000,0.020,Wilting
+09_wilted_banana,4.8,20.7,banana,1.000,0.845,0.833,0.000,0.020,Wilting
+10_wilted_calathea,5.0,21.8,calathea,1.000,0.879,0.828,0.000,0.020,Wilting
+11_recovering_calathea,8.8,36.9,calathea,1.000,0.963,0.469,0.000,0.730,Recovering
+12_recovering_monstera,9.1,38.1,monstera,1.000,1.000,0.454,0.000,0.670,Recovering
+13_seedling_monstera_end,114.0,457.8,monstera,0.721,1.000,0.000,0.000,0.670,Healthy

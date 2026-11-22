@@ -30,6 +30,44 @@ namespace BioDome.Experiment
         public IReadOnlyList<PlantController> Plants => plants;
         public IrrigationController Irrigation => irrigation;
 
+        private ZoneProfile sharedProfile;
+
+        /// <summary>The profile asset this pod was built with (never modified at run time).</summary>
+        public ZoneProfile OriginalProfile => sharedProfile != null ? sharedProfile : profile;
+
+        private void Awake()
+        {
+            // Give this pod its OWN runtime copy of its profile so live changes (test panel) affect only this pod and never write to the
+            // shared asset on disk. The copy starts with identical values, so nothing changes until someone edits it.
+            if (profile == null) return;
+            sharedProfile = profile;
+            profile = Instantiate(sharedProfile);
+            profile.name = sharedProfile.name + " (live)";
+            profile.hideFlags = HideFlags.DontSave;
+            for (int i = 0; i < plants.Count; i++)
+                if (plants[i] != null && plants[i].ZoneProfile == sharedProfile) plants[i].SetZoneProfileLive(profile);
+        }
+
+        /// <summary>Changes this pod's live conditions (offsets on top of the greenhouse climate, light multiplier, irrigation share). Only this pod's plants are affected.</summary>
+        public void SetLiveConditions(float temperatureOffset, float humidityOffset, float lightMultiplier, float waterShare)
+        {
+            if (profile == null) return;
+            profile.Configure(profile.DisplayName, profile.Condition, temperatureOffset, humidityOffset, lightMultiplier, profile.WaterIntakeFactor, waterShare);
+            for (int i = 0; i < plants.Count; i++) if (plants[i] != null) plants[i].ApplyProfileWaterSettings();
+        }
+
+        /// <summary>Restores the pod's original experimental conditions.</summary>
+        public void ResetLiveConditions()
+        {
+            ZoneProfile o = OriginalProfile;
+            if (o != null) SetLiveConditions(o.TemperatureOffsetCelsius, o.HumidityOffset, o.LightMultiplier, o.WaterShareWeight);
+        }
+
+        private void OnDestroy()
+        {
+            if (sharedProfile != null && profile != null && profile != sharedProfile) Destroy(profile);
+        }
+
         private void Start()
         {
             // The irrigation controller's plant list is runtime-only, so each pod registers its own plants with its own controller.
@@ -42,6 +80,7 @@ namespace BioDome.Experiment
         {
             public int Total, Alive;
             public float Growth, Health, Moisture, Stress;
+            public float TemperatureStress, HumidityStress, LightStress, WaterStress;
         }
 
         public Metrics Measure()
@@ -58,12 +97,22 @@ namespace BioDome.Experiment
                 m.Health += s.Health01;
                 m.Moisture += s.Water01;
                 m.Stress += s.Stress01;
+                m.TemperatureStress += s.TemperatureStress01; m.HumidityStress += s.HumidityStress01;
+                m.LightStress += s.LightStress01; m.WaterStress += s.WaterStress01;
             }
             if (m.Total > 0)
             {
                 m.Growth /= m.Total; m.Health /= m.Total; m.Moisture /= m.Total; m.Stress /= m.Total;
+                m.TemperatureStress /= m.Total; m.HumidityStress /= m.Total; m.LightStress /= m.Total; m.WaterStress /= m.Total;
             }
             return m;
+        }
+
+        /// <summary>True when every plant in this pod carries exactly this pod's profile (no condition leaks between pods or to display plants).</summary>
+        public bool PlantsUseOwnProfile()
+        {
+            for (int i = 0; i < plants.Count; i++) if (plants[i] != null && plants[i].ZoneProfile != profile) return false;
+            return true;
         }
 
         /// <summary>The conditions this pod's plants experience, given the greenhouse conditions.</summary>

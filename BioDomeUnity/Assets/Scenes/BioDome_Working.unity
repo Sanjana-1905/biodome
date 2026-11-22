@@ -12692,7 +12692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: waterShareWeight
-      value: 0.25
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: usesOwnIrrigation
@@ -13160,6 +13160,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 3
   flowRateLitresPerHour: 3
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -24022,6 +24023,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 19.2
   flowRateLitresPerHour: 19.2
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -24376,6 +24378,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 3.4
   flowRateLitresPerHour: 3.4
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -37390,6 +37393,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 16.800001
   flowRateLitresPerHour: 16.800001
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -55080,7 +55084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: waterShareWeight
-      value: 0.25
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: usesOwnIrrigation
@@ -65707,7 +65711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: waterShareWeight
-      value: 0.25
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: usesOwnIrrigation
@@ -68670,6 +68674,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 8.400001
   flowRateLitresPerHour: 8.400001
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -75214,6 +75219,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 4.2000003
   flowRateLitresPerHour: 4.2000003
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -81749,6 +81755,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 4.4
   flowRateLitresPerHour: 4.4
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -82884,6 +82891,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 3.2
   flowRateLitresPerHour: 3.2
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -91070,6 +91078,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 3
   flowRateLitresPerHour: 3
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -96788,7 +96797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: -84}
+  m_AnchoredPosition: {x: -20, y: -140}
   m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &791266426
@@ -107643,6 +107652,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 3.6000001
   flowRateLitresPerHour: 3.6000001
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -123994,6 +124004,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 18
   flowRateLitresPerHour: 18
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -130543,6 +130554,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 18.4
   flowRateLitresPerHour: 18.4
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -140858,7 +140870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: waterShareWeight
-      value: 0.25
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: usesOwnIrrigation
@@ -143577,7 +143589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: waterShareWeight
-      value: 0.25
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: usesOwnIrrigation
@@ -147436,6 +147448,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 40
   flowRateLitresPerHour: 150
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.35
   stopAboveMoisture: 0.75
   sprayEffects: []
@@ -152807,7 +152820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: waterShareWeight
-      value: 0.25
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2855491328045744449, guid: 3fbeec811e21a6d43a19c80657a0b066, type: 3}
       propertyPath: usesOwnIrrigation
@@ -157838,6 +157851,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 3.4
   flowRateLitresPerHour: 3.4
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -158876,6 +158890,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 2.8
   flowRateLitresPerHour: 2.8
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -169512,6 +169527,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 3.4
   flowRateLitresPerHour: 3.4
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -211628,6 +211644,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 8.6
   flowRateLitresPerHour: 8.6
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []
@@ -225677,6 +225694,7 @@ MonoBehaviour:
   mainsSupplyLitresPerHour: 4.2000003
   flowRateLitresPerHour: 4.2000003
   mode: 2
+  speciesAware: 1
   startBelowMoisture: 0.4
   stopAboveMoisture: 0.7
   sprayEffects: []

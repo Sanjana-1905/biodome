@@ -40,6 +40,15 @@ namespace BioDome.EditorTools.Tests
         /// </summary>
         public static PlantSimulation.GrowthModel ModelUnderTest = PlantSimulation.GrowthModel.Original;
 
+        /// <summary>Health model used while computing values (Original for the original and scientific-v1 baselines, SevereStress for v2).</summary>
+        public static PlantSimulation.HealthModel HealthModelUnderTest = PlantSimulation.HealthModel.Original;
+
+        /// <summary>Scientific growth + severe-stress health (version 2): the baseline for the Stage 2 health model.</summary>
+        public const string ScientificV2GoldenPath = "Assets/Tests/Golden/simulation_golden_scientific_v2.json";
+
+        /// <summary>Scientific growth + severe-stress health with time-averaged temperature damage (version 3): the baseline for the thermal exposure model.</summary>
+        public const string ScientificV3GoldenPath = "Assets/Tests/Golden/simulation_golden_scientific_v3.json";
+
         /// <summary>
         /// true (default): the irrigation scenarios advance the simulation through the real GreenhouseManager.Step.
         /// false ("replica"): they use a hand-written copy of the manager's tick order. Both must reproduce the same golden values.
@@ -103,7 +112,9 @@ namespace BioDome.EditorTools.Tests
                 string file = Arg("-goldenFile") ?? GoldenPath;
                 string modelArg = Arg("-growthModel") ?? (file == GoldenPath ? "original" : "scientific");
                 ModelUnderTest = modelArg == "scientific" ? PlantSimulation.GrowthModel.Scientific : PlantSimulation.GrowthModel.Original;
-                Debug.Log("REGRESSION growth model: " + ModelUnderTest);
+                string healthArg = Arg("-healthModel") ?? (file.Contains("scientific_v3") ? "sustained" : file.Contains("scientific_v2") ? "severe" : "original");
+                HealthModelUnderTest = healthArg == "sustained" ? PlantSimulation.HealthModel.SevereSustained : healthArg == "severe" ? PlantSimulation.HealthModel.SevereStress : PlantSimulation.HealthModel.Original;
+                Debug.Log("REGRESSION growth model: " + ModelUnderTest + ", health model: " + HealthModelUnderTest);
                 UseManagerStep = (Arg("-goldenDriver") ?? "manager") != "replica";
                 Debug.Log("REGRESSION driver: " + (UseManagerStep ? "GreenhouseManager.Step (real code)" : "replica of the manager's tick order"));
                 if (mode == "capture")
@@ -194,9 +205,11 @@ namespace BioDome.EditorTools.Tests
         public static List<KeyValuePair<string, string>> Compute()
         {
             PlantSimulation.GrowthModel previous = PlantSimulation.ActiveModel;
+            PlantSimulation.HealthModel previousHealth = PlantSimulation.ActiveHealthModel;
             PlantSimulation.ActiveModel = ModelUnderTest;
+            PlantSimulation.ActiveHealthModel = HealthModelUnderTest;
             try { return ComputeCore(); }
-            finally { PlantSimulation.ActiveModel = previous; }
+            finally { PlantSimulation.ActiveModel = previous; PlantSimulation.ActiveHealthModel = previousHealth; }
         }
 
         private static List<KeyValuePair<string, string>> ComputeCore()

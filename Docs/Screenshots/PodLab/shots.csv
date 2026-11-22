@@ -1,0 +1,9 @@
+shot,width,height,day,hour,health,wilt,state,stage,soil,pod_lab_open,speed_x,paused
+00_interface_podlab_closed,2560,1440,1,11.4,,,,,,False,1,False
+01_podlab_heat_pod_changed_50x,2560,1440,3,15.8,,,,,,True,50,False
+02_healthy_control_plant,2560,1440,3,21.6,1.000,0.00,Healthy,Established,0.57,True,10,False
+03_stressed_plant,2560,1440,6,8.6,0.568,0.98,Stressed,Established,0.00,True,100,True
+04_wilted_plant,2560,1440,6,22.0,0.247,1.00,Critical,Established,0.00,True,100,True
+05_damaged_leaves_living_stems,2560,1440,7,7.2,0.079,1.00,Critical,Established,0.00,True,10,True
+06_dead_plant,2560,1440,9,11.5,0.000,1.00,Dead,Established,0.00,True,100,True
+07_interface_after_closing_podlab,2560,1440,12,6.4,0.000,1.00,Dead,Established,0.00,False,100,False

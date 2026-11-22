@@ -40,4 +40,8 @@ MonoBehaviour:
   stressDamagePerHour: 0.05
   healthyThreshold: 0.7
   stressedThreshold: 0.35
+  canFlower: 1
+  floweringMinGrowth: 0.62
+  wiltSag: 0.22
+  wiltSpread: 0.06
   maxScale: 1

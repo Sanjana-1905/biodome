@@ -1,0 +1,946 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 27004)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 33432)
+VBCSCompiler prewarm took 127.80 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Prathiksha" at "2026-11-21T18:47:19.6482261Z"
+Built from '6000.6/staging' branch; Version is '6000.6.9f1 (8c45277fb9c5) revision 9192743'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) CoreSingleLanguage' Language: 'en' Physical Memory: 16124 MB
+BatchMode: 0, IsHumanControllingUs: 1, StartBugReporterOnCrash: 1, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-21T18:47:19Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 15540, path: "C:/Program Files/WindowsApps/UnityTechnologies.UnityHub_4.0.1.65535_x64__2vrhnee42bhxm/app/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              313b3394a99b441984d2b2d16cc77800
+  Correlation Id:          8919f9717d2ce0e47bf7b83951ac55ec
+  External correlation Id: 4510400720709701035
+  Machine Id:              MEcjgPeRBP0pBppVr4C8eIFeANI=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Prathiksha" (connect: 0.00s, validation: 0.01s, handshake: 0.20s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Prathiksha-notifications" at "2026-11-21T18:47:19.8549817Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 13470001436012-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.23s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Unity.exe
+-projectPath
+C:\Projects\biodome\BioDomeUnity
+-executeMethod
+BioDome.EditorTools.Tests.PodLabCapture.Run
+-logFile
+C:\Projects\biodome\Docs\Verification\podlab_capture2.log
+Successfully changed project path to: C:\Projects\biodome\BioDomeUnity
+C:/Projects/biodome/BioDomeUnity
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [34600]  Target information:
+
+Player connection [34600]  * "[IP] 172.26.48.1 [Port] 55504 [Flags] 2 [Guid] 3283875324 [EditorId] 3283875324 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-35EENP2A) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [34600]  * "[IP] 192.168.1.106 [Port] 55504 [Flags] 2 [Guid] 3283875324 [EditorId] 3283875324 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-35EENP2A) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [34600] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [34600] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-16100" after 0.8 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = C:/Projects/biodome/BioDomeUnityUnity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.9f1 (8c45277fb9c5)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Projects/biodome/BioDomeUnity/Assets
+[D3D12 Device Filter] Vendor Name: Intel
+[D3D12 Device Filter] Device Name: Intel(R) Iris(R) Xe Graphics
+[D3D12 Device Filter] Driver Version: 32.0.101.7082
+[D3D12 Device Filter] Feature Level: 12.1
+[D3D12 Device Filter] Graphics Memory: 8062 MB
+[D3D12 Device Filter] Processor Count: 16
+[D3D12 Device Filter] Device Type: Integrated
+[D3D12 Device Filter] D3D12 API denied by user filter: {"Vendor": "Intel", "Device Type:": Integrated}
+GfxDevice: creating device client; kGfxThreadingModeThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Iris(R) Xe Graphics (ID=0xa7a0)
+    Vendor:   Intel
+    VRAM:     8062 MB
+    Driver:   32.0.101.7082
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56100
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.009909 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  3.608 seconds
+Domain Reload Profiling: 5243ms
+	BeginReloadAssembly (379ms)
+		CreateAndSetChildDomain (33ms)
+	RebuildCommonClasses (14ms)
+	RebuildNativeTypeToScriptingClass (46ms)
+	initialDomainReloadingComplete (198ms)
+	LoadAllAssembliesAndSetupDomain (997ms)
+		LoadAssemblies (337ms)
+		TypeCache.Refresh (677ms)
+			TypeCache.ScanAssembly (637ms)
+		AnalyzeDomain (2ms)
+	FinalizeReload (3610ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (4ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			BeforeProcessingInitializeOnLoad (319ms)
+			ProcessInitializeOnLoadAttributes (424ms)
+			ProcessInitializeOnLoadMethodAttributes (2139ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 61 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.collab-proxy@2.14.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.collab-proxy@ac5a9def1e96)
+    com.unity.ide.rider@3.1.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ide.rider@570989d4a882)
+    com.unity.ide.visualstudio@2.0.28 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ide.visualstudio@b5edea5f33f4)
+    com.unity.inputsystem@1.20.1 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.probuilder@6.1.4 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.probuilder@7ffe746297d0)
+    com.unity.settings-manager@2.1.1 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.settings-manager@0b8638c5ce86)
+    com.unity.splines@2.9.2 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.splines@c3dd4719f1ee)
+    com.unity.searcher@4.9.5 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+  Built-in packages:
+    com.unity.cinemachine@6.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.cinemachine@39083c3c55f9)
+    com.unity.render-pipelines.universal@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.render-pipelines.universal@2a6014b851d8)
+    com.unity.ugui@2.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ugui@ff4f88904a57)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tetgen@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.timelinefoundation@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.render-pipelines.core@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.render-pipelines.core@77e675a23c5f)
+    com.unity.shadergraph@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.shadergraph@807b608040c3)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.test-framework@1.8.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.test-framework@01a8b42f9cf6)
+    com.unity.graph-authoring@1.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.burst@2.0.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.collections@c70d71c1212e)
+    com.unity.ext.nunit@2.1.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.mathematics@1.4.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.mathematics@8306a64d0cd6)
+    com.unity.test-framework.performance@6.6.0 (location: C:\Projects\biodome\BioDomeUnity\Library\PackageCache\com.unity.test-framework.performance@816c370aad5b)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.08 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Projects/biodome/BioDomeUnity
+ExitCode: 0 Duration: 14s
+[742/955    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[947/955    2s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll (+2 others)
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(36,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(37,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(59,58): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(59,23): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(92,64): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(92,26): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(160,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+[948/955    1s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets\Editor\ConservatorySetup.cs(101,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\CollectionGardenBuilder.cs(99,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\ExperimentGardenBuilder.cs(96,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\ExperimentGardenBuilder.cs(97,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\AtmosphereBuilder.cs(34,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\AtmosphereBuilder.cs(71,30): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\ConservatorySetup.cs(113,36): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\LandscapeBuilder.cs(87,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\ExperimentObservationProbe.cs(48,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\ExperimentObservationProbe.cs(49,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\ExperimentObservationProbe.cs(66,70): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\ExperimentObservationProbe.cs(66,28): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\PlayModePacingProbe.cs(64,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\PlayModePacingProbe.cs(65,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\PlayModeGameViewCapture.cs(43,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\PlayModeShotProbe.cs(49,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\PlayModeShotProbe.cs(50,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\PlayModeShotProbe.cs(52,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\PlayModeShotProbe.cs(52,23): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\PlayModePacingProbe.cs(100,80): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\PlayModePacingProbe.cs(100,26): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\PlayModeShotProbe.cs(138,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(38,97): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(38,26): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,78): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,38): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,181): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,138): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,292): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,240): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(42,103): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(42,56): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(43,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(43,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(43,198): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\SceneIntegrityCheck.cs(43,134): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\PlayModeHealthProbe.cs(51,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\PlayModeHealthProbe.cs(53,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\PlayModeHealthProbe.cs(53,23): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\PlayModeHealthProbe.cs(61,87): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\PlayModeHealthProbe.cs(61,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Tests\PlayModeHealthProbe.cs(90,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Tests\PlayModeHealthProbe.cs(95,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Tests\PlayModeHealthProbe.cs(95,27): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+[BUSY       7s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
+[949/955    9s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 147 defines and 365 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[950/955   11s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll, with 149 defines and 345 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[951/955    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+[952/955    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+[953/955    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[954/955    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (13.97 seconds), 9 items updated, 955 evaluated
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(36,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(37,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(59,58): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(59,23): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(92,64): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(92,26): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Scripts\Diagnostics\GameViewCaptureRunner.cs(160,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\ConservatorySetup.cs(101,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\CollectionGardenBuilder.cs(99,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\ExperimentGardenBuilder.cs(96,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\ExperimentGardenBuilder.cs(97,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\AtmosphereBuilder.cs(34,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\AtmosphereBuilder.cs(71,30): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\ConservatorySetup.cs(113,36): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\LandscapeBuilder.cs(87,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\ExperimentObservationProbe.cs(48,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\ExperimentObservationProbe.cs(49,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\ExperimentObservationProbe.cs(66,70): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\ExperimentObservationProbe.cs(66,28): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\PlayModePacingProbe.cs(64,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\PlayModePacingProbe.cs(65,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\PlayModeGameViewCapture.cs(43,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\PlayModeShotProbe.cs(49,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\PlayModeShotProbe.cs(50,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\PlayModeShotProbe.cs(52,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\PlayModeShotProbe.cs(52,23): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\PlayModePacingProbe.cs(100,80): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\PlayModePacingProbe.cs(100,26): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\PlayModeShotProbe.cs(138,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(38,97): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(38,26): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,78): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,38): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,181): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,138): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,292): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(41,240): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(42,103): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(42,56): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(43,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(43,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(43,198): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\SceneIntegrityCheck.cs(43,134): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\PlayModeHealthProbe.cs(51,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\PlayModeHealthProbe.cs(53,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\PlayModeHealthProbe.cs(53,23): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\PlayModeHealthProbe.cs(61,87): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\PlayModeHealthProbe.cs(61,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Tests\PlayModeHealthProbe.cs(90,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Tests\PlayModeHealthProbe.cs(95,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Tests\PlayModeHealthProbe.cs(95,27): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+AssetDatabase: script compilation time: 15.650913s
+Total cache size 85008928
+Total cache size after purge 85008928, took 00:00:00.4060748
+Begin MonoManager ReloadAssembly
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 3.89 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-BioDomeUnity
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  3.113 seconds
+Domain Reload Profiling: 6030ms
+	BeginReloadAssembly (628ms)
+		DisableScriptedObjects (69ms)
+		CreateAndSetChildDomain (116ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (42ms)
+	initialDomainReloadingComplete (156ms)
+	LoadAllAssembliesAndSetupDomain (2065ms)
+		LoadAssemblies (1097ms)
+		TypeCache.Refresh (415ms)
+			TypeCache.ScanAssembly (383ms)
+		AnalyzeDomain (246ms)
+			BuildScriptInfoCaches (230ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (3116ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (5ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (306ms)
+			ProcessInitializeOnLoadAttributes (896ms)
+			ProcessInitializeOnLoadMethodAttributes (670ms)
+			AfterProcessingInitializeOnLoad (23ms)
+			EditorAssembliesLoaded (4ms)
+		AwakeInstancesAfterBackupRestoration (72ms)
+Starting new worker id: 0 with log in C:/Projects/biodome/BioDomeUnity/Logs/AssetImportWorkerHW0.log
+Refreshing native plugins compatible for Editor in 3.27 ms, found 3 plugins.
+
+Asset Pipeline Refresh (id=4f8914f9dfdadb74f9a8a766205523ba): Total: 23.795 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=4438 ms
+		Asset DB Callback time: managed=357 ms, native=97 ms
+		Scripting: domain reloads=1, domain reload time=3064 ms, compile time=15658 ms, other=178 ms
+		Project Asset Count: scripts=1268, non-scripts=2962
+		Asset File Changes: new=0, changed=3, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 91.029ms
+	ApplyChangesToAssetFolders: 2.412ms
+	Scan: 302.363ms
+	Collect global state as custom dependencies: 63.761ms
+	OnSourceAssetsModified: 1.950ms
+	CategorizeScriptCompilationAssets: 108.556ms
+	ProcessAssetsWithTransientArtifactChanges: 176.917ms
+	CategorizeAssets: 161.760ms
+	CompileScripts: 15658.035ms
+	ImportOutOfDateAssets: 3238.359ms (3133.327ms without children)
+		ReloadNativeAssets: 0.094ms
+		UnloadImportedAssets: 5.012ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.426ms
+		ImportSchedulerStart: 98.487ms
+	PostProcessAllAssets: 360.837ms
+		VCAutoAddAssetPostprocess 2.055ms
+		XRBuildSystem.XRAssetImported 1.369ms
+		PostProcessCallbackCreateDeferredMaterials 0.130ms
+		MonoPostProcessAllAssets: 355.941ms
+			AssetPostprocessor.OnPostprocessAllAssets 140.944ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 44.144ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 40.970ms
+			SyncVS.PostprocessSyncProject 29.450ms
+			AssetChangedListener.OnPostprocessAllAssets 18.720ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 14.908ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 5.307ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 5.125ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 4.459ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 3.380ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 2.442ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 2.127ms
+			MaterialPostprocessor.OnPostprocessAllAssets 2.021ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 1.500ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 1.458ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 1.012ms
+			PostProcessor.OnPostprocessAllAssets 0.961ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.960ms
+			UVCSAssetPostprocessor.OnPostprocessAllAssets 0.930ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.793ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.774ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.758ms
+			CinemachineSettings.OnPostprocessAllAssets 0.668ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.667ms
+			AssetEvents.OnPostprocessAllAssets 0.600ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.563ms
+			DomainReloadProcessor.OnPostprocessAllAssets 0.527ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.493ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.456ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.419ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.408ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.381ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.367ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.321ms
+			AssetReloadNotifier.OnPostprocessAllAssets 0.282ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.224ms
+	PostAssetChangesProfiler: 6.082ms
+	UnloadStreamsBegin: 4.188ms
+	PersistCurrentRevisions: 0.372ms
+	GenerateScriptTypeHashes: 5.885ms
+	GenerateScriptTypeSerializationHashes: 10.161ms
+	Untracked: 3602.413ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Scanning for USB devices : 3.544ms
+Initializing Unity extensions:
+Unloading 78 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/BioDome_Working.unity'
+	Deserialize:            498.375 ms
+	Integration:            1321.218 ms
+	Integration of assets:  7.598 ms
+	Thread Wait Time:       0.192 ms
+	Total Operation Time:   1827.383 ms
+Unloading 5555 unused Assets / (9.8 MB). Loaded Objects now: 22866.
+Memory consumption went from 487.3 MB to 477.5 MB.
+Total: 37.355700 ms (FindLiveObjects: 4.014300 ms CreateObjectMapping: 1.741100 ms MarkObjects: 21.710800 ms  DeleteObjects: 8.845800 ms)
+
+[LAYOUT] About to load UserSettings\Layouts\default-6000.dwlt, keepMainWindow=False
+[LAYOUT] About to save layout C:\Projects\biodome\BioDomeUnity\UserSettings\Layouts\default-6000.dwlt
+[LAYOUT] About to save layout C:/Users/Prathiksha/AppData/Roaming/Unity/Editor-5.x/Preferences\Layouts\current\default-6000.dwlt
+[MODES] ModeService[default].InitializeCurrentMode
+[MODES] ModeService[default].RaiseModeChanged(default, default)
+Opening scene 'Assets/Scenes/BioDome_Working.unity'
+Unloading 166 Unused Serialized files (Serialized files now loaded: 0)
+Worker ready: AssetImportWorkerHW0 0
+Loaded scene 'Assets/Scenes/BioDome_Working.unity'
+	Deserialize:            430.530 ms
+	Integration:            380.582 ms
+	Integration of assets:  0.175 ms
+	Thread Wait Time:       0.057 ms
+	Total Operation Time:   811.344 ms
+Unloading 12 unused Assets / (24.5 KB). Loaded Objects now: 22927.
+Memory consumption went from 504.9 MB to 504.9 MB.
+Total: 31.605700 ms (FindLiveObjects: 4.597900 ms CreateObjectMapping: 0.608200 ms MarkObjects: 25.040600 ms  DeleteObjects: 0.220500 ms)
+
+<RI> Initializing input.
+Using Windows.Gaming.Input
+[Project] Loading completed in 38.708 seconds
+	Project init time: 				33.692 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		0.806 seconds
+		Asset Database init time: 		1.324 seconds
+		Global illumination init time: 	0.012 seconds
+		Assemblies load time: 			5.390 seconds
+		Unity extensions init time: 	0.043 seconds
+		Asset Database refresh time: 	23.795 seconds
+	Scene opening time: 			4.259 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1795286878203,"processId":16100,"projectLoad":38.7081939,"projectInit":33.692426,"templateInit":0.0,"packageManagerInit":0.8061226,"assetDatabaseInit":1.3243196,"globalIlluminationInit":0.0120155,"assembliesLoad":5.3904629,"unityExtensionsInit":0.043046,"assetDatabaseRefresh":23.7954652,"sceneOpening":4.2587994}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1795286878203,"processId":16100,"editorVersion":"6000.6.9f1 (8c45277fb9c5)","branch":"6000.6/staging","buildType":"Release","platform":"Windows"}
+Asset Pipeline Refresh (id=6cf2c2a5fa3af144881f1599728eeb6e): Total: 0.176 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+Entering Playmode with Reload Domain disabled.
+If you experience any issues, please disable "Enter Play Mode Options" in Editor Settings
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            311.984 ms
+	Integration:            1015.709 ms
+	Integration of assets:  1.048 ms
+	Thread Wait Time:       -0.426 ms
+	Total Operation Time:   1328.314 ms
+GreenhouseManager: primed 39 growth meshes for 1118 plants in 339 ms.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Core.GreenhouseManager:PrimeVisuals () (at Assets/Scripts/Core/GreenhouseManager.cs:189)
+BioDome.Core.GreenhouseManager:Start () (at Assets/Scripts/Core/GreenhouseManager.cs:153)
+
+(Filename: Assets/Scripts/Core/GreenhouseManager.cs Line: 189)
+
+ExperimentGarden: All 30 experimental plants started from an equivalent state.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object,UnityEngine.Object)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+BioDome.Experiment.ExperimentGarden:CheckEquivalentStart () (at Assets/Scripts/Experiment/ExperimentGarden.cs:153)
+BioDome.Experiment.ExperimentGarden:Start () (at Assets/Scripts/Experiment/ExperimentGarden.cs:121)
+
+(Filename: Assets/Scripts/Experiment/ExperimentGarden.cs Line: 153)
+
+Start Indexing on Editor startup
+[Indexing] Starting Initial Indexing for Assets
+Created GICache directory at C:/Users/Prathiksha/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.037s, timestamps: [44.382 - 44.420]
+Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rendering.ScriptableRenderContext:Submit ()
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderSingleCamera (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Rendering.Universal.UniversalCameraData) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1138)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameraStack (UnityEngine.Rendering.ScriptableRenderContext,UnityEngine.Camera,bool) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:1349)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:RenderCameras (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:657)
+UnityEngine.Rendering.Universal.UniversalRenderPipeline:Render (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>) (at ./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs:599)
+UnityEngine.Rendering.RenderPipeline:InternalRender (UnityEngine.Rendering.ScriptableRenderContext,System.Collections.Generic.List`1<UnityEngine.Camera>)
+UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+[./Library/PackageCache/com.unity.render-pipelines.universal@2a6014b851d8/Runtime/UniversalRenderPipeline.cs line 1138]
+
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully updated the access token
+[Licensing::Module] Successfully updated access token: "Jlwo6uv_"... (expires: 2026-11-21T20:02:49Z)
+[Licensing::Client] Successfully resolved entitlement details
+[PodLabCapture] 00_interface_podlab_closed
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Diagnostics.PodLabCaptureRunner/<Shot>d__11:MoveNext () (at Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs:124)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+(Filename: Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs Line: 124)
+
+[Licensing::Client] Successfully resolved entitlement details
+[PodLabCapture] 01_podlab_heat_pod_changed_50x
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Diagnostics.PodLabCaptureRunner/<Shot>d__11:MoveNext () (at Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs:124)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+(Filename: Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs Line: 124)
+
+[PodLabCapture] 02_healthy_control_plant
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Diagnostics.PodLabCaptureRunner/<Shot>d__11:MoveNext () (at Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs:124)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+(Filename: Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs Line: 124)
+
+[PodLabCapture] 03_stressed_plant
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Diagnostics.PodLabCaptureRunner/<Shot>d__11:MoveNext () (at Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs:124)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+(Filename: Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs Line: 124)
+
+[PodLabCapture] 04_wilted_plant
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Diagnostics.PodLabCaptureRunner/<Shot>d__11:MoveNext () (at Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs:124)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+(Filename: Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs Line: 124)
+
+[PodLabCapture] 05_damaged_leaves_living_stems
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Diagnostics.PodLabCaptureRunner/<Shot>d__11:MoveNext () (at Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs:124)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+(Filename: Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs Line: 124)
+
+[PodLabCapture] 06_dead_plant
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Diagnostics.PodLabCaptureRunner/<Shot>d__11:MoveNext () (at Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs:124)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+(Filename: Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs Line: 124)
+
+[PodLabCapture] 07_interface_after_closing_podlab
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BioDome.Diagnostics.PodLabCaptureRunner/<Shot>d__11:MoveNext () (at Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs:124)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+(Filename: Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs Line: 124)
+
+MonoPathRemapper: Attempts to remap: 32239; Successful remaps: 17946
+Serialized file version minimum: 23, current 23
+[LAYOUT] About to save layout C:\Projects\biodome\BioDomeUnity\UserSettings\Layouts\default-6000.dwlt
+[LAYOUT] About to save layout C:/Users/Prathiksha/AppData/Roaming/Unity/Editor-5.x/Preferences\Layouts\current\default-6000.dwlt
+Clearing [LiberationSans SDF - Fallback] dynamic font asset data.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TMPro.EditorEventCallbacks/<>c:<InitializeFontAssetResourceChangeCallBacks>b__0_0 () (at ./Library/PackageCache/com.unity.ugui@ff4f88904a57/Editor/TMP/TMP_EditorResourceManager.cs:36)
+UnityEditor.EditorApplication:Internal_EditorApplicationQuit ()
+BioDome.Diagnostics.PodLabCaptureRunner/<Start>d__6:MoveNext () (at Assets/Scripts/Diagnostics/PodLabCaptureRunner.cs:82)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+UnityEditor.EditorGUIUtility:RenderPlayModeViewCamerasInternal (UnityEngine.RenderTexture,int,UnityEngine.Vector2,bool,bool)
+UnityEditor.PlayModeView:RenderView (UnityEngine.Vector2,bool)
+UnityEditor.GameView:OnGUI ()
+UnityEditor.HostView:InvokeOnGUI (UnityEngine.Rect)
+UnityEditor.MaximizedHostView:OldOnGUI ()
+UnityEngine.UIElements.IMGUIContainer:DoOnGUI (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,bool,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:HandleIMGUIEvent (UnityEngine.Event,UnityEngine.Matrix4x4,UnityEngine.Rect,System.Action,bool)
+UnityEngine.UIElements.IMGUIContainer:DoIMGUIRepaint ()
+UnityEngine.UIElements.UIR.RenderChainCommand:ExecuteNonDrawMesh (UnityEngine.UIElements.UIR.DrawParams,System.Exception&)
+UnityEngine.UIElements.UIR.UIRenderDevice:EvaluateChain (UnityEngine.UIElements.UIR.RenderChainCommand,UnityEngine.Material,UnityEngine.Texture,UnityEngine.UIElements.UIR.ShaderInfoAllocator,System.Nullable`1<UnityEngine.Rect>,UnityEngine.Rect,single,bool,UnityEngine.UIElements.TextureSlotCount,bool,System.Exception&,UnityEngine.UIElements.BaseVisualElementPanel)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderSingleTree (UnityEngine.UIElements.UIR.RenderTree,UnityEngine.RenderTexture,UnityEngine.RectInt,UnityEngine.Rect,single)
+UnityEngine.UIElements.UIR.RenderTreeManager:RenderRootTree ()
+UnityEngine.UIElements.UIRRepaintUpdater:Render ()
+UnityEngine.UIElements.BaseVisualElementPanel:Render ()
+UnityEngine.UIElements.Panel:Render ()
+UnityEditor.UIElements.EditorEventDispatchUtility:DoDispatch (UnityEngine.UIElements.BaseVisualElementPanel,UnityEngine.Event)
+UnityEditor.UIElements.DefaultWindowBackend:ProcessEvent (UnityEngine.Event)
+UnityEditor.GUIView:ProcessEvent (UnityEngine.EntityId,intptr,bool&)
+
+(Filename: ./Library/PackageCache/com.unity.ugui@ff4f88904a57/Editor/TMP/TMP_EditorResourceManager.cs Line: 36)
+
+Importing 'GUID: 2e498d1c8094910479dc3e1b768306a4 - Path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 2e498d1c8094910479dc3e1b768306a4' -> (Import Result ID: '632ff03ccef77c9d91eec1e76bcf57f7') in 0.056 seconds [static dependencies only]. Details - ImportResultOutputID=15c8c079d336d28f621b2cb41a27d1c5 DependenciesID=9e1712e1a89c24953b2e2522391c8636 StaticDependenciesID=f4b9ea77a87a231e44986e0077d3f57a 
+Refreshing native plugins compatible for Editor in 3.50 ms, found 3 plugins.
+Asset Pipeline Refresh (id=5d1f9832f0094c546a6f68342ba92091): Total: 0.167 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+[Licensing::IpcConnector] LicenseClient-Prathiksha-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-Prathiksha channel disconnected successfully.
+Lingering sessions upon destruction of worker manager
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+VBCSCompilerPreWarmer: requested VBCSCompiler shutdown
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1795286910428,"processId":16100,"allocatedMemory":16531371,"memoryLabels":[{"Default":199542},{"Permanent":15516},{"NewDelete":71141},{"Thread":4197984},{"Manager":821629},{"VertexData":8},{"Geometry":824},{"Texture":24},{"Shader":848900},{"Material":132},{"GfxDevice":56256},{"GfxThread":160},{"Animation":952},{"Audio":408},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":33952},{"Input":45280},{"JobScheduler":264},{"TextLib":27094},{"Mono":48},{"MonoCode":64},{"ScriptingNativeRuntime":1304360},{"BaseObject":48784},{"Resource":1444},{"Renderer":2504},{"Transform":4781},{"File":7401},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":548512},{"StaticString":3808},{"Utility":2674994},{"Curl":48},{"PoolAlloc":2360},{"AI":80},{"TypeTree":17165},{"ScriptManager":12688},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":8016},{"WebRequest":10874},{"VR":49650},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"NativeArray":540},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":768},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14536},{"Identifiers":7152},{"EntityIdStore":33088},{"Gui":1693},{"EditorUtility":209783},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4785560},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":36921},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":270},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3606},{"Windowing":456},{"Licensing":12906},{"AssetReference":32},{"IPCStream":32}]}

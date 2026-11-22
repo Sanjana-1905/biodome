@@ -335,6 +335,7 @@ namespace BioDome.Core
             if (uiManager == null) return;
 
             uiManager.ShowEnvironment(environment.Current);
+            uiManager.SyncPaused(paused);
 
             if (irrigation != null)
                 uiManager.ShowIrrigation(irrigation.Reservoir01, irrigation.WaterLitres, irrigation.IsRunning, irrigation.CurrentMode);

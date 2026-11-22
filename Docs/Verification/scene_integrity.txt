@@ -1,0 +1,17 @@
+ROOTS: BioDome_Generated(3), Sun(0), Global Volume(0), Main Camera(0), Simulation(0), BioDome_Plants(14), EventSystem(0), BioDome_UI(4), BioDome_PlantAdditions(14), BioDome_Expansion(2), BioDome_CollectionGardens(13), BioDome_Landscape(7), BioDome_Atmosphere(9), BioDome_Navigation(10), BioDome_ExperimentGarden(7)
+GAMEOBJECTS: 3538
+MISSING SCRIPTS: 0
+BROKEN REFERENCES: 0
+PLANTS: 1118 | display 1088 | pods 30
+BY SPECIES (display): anthurium=62, areca_palm=32, banana=21, bird_of_paradise=28, boston_fern=142, calathea=98, ground_cover=265, monstera=135, moss=207, orchid=58, philodendron=40
+PODS: 5 | ExperimentGarden 1 | ComparisonPanel 1
+IRRIGATION CONTROLLERS: 23
+CAMERAS: 1 | CameraController 1
+FOG: False
+NAME~Fountain: 4 e.g. FountainSpray, FountainLilies, FountainMist, VP_Fountain
+NAME~Zone: 15 e.g. PlantingZones, PlantingZone_Bed_S1_1, PlantingZone_Bed_S1_2, PlantingZone_Bed_S1_3, PlantingZone_Bed_S2_1, PlantingZone_Bed_S2_2, PlantingZone_Bed_S2_3, PlantingZone_Bed_N1_1, PlantingZone_Bed_N1_2, PlantingZone_Bed_N1_3
+NAME~Bed: 53 e.g. PlantingBeds, PlantingZone_Bed_S1_1, PlantingZone_Bed_S1_2, PlantingZone_Bed_S1_3, PlantingZone_Bed_S2_1, PlantingZone_Bed_S2_2, PlantingZone_Bed_S2_3, PlantingZone_Bed_N1_1, PlantingZone_Bed_N1_2, PlantingZone_Bed_N1_3
+NAME~Pod: 5 e.g. Pod_Control, Pod_HeatStress, Pod_LowHumidity, Pod_LowLight, Pod_WaterStress
+NAME~Research: 13 e.g. Group_Research, Cluster_Research_23, Cluster_Research_24, Cluster_Research_25, Cluster_Research_26, Cluster_Research_27, Cluster_Research_28, Cluster_Research_29, Cluster_Research_30, Bench_Research_N
+NAME~Glass: 22 e.g. Glass, Glass_N, Glass_S, Glass_E, Glass_W
+NAME~Path: 69 e.g. Pathways, RoomPaths, SouthRoomPath, NorthRoomPath, Group_PathBorder, Cluster_PathBorder_11, Cluster_PathBorder_12, Cluster_PathBorder_13, Cluster_PathBorder_14, Cluster_PathBorder_15

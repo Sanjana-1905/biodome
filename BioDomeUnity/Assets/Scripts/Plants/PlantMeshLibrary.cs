@@ -104,7 +104,7 @@ namespace BioDome.Plants
                 if (entry.Source == null) continue; // source destroyed; another request will refresh it
 
                 var mesh = new Mesh();
-                entry.Source.BuildMeshInto(mesh, PlantGenerator.GrowthOfStep(entry.Step));
+                entry.Source.BuildMeshInto(mesh, PlantGenerator.GrowthOfStep(PlantGenerator.StepOfCode(entry.Step)), PlantGenerator.BloomLevelOfCode(entry.Step) / (float)PlantGenerator.BloomLevels);
                 entry.Mesh = mesh;
                 built++;
             }

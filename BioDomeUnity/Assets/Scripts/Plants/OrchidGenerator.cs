@@ -108,7 +108,7 @@ namespace BioDome.Plants
             StemMeshGenerator.AddTube(c.Data, path, 0.0032f, 0.0018f, 4, PlantBuildContext.StemSubmesh, false, true);
 
             Vector3 side = Vector3.Cross(Vector3.up, heading).normalized;
-            float bloomScale = Mathf.Clamp01((c.Growth - 0.5f) / 0.4f);
+            float bloomScale = Mathf.Clamp01((c.Growth - 0.5f) / 0.4f) * c.Bloom; // blooms open (grow in size and number) as Bloom rises
             int flowers = Mathf.Max(0, Mathf.RoundToInt(flowersPerSpike * bloomScale));
             for (int k = 0; k < flowers; k++)
             {

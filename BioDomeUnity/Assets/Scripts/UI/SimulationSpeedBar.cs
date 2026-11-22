@@ -12,7 +12,7 @@ namespace BioDome.UI
     /// </summary>
     public sealed class SimulationSpeedBar : MonoBehaviour
     {
-        private static readonly float[] Multipliers = { 1f, 2f, 5f, 10f };
+        private static readonly float[] Multipliers = { 1f, 2f, 5f, 10f, 50f, 100f };
         private static readonly Color Idle = new Color(1f, 1f, 1f, 0.10f);
         private static readonly Color Active = new Color(0.45f, 0.8f, 0.5f, 0.55f);
 

@@ -51,6 +51,10 @@ namespace BioDome.Plants
         private MaterialPropertyBlock propertyBlock;
         private PlantHealthState lastPublishedState;
         private PlantGrowthStage lastStage;
+        private int lastLookKey = int.MinValue;
+        private float displayedStemDecay; // eases towards StemDecayTarget over simulated hours, so death browns the stems gradually
+        private const float StemDecayHours = 12f;
+        private Transform meshTransform;
 
         private PlantGenerator generator;
         private PlantMeshLibrary meshLibrary;
@@ -68,6 +72,27 @@ namespace BioDome.Plants
 
         /// <summary>The zone climate adjustment, or null when the plant lives in the normal greenhouse climate.</summary>
         public ZoneProfile ZoneProfile => zoneProfile;
+
+        /// <summary>The conditions this plant's simulation received on its most recent tick (after its zone profile was applied).</summary>
+        public EnvironmentConditions LastConditions { get; private set; }
+
+        /// <summary>
+        /// Swaps the zone profile while running, WITHOUT resetting the plant (used by the live pod test panel, which gives each pod its own runtime copy).
+        /// The plant's irrigation share and water intake follow the new profile.
+        /// </summary>
+        public void SetZoneProfileLive(ZoneProfile profile)
+        {
+            zoneProfile = profile;
+            ApplyProfileWaterSettings();
+        }
+
+        /// <summary>Re-reads irrigation share and intake from the current profile (call after the profile's values change).</summary>
+        public void ApplyProfileWaterSettings()
+        {
+            if (zoneProfile == null) return;
+            waterShareWeight = zoneProfile.WaterShareWeight;
+            if (simulation != null) simulation.WaterIntakeFactor = zoneProfile.WaterIntakeFactor;
+        }
 
         /// <summary>Relative share of irrigation water (default 1).</summary>
         public float WaterShareWeight => waterShareWeight;
@@ -133,14 +158,17 @@ namespace BioDome.Plants
             lastPublishedState = simulation.State;
 
             lastStage = simulation.Stage;
-            displayedStep = generator != null ? PlantGenerator.StepOf(generator.Growth01) : 0;
+            displayedStep = generator != null ? PlantGenerator.MeshCode(PlantGenerator.StepOf(generator.Growth01), PlantGenerator.BloomLevels) : 0; // the saved mesh is in full bloom
 
             if (!UsesMeshGrowth)
             {
                 float start = Mathf.Lerp(minScaleFraction, 1f, simulation.Growth01) * data.MaxScale;
                 visualRoot.localScale = Vector3.one * start;
             }
+            displayedStemDecay = StemDecayTarget();
+            lastLookKey = int.MinValue;
             ApplyTint();
+            ApplyWilt();
         }
 
         /// <summary>
@@ -195,7 +223,8 @@ namespace BioDome.Plants
         {
             if (!UsesMeshGrowth || meshLibrary == null) return;
 
-            int step = PlantGenerator.StepOf(simulation.Growth01);
+            int bloomLevel = data.CanFlower ? PlantGenerator.BloomLevelOf(simulation.Bloom01) : PlantGenerator.BloomLevels;
+            int step = PlantGenerator.MeshCode(PlantGenerator.StepOf(simulation.Growth01), bloomLevel);
             int target = pendingMesh != null ? pendingMesh.Step : displayedStep;
             if (step != target)
             {
@@ -209,7 +238,7 @@ namespace BioDome.Plants
                 currentMesh = pendingMesh;
                 pendingMesh = null;
                 displayedStep = currentMesh.Step;
-                generator.DisplayMesh(currentMesh.Mesh, PlantGenerator.GrowthOfStep(displayedStep));
+                generator.DisplayMesh(currentMesh.Mesh, PlantGenerator.GrowthOfStep(PlantGenerator.StepOfCode(displayedStep)));
                 meshLibrary.Release(old);
             }
         }
@@ -225,6 +254,7 @@ namespace BioDome.Plants
         {
             if (simulation == null) return;
 
+            LastConditions = environment;
             simulation.Tick(deltaHours, environment);
 
             if (simulation.State != lastPublishedState)
@@ -232,6 +262,17 @@ namespace BioDome.Plants
                 lastPublishedState = simulation.State;
                 ApplyTint();
                 HealthStateChanged?.Invoke(this, lastPublishedState);
+            }
+
+            displayedStemDecay += (StemDecayTarget() - displayedStemDecay) * (1f - Mathf.Exp(-deltaHours / StemDecayHours));
+
+            // Continuous visual response: re-apply only when health, wilting or stem decay has moved by about 2 %.
+            int look = Mathf.RoundToInt(simulation.Health01 * 50f) + 100 * Mathf.RoundToInt(simulation.Wilt01 * 50f) + 10000 * Mathf.RoundToInt(displayedStemDecay * 50f);
+            if (look != lastLookKey)
+            {
+                lastLookKey = look;
+                ApplyTint();
+                ApplyWilt();
             }
 
             PlantGrowthStage stage = simulation.Stage;
@@ -254,12 +295,14 @@ namespace BioDome.Plants
         {
             if (simulation == null) return;
 
-            Color tint = TintFor(simulation.State);
             if (generator != null)
             {
-                generator.SetHealthTint(tint); // keeps the generator's per-variant leaf colours intact
+                // Generated plants blend towards natural yellow/brown (keeps per-variant leaf colours); stems only change when the plant dies.
+                generator.SetCondition(FoliageDecline(), displayedStemDecay, WiltDull());
                 return;
             }
+
+            Color tint = TintFor(simulation.State);
 
             if (tintRenderers == null) return;
             propertyBlock.SetColor(BaseColorId, tint);
@@ -272,15 +315,49 @@ namespace BioDome.Plants
             }
         }
 
+        // Leaves: unchanged while healthy, yellowing through "stressed", brown and dry towards zero health; dead = fully dry.
+        private float FoliageDecline()
+        {
+            if (simulation.State == PlantHealthState.Dead) return 1f;
+            float h = simulation.Health01;
+            return h >= data.HealthyThreshold ? 0f : Mathf.InverseLerp(data.HealthyThreshold, 0f, h);
+        }
+
+        // Stems: stay living green unless the plant is close to death (a little below 15 % health) and turn fully woody once it is Dead.
+        private float StemDecayTarget()
+        {
+            if (simulation.State == PlantHealthState.Dead) return 1f;
+            return 0.3f * Mathf.InverseLerp(0.15f, 0f, simulation.Health01);
+        }
+
+        private Color WiltDull() => Color.Lerp(Color.white, new Color(0.9f, 0.87f, 0.68f), simulation.Wilt01 * 0.6f);
+
         private Color TintFor(PlantHealthState state)
         {
-            switch (state)
-            {
-                case PlantHealthState.Healthy: return healthyTint;
-                case PlantHealthState.Stressed: return stressedTint;
-                case PlantHealthState.Critical: return criticalTint;
-                default: return deadTint;
-            }
+            if (simulation == null || state == PlantHealthState.Dead) return deadTint;
+
+            // Smooth colour from health: full colour when healthy, easing to a yellow-olive when stressed and to brown when critical.
+            float h = simulation.Health01;
+            Color c;
+            if (h >= data.HealthyThreshold) c = healthyTint;
+            else if (h >= data.StressedThreshold) c = Color.Lerp(stressedTint, healthyTint, Mathf.InverseLerp(data.StressedThreshold, data.HealthyThreshold, h));
+            else c = Color.Lerp(criticalTint, stressedTint, Mathf.InverseLerp(0f, data.StressedThreshold, h));
+
+            // Wilting dulls the foliage a little (subtle, never cartoonish).
+            return c * Color.Lerp(Color.white, new Color(0.9f, 0.87f, 0.68f), simulation.Wilt01 * 0.6f);
+        }
+
+        /// <summary>Droops the plant: a species-specific loss of height and a slight spread of the canopy, scaled by the plant's wilting.</summary>
+        private void ApplyWilt()
+        {
+            if (simulation == null || generator == null) return;
+            if (meshTransform == null) meshTransform = generator.transform.Find("Mesh");
+            if (meshTransform == null) return;
+
+            float w = simulation.Wilt01;
+            float sag = data.WiltSag * w;
+            float spread = data.WiltSpread * w;
+            meshTransform.localScale = new Vector3(1f + spread, 1f - sag, 1f + spread);
         }
     }
 }

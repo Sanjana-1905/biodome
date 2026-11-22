@@ -103,7 +103,7 @@ namespace BioDome.Plants
             }
 
             // Flowers: only on a maturing plant.
-            int flowers = Mathf.RoundToInt(flowerCount * Mathf.Clamp01((g - 0.5f) / 0.4f));
+            int flowers = Mathf.RoundToInt(flowerCount * Mathf.Clamp01((g - 0.5f) / 0.4f) * c.Bloom);
             for (int f = 0; f < flowers; f++) AddFlower(c, rng, azimuth + 0.7f + f * goldenAngle, sg);
         }
 

@@ -42,9 +42,11 @@ namespace BioDome.EditorTools.Tests
         private static string Run(out int failed)
         {
             PlantSimulation.GrowthModel previous = PlantSimulation.ActiveModel;
+            PlantSimulation.HealthModel previousHealth = PlantSimulation.ActiveHealthModel;
             PlantSimulation.ActiveModel = PlantSimulation.GrowthModel.Scientific;
+            PlantSimulation.ActiveHealthModel = PlantSimulation.HealthModel.Original; // these tests are about growth, not health damage
             try { return RunChecks(out failed); }
-            finally { PlantSimulation.ActiveModel = previous; }
+            finally { PlantSimulation.ActiveModel = previous; PlantSimulation.ActiveHealthModel = previousHealth; }
         }
 
         private static string RunChecks(out int failed)

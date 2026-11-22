@@ -19,6 +19,27 @@ namespace BioDome.Simulation
         /// <summary>Growth model used by every plant. Scientific (the default) is the species-tolerance model; tests switch it to Original to re-run the original baseline.</summary>
         public static GrowthModel ActiveModel = GrowthModel.Scientific;
 
+        /// <summary>Health response to stress. Original = averaged stress only. SevereStress (v2) = also damages health when a single factor is near its tolerance limit (instantaneous). SevereSustained (v3) = the same, but temperature damage follows the exposure over time.</summary>
+        public enum HealthModel { Original = 0, SevereStress = 1, SevereSustained = 2 }
+
+        /// <summary>Health model used by every plant (default SevereStress). Tests switch it to Original to reproduce the earlier baselines.</summary>
+        public static HealthModel ActiveHealthModel = HealthModel.SevereSustained;
+
+        /// <summary>Extra health damage per hour (as a fraction of the species' stress damage) at a single factor's maximum stress. Starts only beyond 60 % of tolerance.</summary>
+        public const float SevereDamageFraction = 0.3f;
+        public const float SevereStressStart = 0.6f;
+
+        /// <summary>Time constants (simulated hours) for wilting: quick to droop, slower to recover.</summary>
+        public const float WiltInHours = 6f;
+
+        /// <summary>Time constant (simulated hours) of the thermal exposure average used by the SevereSustained health model.</summary>
+        public const float ThermalExposureHours = 24f;
+        public const float WiltOutHours = 24f;
+
+        /// <summary>Flower build-up and fade times (simulated hours).</summary>
+        public const float BloomBuildHours = 72f;
+        public const float BloomFadeHours = 48f;
+
         /// <summary>Time constant (simulated hours) over which a plant acclimates to light, so the day/night cycle is averaged (roughly a daily light integral).</summary>
         public const float LightAcclimationHours = 24f;
 
@@ -65,6 +86,18 @@ namespace BioDome.Simulation
         public float AcclimatedLight01 { get; private set; }
         private bool lightInitialised;
 
+        /// <summary>Visible wilting, 0 (turgid) to 1 (fully drooped). Follows water stress with a delay and recovers slowly after watering.</summary>
+        public float Wilt01 { get; private set; }
+
+        /// <summary>Flowering state, 0 (no flowers) to 1 (full bloom). Always 0 for species that do not flower.</summary>
+        public float Bloom01 { get; private set; }
+
+        /// <summary>True while the plant is visibly getting better: wilting is falling or health is rising while not yet healthy.</summary>
+        public bool IsRecovering { get; private set; }
+
+        /// <summary>Time-averaged temperature stress, 0 to 1 (SevereSustained health model). Rises with sustained heat or cold, falls when conditions return.</summary>
+        public float ThermalExposure01 { get; private set; }
+
         public bool IsAlive => State != PlantHealthState.Dead;
 
         /// <summary>Development stage for the current growth, using the species thresholds.</summary>
@@ -79,6 +112,7 @@ namespace BioDome.Simulation
             Health01 = Mathf.Clamp01(initialHealth01);
             Water01 = Mathf.Clamp01(initialWater01);
             State = EvaluateState(Health01);
+            Bloom01 = Data.CanFlower && Growth01 >= Data.FloweringMinGrowth ? 1f : 0f; // an established flowering plant starts in bloom
         }
 
         /// <summary>Advance the simulation by <paramref name="deltaHours"/> simulated hours.</summary>
@@ -90,9 +124,16 @@ namespace BioDome.Simulation
 
             ConsumeWater(deltaHours, environment);
             EvaluateStress(environment);
+            if (ActiveHealthModel == HealthModel.SevereSustained)
+                ThermalExposure01 += (TemperatureStress01 - ThermalExposure01) * (1f - Mathf.Exp(-deltaHours / ThermalExposureHours)); // exponential average: independent of step size
+            float healthBefore = Health01;
+            float wiltBefore = Wilt01;
             UpdateHealth(deltaHours);
             if (ActiveModel == GrowthModel.Scientific) UpdateAcclimatedLight(deltaHours, environment);
             UpdateGrowth(deltaHours, environment.Season);
+            UpdateWilt(deltaHours);
+            UpdateBloom(deltaHours);
+            IsRecovering = (Wilt01 < wiltBefore - 1e-5f) || (Health01 > healthBefore + 1e-6f && Health01 < Data.HealthyThreshold);
 
             State = EvaluateState(Health01);
         }
@@ -155,6 +196,16 @@ namespace BioDome.Simulation
         private void UpdateHealth(float deltaHours)
         {
             float perHour = Data.HealthRecoveryPerHour * (1f - Stress01) - Data.StressDamagePerHour * Stress01;
+            if (ActiveHealthModel != HealthModel.Original)
+            {
+                // A single climate factor near its tolerance limit (very hot, very cold, very dry air, very dark) damages health even when the average looks mild.
+                // Nothing happens until a factor is past 60 % of its tolerance, then damage rises smoothly. Light uses the acclimated value so night is not damage.
+                float temperatureForDamage = ActiveHealthModel == HealthModel.SevereSustained ? ThermalExposure01 : TemperatureStress01;
+                float worst = Mathf.Max(Mathf.Max(temperatureForDamage, HumidityStress01), ActiveModel == GrowthModel.Scientific ? AcclimatedLightStress01 : LightStress01); // water is excluded: drought already counts double and shows as wilting first
+                float severe = Mathf.Clamp01((worst - SevereStressStart) / (1f - SevereStressStart));
+                severe = severe * severe * (3f - 2f * severe);
+                perHour -= Data.StressDamagePerHour * SevereDamageFraction * severe;
+            }
             Health01 = Mathf.Clamp01(Health01 + perHour * deltaHours);
         }
 
@@ -189,6 +240,28 @@ namespace BioDome.Simulation
                 rate = baseRatePerHour * Data.GetGrowthMultiplier(season) * factor * Health01;
             }
             Growth01 = Mathf.Clamp01(Growth01 + rate * deltaHours);
+        }
+
+        private void UpdateWilt(float deltaHours)
+        {
+            // Target wilting follows soil dryness (water stress): none while moisture is in the ideal range, full at about 80 % water stress.
+            float target = Mathf.Clamp01(WaterStress01 / 0.8f);
+            target = target * target * (3f - 2f * target);
+            float tau = target > Wilt01 ? WiltInHours : WiltOutHours;
+            Wilt01 += (target - Wilt01) * (1f - Mathf.Exp(-deltaHours / tau)); // exponential: independent of step size
+        }
+
+        private void UpdateBloom(float deltaHours)
+        {
+            if (!Data.CanFlower) { Bloom01 = 0f; return; }
+
+            // Flowers need a mature, healthy plant in suitable conditions with enough water; they fade slowly when conditions turn bad.
+            bool suitable = Growth01 >= Data.FloweringMinGrowth
+                            && Health01 >= Data.HealthyThreshold
+                            && WaterStress01 < 0.3f
+                            && (ActiveModel == GrowthModel.Scientific ? GrowthFactor01 >= 0.6f : Stress01 < 0.3f);
+            float rate = suitable ? 1f / BloomBuildHours : -1f / BloomFadeHours;
+            Bloom01 = Mathf.Clamp01(Bloom01 + rate * deltaHours);
         }
 
         private PlantHealthState EvaluateState(float health01)

@@ -124,6 +124,41 @@ namespace BioDome.UI
             ShowShade(shade);
         }
 
+        private bool plantPanelDocked;
+        private Vector2 plantPanelAnchorMin, plantPanelAnchorMax, plantPanelPivot, plantPanelPosition;
+
+        /// <summary>
+        /// Moves the plant inspection panel to the bottom-left corner (true) or back to its normal top-right place (false).
+        /// Used while Pod Lab occupies the right-hand column, so the two panels never overlap.
+        /// </summary>
+        public void DockPlantPanelBottomLeft(bool dock)
+        {
+            if (plantPanel == null || dock == plantPanelDocked) return;
+            var rt = (RectTransform)plantPanel.transform;
+            if (dock)
+            {
+                plantPanelAnchorMin = rt.anchorMin; plantPanelAnchorMax = rt.anchorMax; plantPanelPivot = rt.pivot; plantPanelPosition = rt.anchoredPosition;
+                rt.anchorMin = rt.anchorMax = rt.pivot = Vector2.zero;
+                rt.anchoredPosition = new Vector2(20f, 66f); // above the bottom hint bar, below the environment panel
+                rt.localScale = Vector3.one * 0.84f;          // slightly smaller so it fits between the hint bar and the environment panel
+            }
+            else
+            {
+                rt.anchorMin = plantPanelAnchorMin; rt.anchorMax = plantPanelAnchorMax; rt.pivot = plantPanelPivot; rt.anchoredPosition = plantPanelPosition;
+                rt.localScale = Vector3.one;
+            }
+            plantPanelDocked = dock;
+        }
+
+        /// <summary>Keeps the Pause button showing the real paused state (other controls, e.g. the speed bar or Pod Lab, can pause too).</summary>
+        public void SyncPaused(bool paused)
+        {
+            if (pauseToggle == null) return;
+            if (pauseToggle.isOn != paused) pauseToggle.SetIsOnWithoutNotify(paused);
+            var label = pauseToggle.GetComponentInChildren<TMPro.TMP_Text>(true);
+            if (label != null) { string want = paused ? "Resume" : "Pause"; if (label.text != want) label.text = want; }
+        }
+
         public void ShowEnvironment(in EnvironmentConditions conditions)
         {
             if (seasonText != null) seasonText.text = $"{conditions.Season} - Day {conditions.DayCount + 1}";
@@ -172,10 +207,13 @@ namespace BioDome.UI
             {
                 builder.Clear();
                 builder.Append("Status: <b>").Append(StateColorTag(sim.State)).Append(sim.State).Append("</color></b>\n");
+                builder.Append("Condition: <b>").Append(ConditionOf(sim)).Append("</b>\n");
                 builder.Append("Growth stage: <b>").Append(sim.Stage.DisplayName()).Append("</b>\n");
                 builder.Append("Health: ").Append(Percent(sim.Health01)).Append('\n');
                 builder.Append("Growth: ").Append(Percent(sim.Growth01)).Append('\n');
                 builder.Append("Soil moisture: ").Append(Percent(sim.Water01)).Append('\n');
+                builder.Append("Wilting: ").Append(Percent(sim.Wilt01)).Append('\n');
+                if (data.CanFlower) builder.Append("Flowering: ").Append(BloomOf(sim)).Append('\n');
                 builder.Append("Age: ").Append((sim.AgeHours / 24f).ToString("0.0")).Append(" days\n\n");
 
                 builder.Append("Stress: <b>").Append(Percent(sim.Stress01)).Append("</b>\n");
@@ -190,6 +228,24 @@ namespace BioDome.UI
         }
 
         // --- Helpers -------------------------------------------------------------
+
+        private static string ConditionOf(BioDome.Simulation.PlantSimulation sim)
+        {
+            if (!sim.IsAlive) return "Dead";
+            if (sim.IsRecovering && (sim.Wilt01 > 0.05f || sim.Health01 < sim.Data.HealthyThreshold)) return "Recovering";
+            if (sim.Wilt01 > 0.25f) return "Wilting";
+            if (sim.State == PlantHealthState.Critical) return "Critical";
+            if (sim.State == PlantHealthState.Stressed) return "Stressed";
+            return "Healthy";
+        }
+
+        private static string BloomOf(BioDome.Simulation.PlantSimulation sim)
+        {
+            if (sim.Growth01 < sim.Data.FloweringMinGrowth) return "not yet mature";
+            if (sim.Bloom01 >= 0.95f) return "in full bloom";
+            if (sim.Bloom01 > 0.05f) return "blooming (" + Percent(sim.Bloom01) + ")";
+            return "not flowering";
+        }
 
         private static string Percent(float value01) => (value01 * 100f).ToString("0") + "%";
 

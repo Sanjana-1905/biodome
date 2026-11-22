@@ -108,7 +108,7 @@ namespace BioDome.EditorTools.Tests
 
             EnvironmentConditions w = p[ExperimentalCondition.WaterStress].Apply(Sample);
             r.Check(w.TemperatureCelsius == 22f && w.Humidity01 == 0.6f && w.Light01 == 0.7f, "Water stress leaves air/light untouched");
-            r.Check(p[ExperimentalCondition.WaterStress].WaterShareWeight == 0.25f, "Water stress share weight 0.25");
+            r.Check(p[ExperimentalCondition.WaterStress].WaterShareWeight == 0.4f, "Water stress share weight 0.4");
             foreach (ExperimentalCondition k in Enum.GetValues(typeof(ExperimentalCondition)))
             {
                 r.Check(p[k].WaterIntakeFactor == 1f, $"{k} intake stays 1");
