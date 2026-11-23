@@ -39,6 +39,8 @@ namespace BioDome.Experiment
         private TMP_Text title, readout, hint;
         private readonly Image[] rowBackground = new Image[4];
         private readonly TMP_Text[] values = new TMP_Text[4];
+        private readonly Image[] stageButtons = new Image[5];
+        private Image liveButton;
         private readonly StringBuilder text = new StringBuilder(512);
 
         private static readonly string[] Names = { "Temperature offset", "Humidity offset", "Light (x greenhouse)", "Irrigation share" };
@@ -86,8 +88,24 @@ namespace BioDome.Experiment
             return false;
         }
 
+        private bool relabeled;
+
+        // The bottom shortcut bar names the pods by their conditions ("Low humidity", not just "Humidity").
+        private void RelabelShortcuts()
+        {
+            relabeled = true;
+            string[,] names = { { "Btn_Heat", "Heat stress" }, { "Btn_Humidity", "Low humidity" }, { "Btn_Light", "Low light" }, { "Btn_Water", "Water stress" } };
+            for (int i = 0; i < names.GetLength(0); i++)
+            {
+                GameObject b = GameObject.Find(names[i, 0]);
+                TMP_Text label = b != null ? b.GetComponentInChildren<TMP_Text>() : null;
+                if (label != null) { label.text = names[i, 1]; label.fontSize = 9f; label.enableAutoSizing = true; label.fontSizeMin = 7f; label.fontSizeMax = 10.5f; }
+            }
+        }
+
         private void Update()
         {
+            if (!relabeled && Time.frameCount > 10) RelabelShortcuts();
             int nearest = -1;
             if (TryReference(out Vector3 p, out float range) && (podLab == null || !podLab.IsOpen))
             {
@@ -128,6 +146,9 @@ namespace BioDome.Experiment
             if (kb.rightArrowKey.wasPressedThisFrame) Change(row, +1);
             if (kb.leftArrowKey.wasPressedThisFrame) Change(row, -1);
             if (kb.backspaceKey.wasPressedThisFrame) ResetPod();
+            if (kb.periodKey.wasPressedThisFrame) StepStage(+1);
+            if (kb.commaKey.wasPressedThisFrame) StepStage(-1);
+            if (kb.slashKey.wasPressedThisFrame) SetStage(-1);
         }
 
         // --- Actions (all on this pod only) --------------------------------------------
@@ -149,6 +170,22 @@ namespace BioDome.Experiment
             v[parameter] = Mathf.Clamp(Mathf.Round((v[parameter] + direction * Steps[parameter]) / Steps[parameter]) * Steps[parameter], Mins[parameter], Maxs[parameter]);
             pod.SetLiveConditions(v[0], v[1], v[2], v[3]);
             Refresh();
+        }
+
+        /// <summary>Visual-only growth-stage preview of the nearby pod's plants (0 Seed .. 4 Mature), or -1 for the live simulation.</summary>
+        public void SetStage(int stage)
+        {
+            if (Pod == null) return;
+            Pod.SetGrowthPreview(stage);
+            Refresh();
+        }
+
+        private void StepStage(int direction)
+        {
+            if (Pod == null) return;
+            int current = Pod.PreviewStage;
+            int next = current < 0 ? (direction > 0 ? 0 : ExperimentPod.StageNames.Length - 1) : current + direction;
+            SetStage(next < 0 || next >= ExperimentPod.StageNames.Length ? -1 : next);
         }
 
         public void ResetPod()
@@ -176,6 +213,9 @@ namespace BioDome.Experiment
                 rowBackground[i].color = i == row ? RowOn : Color.clear;
             }
 
+            for (int i = 0; i < stageButtons.Length; i++) stageButtons[i].color = pod.PreviewStage == i ? RowOn * 2f : ButtonColor;
+            liveButton.color = pod.PreviewStage < 0 ? RowOn * 2f : ButtonColor;
+
             EnvironmentConditions g = garden.GreenhouseNow;
             EnvironmentConditions c = pod.ConditionsFor(g);
             ExperimentPod.Metrics m = pod.Measure();
@@ -183,6 +223,7 @@ namespace BioDome.Experiment
             for (int i = 0; i < pod.Plants.Count && sample == null; i++) if (pod.Plants[i] != null && pod.Plants[i].IsInitialized) sample = pod.Plants[i];
 
             text.Clear();
+            if (pod.PreviewStage >= 0) text.Append($"<color=#f0c060>Showing {ExperimentPod.StageNames[pod.PreviewStage]} (preview only). Values below are the real simulation.</color>\n");
             text.Append($"Pod climate   <b>{c.TemperatureCelsius:0.0}°C  {c.Humidity01 * 100f:0}% RH  light {c.Light01 * 100f:0}%</b>\n");
             text.Append($"<color=#9fb3a6>Greenhouse   {g.TemperatureCelsius:0.0}°C  {g.Humidity01 * 100f:0}% RH  light {g.Light01 * 100f:0}%</color>\n");
             text.Append($"Growth <b>{m.Growth * 100f:0}%</b>   Health <b>{m.Health * 100f:0}%</b>   Soil <b>{m.Moisture * 100f:0}%</b>   alive {m.Alive}/{m.Total}\n");
@@ -216,7 +257,7 @@ namespace BioDome.Experiment
             scaler.matchWidthOrHeight = 0.5f;
 
             const float width = 400f, pad = 10f, rowH = 30f;
-            float height = pad + 30f + 20f + 4f * (rowH + 2f) + 36f + 8f + 128f + pad;
+            float height = pad + 30f + 20f + 4f * (rowH + 2f) + 36f + 8f + 58f + 128f + pad;
             RectTransform p = NewImage("Panel", canvasObject.transform, PanelColor);
             panel = p.gameObject;
             p.anchorMin = p.anchorMax = p.pivot = new Vector2(0f, 0f);
@@ -245,6 +286,16 @@ namespace BioDome.Experiment
             }
             NewButton(p, "Reset this pod", new Vector2(pad, y - 2f), new Vector2(140f, 30f), ResetPod);
             y -= 38f;
+            NewText("StageLabel", p, "Growth preview (visual only, simulation untouched)  ·  , . keys", 11.5f, FontStyles.Italic, TextAlignmentOptions.MidlineLeft, new Vector2(pad, y), new Vector2(width - 2 * pad, 18f)).color = SubText;
+            y -= 20f;
+            float bw = (width - 2 * pad - 5 * 4f) / 6f;
+            for (int i = 0; i < 5; i++)
+            {
+                int stage = i;
+                stageButtons[i] = NewButton(p, ExperimentPod.StageNames[i], new Vector2(pad + i * (bw + 4f), y), new Vector2(bw, 28f), () => SetStage(stage), 11f);
+            }
+            liveButton = NewButton(p, "Live", new Vector2(pad + 5 * (bw + 4f), y), new Vector2(bw, 28f), () => SetStage(-1), 11f);
+            y -= 36f;
             readout = NewText("Readout", p, "", 13.5f, FontStyles.Normal, TextAlignmentOptions.TopLeft, new Vector2(pad, y), new Vector2(width - 2 * pad, 128f));
             readout.color = TextColor;
             readout.richText = true;
@@ -276,16 +327,17 @@ namespace BioDome.Experiment
             return t;
         }
 
-        private static void NewButton(Transform parent, string label, Vector2 topLeft, Vector2 size, UnityEngine.Events.UnityAction action)
+        private static Image NewButton(Transform parent, string label, Vector2 topLeft, Vector2 size, UnityEngine.Events.UnityAction action, float fontSize = 14f)
         {
             RectTransform r = NewImage("Btn_" + label, parent, ButtonColor);
             Place(r, topLeft, size);
-            TMP_Text t = NewText("Label", r, label, 14f, FontStyles.Normal, TextAlignmentOptions.Center, Vector2.zero, size);
+            TMP_Text t = NewText("Label", r, label, fontSize, FontStyles.Normal, TextAlignmentOptions.Center, Vector2.zero, size);
             ((RectTransform)t.transform).anchorMin = Vector2.zero; ((RectTransform)t.transform).anchorMax = Vector2.one;
             ((RectTransform)t.transform).offsetMin = ((RectTransform)t.transform).offsetMax = Vector2.zero;
             var b = r.gameObject.AddComponent<Button>();
             b.targetGraphic = r.GetComponent<Image>();
             b.onClick.AddListener(() => { action(); if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null); });
+            return r.GetComponent<Image>();
         }
     }
 }

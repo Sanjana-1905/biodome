@@ -212,6 +212,40 @@ namespace BioDome.EditorTools
             else EditorUtility.SetDirty(m);
         }
 
+        /// <summary>
+        /// Blur fix: the ground / prop textures were generated at only 128-256 px and tiled over 1.5-2.4 m, so close to the floor, beds and benches they were magnified into
+        /// soft blocks. This regenerates them from the same pixel functions at 4x the resolution (same look, sharp detail), keeping every material reference (same file, same GUID),
+        /// and turns on trilinear filtering with 8x anisotropy for all BioDome textures so they stay sharp at grazing angles.
+        /// </summary>
+        [MenuItem("BioDome/Rendering/Upgrade Textures To High Resolution")]
+        public static void UpgradeTexturesHighRes()
+        {
+            Texture("BioDome_Pavers", 1024, PaversPixel, true);
+            Texture("BioDome_Soil", 512, SoilPixel, true);
+            Texture("BioDome_Gravel", 1024, GravelPixel, true);
+            Texture("BioDome_Grass", 1024, GrassPixel, true);
+            Texture("BioDome_Wood", 512, WoodPixel, true);
+            Texture("BioDome_Stone", 512, StonePixel, true);
+            foreach (string guid in AssetDatabase.FindAssets("t:Texture2D", new[] { TexturesFolder }))
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (importer == null) continue;
+                importer.filterMode = FilterMode.Trilinear;
+                importer.anisoLevel = 8;
+                importer.mipmapEnabled = true;
+                importer.SaveAndReimport();
+            }
+            AssetDatabase.SaveAssets();
+            Debug.Log("BioDome textures upgraded to high resolution.");
+        }
+
+        public static void UpgradeTexturesBatch()
+        {
+            UpgradeTexturesHighRes();
+            EditorApplication.Exit(0);
+        }
+
         // --- Textures -------------------------------------------------------------
 
         private static Texture2D Texture(string name, int size, Func<float, float, Color> pixel, bool overwrite)
@@ -262,14 +296,15 @@ namespace BioDome.EditorTools
         private static Color SoilPixel(float u, float v)
         {
             float n = 0.55f * Noise(u, v, 8, 8, 3) + 0.3f * Noise(u, v, 24, 24, 4) + 0.15f * Noise(u, v, 64, 64, 5);
-            float speck = Hash((int)(u * 128), (int)(v * 128), 9) > 0.93f ? 1.4f : 1f;
-            return new Color(0.2f, 0.13f, 0.09f) * (0.6f + 0.8f * n) * speck;
+            // Specks come from smooth tileable noise (not per-cell hashes, which show up as hard square blocks when magnified).
+            float speck = 1f + 0.4f * Mathf.SmoothStep(0.70f, 0.90f, Noise(u, v, 128, 128, 9));
+            return new Color(0.105f, 0.08f, 0.058f) * (0.6f + 0.8f * n) * speck; // dark, rich potting soil (was a lighter brown that dominated the beds)
         }
 
         private static Color GravelPixel(float u, float v)
         {
             float n = 0.5f * Noise(u, v, 12, 12, 2) + 0.5f * Noise(u, v, 48, 48, 6);
-            float pebble = Hash((int)(u * 128), (int)(v * 128), 21);
+            float pebble = 0.6f * Noise(u, v, 128, 128, 21) + 0.4f * Noise(u, v, 256, 256, 22); // smooth fine grain: no square cells
             return new Color(0.62f, 0.58f, 0.52f) * (0.7f + 0.3f * n + 0.25f * pebble);
         }
 
@@ -292,7 +327,7 @@ namespace BioDome.EditorTools
         private static Color StonePixel(float u, float v)
         {
             float n = 0.5f * Noise(u, v, 6, 6, 31) + 0.3f * Noise(u, v, 20, 20, 32) + 0.2f * Noise(u, v, 64, 64, 33);
-            float speck = Hash((int)(u * 128), (int)(v * 128), 34) > 0.9f ? 0.8f : 1f;
+            float speck = 1f - 0.2f * Mathf.SmoothStep(0.70f, 0.88f, Noise(u, v, 128, 128, 34));
             return new Color(0.58f, 0.58f, 0.56f) * (0.7f + 0.5f * n) * speck;
         }
 

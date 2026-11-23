@@ -299,18 +299,13 @@ namespace BioDome.EditorTools
                 Prim(PrimitiveType.Cube, "RailE_" + tag, shell, new Vector3(hx, y, 0f), new Vector3(0.05f, 0.05f, gz), steel);
                 Prim(PrimitiveType.Cube, "RailW_" + tag, shell, new Vector3(-hx, y, 0f), new Vector3(0.05f, 0.05f, gz), steel);
             }
-            // Mid-height mullions give the glass a slim, technical look.
+            // Mid-height mullions give the open frame a slim, technical look (the chambers have no glass, so the plants are fully visible).
             foreach (float x in new[] { -w / 6f, w / 6f })
             {
                 Prim(PrimitiveType.Cube, "MullionN", shell, new Vector3(x, y0 + h / 2f, hz), new Vector3(0.025f, h - 0.1f, 0.025f), steel);
                 Prim(PrimitiveType.Cube, "MullionS", shell, new Vector3(x, y0 + h / 2f, -hz), new Vector3(0.025f, h - 0.1f, 0.025f), steel);
             }
             float gh = h - 0.12f, gy = y0 + h / 2f;
-            Prim(PrimitiveType.Cube, "Glass_N", shell, new Vector3(0f, gy, hz), new Vector3(gx - 0.08f, gh, 0.015f), glass);
-            Prim(PrimitiveType.Cube, "Glass_S", shell, new Vector3(0f, gy, -hz), new Vector3(gx - 0.08f, gh, 0.015f), glass);
-            Prim(PrimitiveType.Cube, "Glass_E", shell, new Vector3(hx, gy, 0f), new Vector3(0.015f, gh, gz - 0.08f), glass);
-            Prim(PrimitiveType.Cube, "Glass_W", shell, new Vector3(-hx, gy, 0f), new Vector3(0.015f, gh, gz - 0.08f), glass);
-            Prim(PrimitiveType.Cube, "Lid", shell, new Vector3(0f, y0 + h + 0.005f, 0f), new Vector3(gx - 0.08f, 0.012f, gz - 0.08f), glass);
             Prim(PrimitiveType.Cube, "LidBarX", shell, new Vector3(0f, y0 + h + 0.015f, 0f), new Vector3(gx, 0.03f, 0.03f), steel);
             Prim(PrimitiveType.Cube, "LidBarZ", shell, new Vector3(0f, y0 + h + 0.015f, 0f), new Vector3(0.03f, 0.03f, gz), steel);
 

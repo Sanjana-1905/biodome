@@ -131,8 +131,42 @@ namespace BioDome.Plants
             }
         }
 
+        // --- Growth-stage preview (visual only) ------------------------------------------------
+        private float previewTarget = -1f; // growth the player asked to see (0..1), or -1 = live
+        private float previewShown = -1f;  // growth currently displayed while a preview is active or easing back to live (-1 = not previewing)
+        private const float PreviewSpeed = 0.45f; // growth units per real second: a seedling grows into a mature plant in a couple of seconds
+
+        /// <summary>True while a preview is shown or easing back to the live simulation.</summary>
+        public bool IsPreviewingGrowth => previewShown >= 0f;
+
+        /// <summary>
+        /// Shows this plant at the given growth (0..1) WITHOUT touching the simulation: growth, health, moisture, stress and plant data are not modified.
+        /// The displayed size glides there through the real growth meshes (no pop). Same species, same position.
+        /// </summary>
+        public void SetGrowthPreview(float growth01)
+        {
+            if (simulation == null || !UsesMeshGrowth) return;
+            previewTarget = Mathf.Clamp01(growth01);
+            if (previewShown < 0f) previewShown = simulation.Growth01;
+        }
+
+        /// <summary>Returns to the live simulation (the display glides back to the plant's real growth).</summary>
+        public void ClearGrowthPreview() { previewTarget = -1f; }
+
+        private float DisplayGrowth01 => previewShown >= 0f ? previewShown : simulation.Growth01;
+
+        private void UpdatePreview()
+        {
+            if (previewShown < 0f || simulation == null) return;
+            float target = previewTarget >= 0f ? previewTarget : simulation.Growth01;
+            previewShown = Mathf.MoveTowards(previewShown, target, PreviewSpeed * Time.unscaledDeltaTime);
+            if (previewTarget < 0f && Mathf.Abs(previewShown - simulation.Growth01) < 0.003f) previewShown = -1f;
+            UpdateVisualGrowth(); // the simulation may be paused, so the preview drives its own mesh updates
+        }
+
         private void Update()
         {
+            UpdatePreview();
             if (simulation != null && UsesMeshGrowth && swapBlend != 1f)
             {
                 // After a growth-step mesh swap the plant starts at the size of the previous mesh and eases to the new one (no visible pop).
@@ -233,8 +267,10 @@ namespace BioDome.Plants
         {
             if (!UsesMeshGrowth || meshLibrary == null) return;
 
+            float shownGrowth = DisplayGrowth01;
             int bloomLevel = data.CanFlower ? PlantGenerator.BloomLevelOf(simulation.Bloom01) : PlantGenerator.BloomLevels;
-            int step = PlantGenerator.MeshCode(PlantGenerator.StepOf(simulation.Growth01), bloomLevel);
+            if (previewShown >= 0f && data.CanFlower) bloomLevel = shownGrowth >= data.FloweringMinGrowth ? PlantGenerator.BloomLevels : 0; // a young plant has no flowers
+            int step = PlantGenerator.MeshCode(PlantGenerator.StepOf(shownGrowth), bloomLevel);
             int target = pendingMesh != null ? pendingMesh.Step : displayedStep;
             if (step != target)
             {
@@ -352,9 +388,9 @@ namespace BioDome.Plants
             bool hot = LastConditions.TemperatureCelsius > data.IdealTemperatureCelsius.y;
             float heat = hot ? simulation.TemperatureStress01 : 0f;
             float dry = simulation.HumidityStress01;
-            float preDroop = Mathf.Clamp01((0.42f - simulation.Water01) / 0.2f) * 0.5f; // starts just before the soil is truly short of water (below the ideal 35 %)
-            float dark = Mathf.Clamp01((data.IdealLight01.x + 0.15f - simulation.AcclimatedLight01) / 0.35f);
-            float decline = Mathf.Clamp01(0.55f * heat + 0.9f * dry + 0.9f * simulation.WaterStress01 + 0.35f * preDroop);
+            float preDroop = Mathf.Clamp01((0.45f - simulation.Water01) / 0.2f) * 0.7f; // starts just before the soil is truly short of water (below the ideal 35 %)
+            float dark = Mathf.Clamp01((data.IdealLight01.x + 0.15f - simulation.AcclimatedLight01) / 0.30f);
+            float decline = Mathf.Clamp01(0.55f * heat + 1.5f * dry + 1.2f * simulation.WaterStress01 + 0.7f * preDroop);
             podHeat += (heat - podHeat) * k;
             podDry += (dry - podDry) * k;
             podDroop += (preDroop - podDroop) * k;
@@ -372,7 +408,7 @@ namespace BioDome.Plants
         private Color WiltDull()
         {
             Color c = Color.Lerp(Color.white, new Color(0.9f, 0.87f, 0.68f), simulation.Wilt01 * 0.6f);
-            return podDark > 0.001f ? c * Color.Lerp(Color.white, new Color(0.60f, 0.70f, 0.66f), podDark * 0.8f) : c; // low light: deeper, cooler, darker foliage
+            return podDark > 0.001f ? c * Color.Lerp(Color.white, new Color(0.40f, 0.54f, 0.52f), Mathf.Clamp01(podDark * 1.3f)) : c; // low light: deeper, cooler, darker foliage
         }
 
         private Color TintFor(PlantHealthState state)
@@ -401,9 +437,9 @@ namespace BioDome.Plants
             float sag = data.WiltSag * w;
             float spread = data.WiltSpread * w;
             // Pod plants: heat and dry air curl the canopy in; low light stretches it (etiolation). Zero for display plants.
-            float curl = 0.10f * podHeat + 0.07f * podDry;
-            float height = 1f - sag - 0.04f * podHeat + 0.10f * podDark;
-            float width = 1f + spread - curl - 0.05f * podDark;
+            float curl = 0.10f * podHeat + 0.18f * podDry + 0.12f * podDroop;
+            float height = 1f - sag - 0.04f * podHeat - 0.08f * podDroop - 0.06f * podDry + 0.15f * podDark;
+            float width = 1f + spread - curl - 0.08f * podDark;
             meshTransform.localScale = new Vector3(width, height, width) * swapBlend;
         }
     }

@@ -38,7 +38,8 @@ namespace BioDome.Experiment
             glow.type = LightType.Point; glow.color = new Color(1f, 0.5f, 0.2f); glow.range = 3.2f; glow.intensity = 0f; glow.shadows = LightShadows.None;
 
             shade = MakeSlab(root, "ShadeCloth", new Vector3(0f, 1.77f, 0f), new Vector3(2.8f, 0.012f, 2.4f), new Color(0.02f, 0.03f, 0.04f, 0f), out shadeMat);
-            air = MakeSlab(root, "AirTint", new Vector3(0f, 0.95f, 0f), new Vector3(2.9f, 1.65f, 2.5f), new Color(1f, 1f, 1f, 0f), out airMat);
+            // The chambers are open (no glass), so the condition tint lies on the soil surface where it cannot hide the plants.
+            air = MakeSlab(root, "SoilTint", new Vector3(0f, 0.309f, 0f), new Vector3(2.3f, 0.004f, 1.9f), new Color(1f, 1f, 1f, 0f), out airMat);
             lamp = MakeSlab(root, "HeatLamps", new Vector3(0f, 1.72f, 0f), new Vector3(2.5f, 0.05f, 0.5f), new Color(1f, 0.45f, 0.1f, 0f), out lampMat);
             MakePresentation();
             soil = MakeSlab(root, "DrySoil", new Vector3(0f, 0.306f, 0f), new Vector3(2.2f, 0.004f, 1.8f), new Color(0.78f, 0.66f, 0.46f, 0f), out soilMat);
@@ -66,13 +67,13 @@ namespace BioDome.Experiment
                 SetRate(dust, dry * 24f);
                 glowTarget = hot * 3.2f;
                 lampAlpha = hot * 0.9f;
-                shadeAlpha = Mathf.Max(Mathf.Clamp01(1f - light) * 0.8f, dim * 0.85f);
-                float aHeat = hot * 0.20f, aDry = dry * 0.24f, aDim = dim * 0.42f;
+                shadeAlpha = Mathf.Max(Mathf.Clamp01(1f - light) * 0.85f, dim * 0.92f);
+                float aHeat = hot * 0.40f, aDry = dry * 0.30f, aDim = dim * 0.60f;
                 airAlpha = Mathf.Clamp01(aHeat + aDry + aDim);
                 Color mix = airAlpha > 0.001f ? (new Color(1f, 0.55f, 0.2f) * aHeat + new Color(0.9f, 0.78f, 0.5f) * aDry + new Color(0.03f, 0.05f, 0.10f) * aDim) / airAlpha : Color.white;
                 airColor = new Color(mix.r, mix.g, mix.b, 1f);
                 ExperimentPod.Metrics m = pod.Measure();
-                soilAlpha = Mathf.Clamp01((0.45f - m.Moisture) / 0.2f) * 0.8f; // pale, dry-looking soil only once the pod's soil is drying below normal
+                soilAlpha = Mathf.Clamp01((0.47f - m.Moisture) / 0.17f) * 0.9f; // pale, dry-looking soil only once the pod's soil is drying below normal
                 UpdateLed(m.Stress);
             }
             float k = 1f - Mathf.Exp(-4f * Time.unscaledDeltaTime);

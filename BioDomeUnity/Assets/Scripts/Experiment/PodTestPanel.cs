@@ -37,6 +37,8 @@ namespace BioDome.Experiment
         private readonly List<Image> podButtons = new List<Image>();
         private readonly List<(Image image, float multiplier)> speedButtons = new List<(Image, float)>();
         private Image pauseButton;
+        private readonly List<Image> stageButtons = new List<Image>();
+        private Image liveStageButton;
         private TMP_Text pauseLabel;
         private readonly TMP_Text[] valueLabels = new TMP_Text[4];
         private readonly StringBuilder text = new StringBuilder(1024);
@@ -203,6 +205,9 @@ namespace BioDome.Experiment
                 foreach (var (image, m) in speedButtons) image.color = !manager.Paused && Mathf.Abs(current - m) <= 0.01f * m ? ActiveColor : ButtonColor;
             }
 
+            for (int i = 0; i < stageButtons.Count; i++) stageButtons[i].color = pod.PreviewStage == i ? ActiveColor : ButtonColor;
+            if (liveStageButton != null) liveStageButton.color = pod.PreviewStage < 0 ? ActiveColor : ButtonColor;
+
             podTitle.text = $"<color=#{ColorUtility.ToHtmlStringRGB(pod.Accent)}>{pod.DisplayName}</color>";
             float[] v = CurrentValues();
             ZoneProfile o = pod.OriginalProfile;
@@ -276,7 +281,7 @@ namespace BioDome.Experiment
 
             const float width = 300f, pad = 8f, rowH = 22f;
             RectTransform p = Rect("PodLabPanel", canvasObject.transform, PanelColor);
-            TopRight(p, new Vector2(-12f, -92f), new Vector2(width, 428f));
+            TopRight(p, new Vector2(-12f, -92f), new Vector2(width, 482f));
             panel = p.gameObject;
             float y = -pad;
 
@@ -340,6 +345,20 @@ namespace BioDome.Experiment
             plantLabel = Text(p, "", 11f, FontStyles.Normal, new Vector2(pad + 30f, y), new Vector2(110f, rowH), TextAlignmentOptions.Center);
             Button(p, ">", new Vector2(pad + 142f, y), new Vector2(28f, rowH), () => StepPlant(+1));
             Button(p, "Inspect plant", new Vector2(pad + 176f, y), new Vector2(108f, rowH), () => { var pl = CurrentPlant(); if (manager != null && pl != null) manager.SelectPlant(pl); });
+            y -= rowH + 6f;
+
+            // Growth-stage preview (visual only; this pod's plants).
+            Text(p, "Growth preview (visual only)", 11f, FontStyles.Normal, new Vector2(pad, y), new Vector2(width - pad * 2f, 16f)).color = SubText;
+            y -= 17f;
+            float gw = (width - pad * 2f - 5f * 3f) / 6f;
+            for (int i = 0; i < 5; i++)
+            {
+                int stage = i;
+                stageButtons.Add(Button(p, ExperimentPod.StageNames[i], new Vector2(pad + i * (gw + 3f), y), new Vector2(gw, rowH), () => { Pod.SetGrowthPreview(stage); Refresh(); }));
+            }
+            liveStageButton = Button(p, "Live", new Vector2(pad + 5 * (gw + 3f), y), new Vector2(gw, rowH), () => { Pod.SetGrowthPreview(-1); Refresh(); });
+            foreach (Image si in stageButtons) { var t = si.GetComponentInChildren<TMP_Text>(); t.enableAutoSizing = true; t.fontSizeMin = 7f; t.fontSizeMax = 10f; }
+            { var t = liveStageButton.GetComponentInChildren<TMP_Text>(); t.enableAutoSizing = true; t.fontSizeMin = 7f; t.fontSizeMax = 10f; }
             y -= rowH + 6f;
 
             readout = Text(p, "", 10.5f, FontStyles.Normal, new Vector2(pad, y), new Vector2(width - pad * 2f, 14f * 13f));

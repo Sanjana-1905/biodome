@@ -26,6 +26,10 @@ namespace BioDome.Environment
         [Header("Greenhouse Controls")]
         [SerializeField, Range(-10f, 10f), Tooltip("Heating (+) or cooling (-) applied on top of the outdoor temperature, in C.")]
         private float temperatureOffsetCelsius;
+        [SerializeField, Range(0f, 30f), Tooltip("Conservatory heating thermostat: the indoor air never drops below this (C). 0 = no heating (the outdoor-style climate is used as is).")]
+        private float heatingSetpointCelsius;
+        [SerializeField, Range(0f, 40f), Tooltip("Conservatory ventilation / cooling: the indoor air never rises above this (C). 0 = no cooling.")]
+        private float ventilationSetpointCelsius;
         [SerializeField, Range(-0.3f, 0.3f), Tooltip("Humidifier (+) or dehumidifier (-) strength.")]
         private float humidityOffset;
         [SerializeField, Range(0f, 1f), Tooltip("Shade screen deployment. 1 blocks most sunlight.")]
@@ -151,6 +155,9 @@ namespace BioDome.Environment
             // Peaks at 15:00, lowest at 03:00.
             float dailyWave = Mathf.Sin((timeOfDayHours - 9f) / 24f * Mathf.PI * 2f);
             float temperature = climate.meanTemperatureCelsius + climate.dailySwingCelsius * dailyWave + temperatureOffsetCelsius;
+            // Thermostat and vents (both off by default, so the plain climate profile is unchanged): a tropical conservatory is heated in winter and ventilated in summer.
+            if (heatingSetpointCelsius > 0f) temperature = Mathf.Max(temperature, heatingSetpointCelsius);
+            if (ventilationSetpointCelsius > 0f) temperature = Mathf.Min(temperature, ventilationSetpointCelsius);
 
             // Slightly drier air when it is warmer than the seasonal mean.
             float humidity = Mathf.Clamp01(climate.baseHumidity01 - 0.1f * dailyWave + humidityOffset);

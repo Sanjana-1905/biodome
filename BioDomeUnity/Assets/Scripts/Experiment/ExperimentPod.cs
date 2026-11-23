@@ -70,6 +70,25 @@ namespace BioDome.Experiment
             for (int i = 0; i < plants.Count; i++) if (plants[i] != null) plants[i].ApplyProfileWaterSettings();
         }
 
+        // --- Growth-stage preview (visual only; this pod's plants only) -----------------------------
+        public static readonly string[] StageNames = { "Seed", "Seedling", "Young", "Developing", "Mature" };
+        public static readonly float[] StageGrowth = { 0.06f, 0.25f, 0.50f, 0.75f, 1.00f };
+
+        /// <summary>Index of the stage being previewed (see <see cref="StageNames"/>), or -1 for the live simulation.</summary>
+        public int PreviewStage { get; private set; } = -1;
+
+        /// <summary>Shows this pod's plants at a growth stage, or returns to the live simulation with -1. The simulation itself is never modified.</summary>
+        public void SetGrowthPreview(int stage)
+        {
+            PreviewStage = stage < 0 ? -1 : Mathf.Clamp(stage, 0, StageGrowth.Length - 1);
+            for (int i = 0; i < plants.Count; i++)
+            {
+                if (plants[i] == null) continue;
+                if (PreviewStage < 0) plants[i].ClearGrowthPreview();
+                else plants[i].SetGrowthPreview(StageGrowth[PreviewStage]);
+            }
+        }
+
         /// <summary>Restores the pod's original experimental conditions.</summary>
         public void ResetLiveConditions()
         {
