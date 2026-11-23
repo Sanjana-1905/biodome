@@ -51,10 +51,14 @@ namespace BioDome.Plants
         private MaterialPropertyBlock propertyBlock;
         private PlantHealthState lastPublishedState;
         private PlantGrowthStage lastStage;
-        private int lastLookKey = int.MinValue;
+        private int lastLookKey = int.MinValue, lastPodKey = int.MinValue;
+        // Pod plants only (they have a zone profile): visual response to the individual stress factors, eased over simulated hours so it builds up and recovers gradually.
+        private float podHeat, podDry, podDroop, podDark, podDecline;
+        private const float PodLookHours = 10f;
         private float displayedStemDecay; // eases towards StemDecayTarget over simulated hours, so death browns the stems gradually
         private const float StemDecayHours = 12f;
         private Transform meshTransform;
+        private float swapBlend = 1f; // size ratio previous mesh / new mesh right after a swap, easing back to 1
 
         private PlantGenerator generator;
         private PlantMeshLibrary meshLibrary;
@@ -129,6 +133,12 @@ namespace BioDome.Plants
 
         private void Update()
         {
+            if (simulation != null && UsesMeshGrowth && swapBlend != 1f)
+            {
+                // After a growth-step mesh swap the plant starts at the size of the previous mesh and eases to the new one (no visible pop).
+                swapBlend = Mathf.Abs(swapBlend - 1f) < 0.002f ? 1f : Mathf.Lerp(swapBlend, 1f, 1f - Mathf.Exp(-5f * Time.deltaTime));
+                ApplyWilt();
+            }
             if (simulation == null || visualRoot == null || UsesMeshGrowth) return;
 
             float target = Mathf.Lerp(minScaleFraction, 1f, simulation.Growth01) * data.MaxScale;
@@ -238,7 +248,10 @@ namespace BioDome.Plants
                 currentMesh = pendingMesh;
                 pendingMesh = null;
                 displayedStep = currentMesh.Step;
+                float oldSize = old != null && old.Mesh != null ? old.Mesh.bounds.size.y : 0f, newSize = currentMesh.Mesh.bounds.size.y;
                 generator.DisplayMesh(currentMesh.Mesh, PlantGenerator.GrowthOfStep(PlantGenerator.StepOfCode(displayedStep)));
+                swapBlend = oldSize > 0.01f && newSize > 0.01f ? Mathf.Clamp(oldSize / newSize, 0.6f, 1.6f) : 1f;
+                ApplyWilt();
                 meshLibrary.Release(old);
             }
         }
@@ -265,12 +278,15 @@ namespace BioDome.Plants
             }
 
             displayedStemDecay += (StemDecayTarget() - displayedStemDecay) * (1f - Mathf.Exp(-deltaHours / StemDecayHours));
+            UpdatePodLook(deltaHours);
 
             // Continuous visual response: re-apply only when health, wilting or stem decay has moved by about 2 %.
             int look = Mathf.RoundToInt(simulation.Health01 * 50f) + 100 * Mathf.RoundToInt(simulation.Wilt01 * 50f) + 10000 * Mathf.RoundToInt(displayedStemDecay * 50f);
-            if (look != lastLookKey)
+            int podKey = Mathf.RoundToInt(podHeat * 20f) + 21 * Mathf.RoundToInt(podDry * 20f) + 441 * Mathf.RoundToInt(podDroop * 20f) + 9261 * Mathf.RoundToInt(podDark * 20f) + 194481 * Mathf.RoundToInt(podDecline * 20f);
+            if (look != lastLookKey || podKey != lastPodKey)
             {
                 lastLookKey = look;
+                lastPodKey = podKey;
                 ApplyTint();
                 ApplyWilt();
             }
@@ -320,7 +336,30 @@ namespace BioDome.Plants
         {
             if (simulation.State == PlantHealthState.Dead) return 1f;
             float h = simulation.Health01;
-            return h >= data.HealthyThreshold ? 0f : Mathf.InverseLerp(data.HealthyThreshold, 0f, h);
+            float fromHealth = h >= data.HealthyThreshold ? 0f : Mathf.InverseLerp(data.HealthyThreshold, 0f, h);
+            return Mathf.Max(fromHealth, podDecline);
+        }
+
+        /// <summary>
+        /// Pod plants show each stress factor on the plant itself, from the live simulation values: heat curls the canopy and yellows the leaves, dry air dulls and
+        /// browns the leaf edges, a drying soil droops the leaves before real wilting starts, and low light darkens and stretches the foliage. All eased over
+        /// simulated hours (so it builds gradually and recovers when conditions recover). Display plants (no zone profile) are not touched.
+        /// </summary>
+        private void UpdatePodLook(float deltaHours)
+        {
+            if (zoneProfile == null) return;
+            float k = 1f - Mathf.Exp(-deltaHours / PodLookHours);
+            bool hot = LastConditions.TemperatureCelsius > data.IdealTemperatureCelsius.y;
+            float heat = hot ? simulation.TemperatureStress01 : 0f;
+            float dry = simulation.HumidityStress01;
+            float preDroop = Mathf.Clamp01((0.42f - simulation.Water01) / 0.2f) * 0.5f; // starts just before the soil is truly short of water (below the ideal 35 %)
+            float dark = Mathf.Clamp01((data.IdealLight01.x + 0.15f - simulation.AcclimatedLight01) / 0.35f);
+            float decline = Mathf.Clamp01(0.55f * heat + 0.9f * dry + 0.9f * simulation.WaterStress01 + 0.35f * preDroop);
+            podHeat += (heat - podHeat) * k;
+            podDry += (dry - podDry) * k;
+            podDroop += (preDroop - podDroop) * k;
+            podDark += (dark - podDark) * k;
+            podDecline += (decline - podDecline) * k;
         }
 
         // Stems: stay living green unless the plant is close to death (a little below 15 % health) and turn fully woody once it is Dead.
@@ -330,7 +369,11 @@ namespace BioDome.Plants
             return 0.3f * Mathf.InverseLerp(0.15f, 0f, simulation.Health01);
         }
 
-        private Color WiltDull() => Color.Lerp(Color.white, new Color(0.9f, 0.87f, 0.68f), simulation.Wilt01 * 0.6f);
+        private Color WiltDull()
+        {
+            Color c = Color.Lerp(Color.white, new Color(0.9f, 0.87f, 0.68f), simulation.Wilt01 * 0.6f);
+            return podDark > 0.001f ? c * Color.Lerp(Color.white, new Color(0.60f, 0.70f, 0.66f), podDark * 0.8f) : c; // low light: deeper, cooler, darker foliage
+        }
 
         private Color TintFor(PlantHealthState state)
         {
@@ -354,10 +397,14 @@ namespace BioDome.Plants
             if (meshTransform == null) meshTransform = generator.transform.Find("Mesh");
             if (meshTransform == null) return;
 
-            float w = simulation.Wilt01;
+            float w = Mathf.Max(simulation.Wilt01, podDroop);
             float sag = data.WiltSag * w;
             float spread = data.WiltSpread * w;
-            meshTransform.localScale = new Vector3(1f + spread, 1f - sag, 1f + spread);
+            // Pod plants: heat and dry air curl the canopy in; low light stretches it (etiolation). Zero for display plants.
+            float curl = 0.10f * podHeat + 0.07f * podDry;
+            float height = 1f - sag - 0.04f * podHeat + 0.10f * podDark;
+            float width = 1f + spread - curl - 0.05f * podDark;
+            meshTransform.localScale = new Vector3(width, height, width) * swapBlend;
         }
     }
 }

@@ -36,7 +36,22 @@ namespace BioDome.Environment
         [SerializeField, Range(0f, 1f), Tooltip("Share of an equal irrigation split each plant in this zone receives. 1 = normal; lower = water-limited.")]
         private float waterShareWeight = 1f;
 
+        [SerializeField, Tooltip("Runtime only (set by a climate pod): when on, the zone does NOT follow the greenhouse climate. Its air temperature, humidity and light come from the controlled baseline below, plus the offsets.")]
+        private bool controlledBaseline;
+        [SerializeField, Tooltip("Controlled baseline: x = temperature (C), y = relative humidity (0-1), z = light (0-1).")]
+        private Vector3 baseline = new Vector3(23f, 0.65f, 0.5f);
+
         public float WaterShareWeight => waterShareWeight;
+        public bool HasControlledBaseline => controlledBaseline;
+
+        /// <summary>Makes this zone an independent climate chamber: its conditions are this baseline plus the profile's offsets, whatever the greenhouse does (season and clock still pass through).</summary>
+        public void SetControlledBaseline(float temperatureCelsius, float humidity01, float light01)
+        {
+            controlledBaseline = true;
+            baseline = new Vector3(temperatureCelsius, Mathf.Clamp01(humidity01), Mathf.Clamp01(light01));
+        }
+
+        public Vector3 Baseline => baseline;
         public string DisplayName => displayName;
         public ExperimentalCondition Condition => condition;
         public float TemperatureOffsetCelsius => temperatureOffsetCelsius;
@@ -46,11 +61,22 @@ namespace BioDome.Environment
 
         /// <summary>True when the profile changes nothing.</summary>
         public bool IsIdentity =>
-            temperatureOffsetCelsius == 0f && humidityOffset == 0f && lightMultiplier == 1f && waterIntakeFactor == 1f && waterShareWeight == 1f;
+            !controlledBaseline && temperatureOffsetCelsius == 0f && humidityOffset == 0f && lightMultiplier == 1f && waterIntakeFactor == 1f && waterShareWeight == 1f;
 
         /// <summary>Returns the conditions this zone experiences. Identity profiles return the input untouched.</summary>
         public EnvironmentConditions Apply(in EnvironmentConditions greenhouse)
         {
+            if (controlledBaseline)
+            {
+                return new EnvironmentConditions(
+                    baseline.x + temperatureOffsetCelsius,
+                    Mathf.Clamp01(baseline.y + humidityOffset),
+                    Mathf.Clamp01(baseline.z * lightMultiplier),
+                    greenhouse.Season,
+                    greenhouse.TimeOfDayHours,
+                    greenhouse.DayCount);
+            }
+
             if (temperatureOffsetCelsius == 0f && humidityOffset == 0f && lightMultiplier == 1f) return greenhouse;
 
             return new EnvironmentConditions(

@@ -51,6 +51,10 @@ namespace BioDome.CameraSystem
         [SerializeField] private float eaveHeight = 7f;
         [SerializeField] private float ridgeHeight = 12f;
         [SerializeField, Min(0f)] private float wallMargin = 0.35f;
+        [SerializeField, Min(1f), Tooltip("Confinement is fully applied when the camera is closer than this to its pivot (inspection views).")]
+        private float confineFullDistance = 22f;
+        [SerializeField, Min(1f), Tooltip("Confinement fades out completely beyond this distance, so overview and top-down views can sit above the whole building.")]
+        private float confineOffDistance = 34f;
 
         [Header("Collision")]
         [SerializeField, Min(0f)] private float collisionRadius = 0.3f;
@@ -89,6 +93,8 @@ namespace BioDome.CameraSystem
         private float targetPitch;
         private float targetDistance;
 
+        private float transitionSmoothing = 10f;
+        private float transitionUntil;
         private float collisionDistance = float.MaxValue;
         private readonly RaycastHit[] hitBuffer = new RaycastHit[24];
 
@@ -110,6 +116,12 @@ namespace BioDome.CameraSystem
         /// That includes clicking other scenery. Used to deselect the current plant.
         /// </summary>
         public event Action EmptySpaceClicked;
+
+        /// <summary>Raised whenever something asks the orbit camera to go somewhere (FocusOn, FlyTo, Reset View...). Lets the mode manager leave first person first.</summary>
+        public event Action ViewRequested;
+
+        /// <summary>Raised by <see cref="ResetView"/> (after <see cref="ViewRequested"/>): the user asked for the full overview.</summary>
+        public event Action ResetRequested;
 
         public Vector3 Pivot => pivot;
         public float Distance => distance;
@@ -148,7 +160,8 @@ namespace BioDome.CameraSystem
             targetPivot = ClampPivot(targetPivot);
 
             float dt = Mathf.Min(Time.unscaledDeltaTime, 0.1f); // unscaled: works when paused; capped: a hitch never causes a jump
-            float t = 1f - Mathf.Exp(-smoothing * dt);
+            float sm = Time.unscaledTime < transitionUntil ? transitionSmoothing : smoothing; // slower, gentler glide for big mode changes
+            float t = 1f - Mathf.Exp(-sm * dt);
             pivot = Vector3.Lerp(pivot, targetPivot, t);
             yaw = Mathf.LerpAngle(yaw, targetYaw, t);
             pitch = Mathf.Lerp(pitch, targetPitch, t);
@@ -165,16 +178,71 @@ namespace BioDome.CameraSystem
 
             Vector3 position = pivot + backward * used;
             if (position.y < groundClearance) position.y = groundClearance; // never under the floor
-            if (confineToBuilding) position = ConfineToBuilding(position);
+            if (confineToBuilding)
+            {
+                // Faded by distance: close inspection stays indoors, far overview/top-down views are not squeezed under the roof.
+                float confine = Mathf.Clamp01((confineOffDistance - distance) / Mathf.Max(0.01f, confineOffDistance - confineFullDistance));
+                if (confine > 0f) position = Vector3.Lerp(position, ConfineToBuilding(position), confine);
+            }
             transform.SetPositionAndRotation(position, Quaternion.LookRotation(pivot - position, Vector3.up));
         }
 
         // --- Public API ----------------------------------------------------------
 
+        /// <summary>Building footprint used for confinement (also used by the first-person mode to keep the player inside the glass).</summary>
+        public Vector2 BuildingX => buildingX;
+        public float BuildingHalfWidth => buildingHalfWidth;
+        public float WallMargin => wallMargin;
+
+        /// <summary>Replaces the Reset View (overview) pose, so ResetView / R / the Overview shortcut all use it.</summary>
+        public void ConfigureOverview(Vector3 pivot, float dist, float newYaw, float newPitch)
+        {
+            defaultPivot = pivot;
+            defaultDistance = Mathf.Clamp(dist, minDistance, maxDistance);
+            defaultYaw = newYaw;
+            defaultPitch = Mathf.Clamp(newPitch, minPitch, maxPitch);
+        }
+
+        /// <summary>Uses a lower smoothing value (a longer glide) for the next <paramref name="seconds"/>; used when switching camera modes.</summary>
+        public void SetTransitionSmoothing(float value, float seconds)
+        {
+            transitionSmoothing = Mathf.Max(0.5f, value);
+            transitionUntil = Time.unscaledTime + seconds;
+        }
+
+        /// <summary>Widens the box the pivot may move in and switches building confinement on or off (free navigation around and above the whole site).</summary>
+        public void SetFreeNavigation(Vector3 newPivotMin, Vector3 newPivotMax, bool confine)
+        {
+            pivotMin = newPivotMin;
+            pivotMax = Vector3.Max(newPivotMax, newPivotMin);
+            confineToBuilding = confine;
+        }
+
+        /// <summary>Raises (never lowers) the pitch and distance limits, e.g. so a near-vertical top-down view and a whole-building view are reachable.</summary>
+        public void RaiseLimits(float pitchLimit, float distanceLimit)
+        {
+            maxPitch = Mathf.Max(maxPitch, pitchLimit);
+            maxDistance = Mathf.Max(maxDistance, distanceLimit);
+        }
+
+        /// <summary>Makes the orbit state match a camera pose instantly (used when returning from first person, so the next FlyTo starts where the player was).</summary>
+        public void BeginFrom(Vector3 position, Quaternion rotation)
+        {
+            followTarget = null;
+            Vector3 euler = rotation.eulerAngles;
+            float p = Mathf.Clamp(Mathf.DeltaAngle(0f, euler.x), minPitch, maxPitch);
+            pivot = targetPivot = ClampPivot(position + Quaternion.Euler(p, euler.y, 0f) * Vector3.forward * 3f);
+            yaw = targetYaw = euler.y;
+            pitch = targetPitch = p;
+            distance = targetDistance = 3f;
+            collisionDistance = float.MaxValue;
+        }
+
         /// <summary>Smoothly frames a transform. Pass follow = true to keep tracking it.</summary>
         public void FocusOn(Transform target, float focusDistance = 3f, bool follow = false)
         {
             if (target == null) return;
+            ViewRequested?.Invoke();
 
             followTarget = follow ? target : null;
             targetPivot = ClampPivot(target.position);
@@ -183,6 +251,7 @@ namespace BioDome.CameraSystem
 
         public void FocusOnPoint(Vector3 point, float focusDistance)
         {
+            ViewRequested?.Invoke();
             followTarget = null;
             targetPivot = ClampPivot(point);
             targetDistance = Mathf.Clamp(focusDistance, minDistance, maxDistance);
@@ -210,6 +279,8 @@ namespace BioDome.CameraSystem
         /// <summary>Returns to the overview. Pass instant = true to skip smoothing.</summary>
         public void ResetView(bool instant = false)
         {
+            ViewRequested?.Invoke();
+            ResetRequested?.Invoke();
             followTarget = null;
             targetPivot = ClampPivot(defaultPivot);
             targetYaw = defaultYaw;

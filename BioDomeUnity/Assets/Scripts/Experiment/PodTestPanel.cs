@@ -320,7 +320,7 @@ namespace BioDome.Experiment
                 Button(p, "+", new Vector2(pad + 252f, y), new Vector2(28f, rowH), () => Change(parameter, +1));
                 y -= rowH + 3f;
             }
-            Text(p, "Offsets add to the greenhouse climate; light and water scale it.", 9f, FontStyles.Italic, new Vector2(pad, y), new Vector2(width - pad * 2f, 14f)).color = SubText;
+            Text(p, "Offsets add to this pod's own controlled climate (not the greenhouse); light and water scale it.", 9f, FontStyles.Italic, new Vector2(pad, y), new Vector2(width - pad * 2f, 14f)).color = SubText;
             y -= 18f;
 
             // Simulation speed.

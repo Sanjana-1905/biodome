@@ -44,8 +44,22 @@ namespace BioDome.Experiment
             profile = Instantiate(sharedProfile);
             profile.name = sharedProfile.name + " (live)";
             profile.hideFlags = HideFlags.DontSave;
+            MakeIndependentChamber();
             for (int i = 0; i < plants.Count; i++)
                 if (plants[i] != null && plants[i].ZoneProfile == sharedProfile) plants[i].SetZoneProfileLive(profile);
+        }
+
+        /// <summary>
+        /// Each pod is a sealed, climate-controlled chamber: its air and light come from its own baseline (the centre of its plants' comfortable ranges, so the
+        /// control pod is genuinely ideal) plus the pod's offsets, independent of the greenhouse climate and of the greenhouse controls.
+        /// </summary>
+        private void MakeIndependentChamber()
+        {
+            PlantData data = null;
+            for (int i = 0; i < plants.Count && data == null; i++) if (plants[i] != null) data = plants[i].Data;
+            if (data == null || profile == null) return;
+            Vector2 t = data.IdealTemperatureCelsius, h = data.IdealHumidity01, l = data.IdealLight01;
+            profile.SetControlledBaseline(0.5f * (t.x + t.y), 0.5f * (h.x + h.y), 0.5f * (l.x + l.y));
         }
 
         /// <summary>Changes this pod's live conditions (offsets on top of the greenhouse climate, light multiplier, irrigation share). Only this pod's plants are affected.</summary>
